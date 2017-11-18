@@ -15,184 +15,44 @@
             <div class="nano-content">
                 <nav id="menu" class="nav-main" role="navigation">
 
-                    <ul class="nav nav-main <?php echo (($actual == 'Dashboard') ? 'nav-expanded nav-active' : ''); ?>">
-                        <li  class="<?php echo (($actual == 'Dashboard') ? 'nav-active' : ''); ?>">
-                            <a class="nav-link" href="<?php MAIN_URL ?>/dashboard">
+                    <ul class="nav nav-main">
+                        <li  class="<?php echo (($actualP == 'Dashboard') ? 'nav-active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo MAIN_URL ?>/dashboard">
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <span>Dashboard</span>
                             </a>                        
                         </li>
-                        <li class="nav-parent">
+                        <li class="nav-parent <?php echo (($actualP == 'xCobrar') ? 'nav-expanded nav-active' : ''); ?>">
                             <a class="nav-link" href="#">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span>Layouts</span>
+                                <span>xCobrar</span>
                             </a>
                             <ul class="nav nav-children">
-                                <li>
-                                    <a class="nav-link" href="index.html">
-                                        Landing Page
+                                <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/xcobrar/amortizaciones">
+                                        Amortizaciones
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-default.html">
-                                        Default
-                                    </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Boxed
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-boxed.html">
-                                                Static Header
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-boxed-fixed-header.html">
-                                                Fixed Header
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Horizontal Menu Header
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-header-menu.html">
-                                                Pills
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-header-menu-stripe.html">
-                                                Stripe
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-header-menu-top-line.html">
-                                                Top Line
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-dark.html">
-                                        Dark
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-dark-header.html">
-                                        Dark Header
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-two-navigations.html">
-                                        Two Navigations
-                                    </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Tab Navigation
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-tab-navigation-dark.html">
-                                                Tab Navigation Dark
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-tab-navigation.html">
-                                                Tab Navigation Light
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-tab-navigation-boxed.html">
-                                                Tab Navigation Boxed
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-light-sidebar.html">
-                                        Light Sidebar
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-left-sidebar-collapsed.html">
-                                        Left Sidebar Collapsed
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-left-sidebar-scroll.html">
-                                        Left Sidebar Scroll
-                                    </a>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Left Sidebar Big Icons
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-left-sidebar-big-icons.html">
-                                                Left Sidebar Big Icons Dark
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-left-sidebar-big-icons-light.html">
-                                                Left Sidebar Big Icons Light
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Left Sidebar Panel
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-left-sidebar-panel.html">
-                                                Left Sidebar Panel Dark
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-left-sidebar-panel-light.html">
-                                                Left Sidebar Panel Light
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                    <a>
-                                        Left Sidebar Sizes
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <li>
-                                            <a class="nav-link" href="layouts-sidebar-sizes-xs.html">
-                                                Left Sidebar XS
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-sidebar-sizes-sm.html">
-                                                Left Sidebar SM
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="layouts-sidebar-sizes-md.html">
-                                                Left Sidebar MD
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="layouts-square-borders.html">
-                                        Square Borders
+                                <li class="<?php echo (($actualH == 'ControlPagos') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/">
+                                        Control de Pagos
                                     </a>
                                 </li>
                             </ul>
-                        </li>                        
-
+                        </li>
+                        <li class="nav-parent <?php echo (($actualP == 'Mantenedor') ? 'nav-expanded nav-active' : ''); ?>">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <span>Mantenedor</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/">
+                                        Proyectos
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 
