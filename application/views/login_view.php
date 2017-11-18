@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <form action="http://preview.oklerthemes.com/porto-admin/2.0.0/index.html" method="post">
                             <div class="form-group mb-3">
-                                <label>Username</label>
+                                <label>Usuario</label>
                                 <div class="input-group input-group-icon">
                                     <input name="username" type="text" class="form-control form-control-lg" />
                                     <span class="input-group-addon">
