@@ -47,11 +47,11 @@
                         <h2 class="title text-uppercase font-weight-bold m-0"><i class="fa fa-user mr-1"></i> Sign In</h2>
                     </div>
                     <div class="card-body">
-                        <form action="http://preview.oklerthemes.com/porto-admin/2.0.0/index.html" method="post">
+                        <form action="<?php echo MAIN_URL ?>/login/iniciarSesion" method="POST">
                             <div class="form-group mb-3">
                                 <label>Usuario</label>
                                 <div class="input-group input-group-icon">
-                                    <input name="username" type="text" class="form-control form-control-lg" />
+                                    <input name="nick" type="text" class="form-control form-control-lg" />
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-user"></i>
@@ -66,7 +66,7 @@
                                     <a href="pages-recover-password.html" class="float-right">Lost Password?</a>
                                 </div>
                                 <div class="input-group input-group-icon">
-                                    <input name="pwd" type="password" class="form-control form-control-lg" />
+                                    <input name="clave" type="password" class="form-control form-control-lg" />
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-lock"></i>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-right">
-                                    <a href="<?php echo MAIN_URL ?>/dashboard" type="submit" class="btn btn-primary mt-2">Sign In</a>
+                                    <button>Entrar</button>
                                 </div>
                             </div>
 

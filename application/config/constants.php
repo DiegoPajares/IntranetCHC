@@ -8,8 +8,8 @@ define('MAIN_URL', 'http://' . SERVER_AP . '/' . PROJECT_NAME);
 
 //DataBase
 define('SERVER_DB', 'localhost');
-define('USER_DB', 'ConsultaBD');
-define('PASS_DB', '1234');
+define('USER_DB', 'root');
+define('PASS_DB', 'pa$$w0rd');
 define('SERVER_AP_IP', 'localhost');
 define('NAME_BD', 'bd_chc');
 

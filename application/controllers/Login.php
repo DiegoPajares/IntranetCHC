@@ -12,26 +12,21 @@ class Login extends CI_Controller {
     }
 
     public function iniciarSesion() {
-        $nombre = $this->input->post('nombre');
-        $password = md5($this->input->post('password'));
-
-//        echo $nombre . ' ' . $password;
+        $nombre = $this->input->post('nick');
+        $password = md5($this->input->post('clave'));
 
         $resultado = $this->login_model->loginQry_login($nombre, $password);
 
         if ($resultado != null) {
-            //print_r($resultado);
-            if ($resultado->password_usuario == $password) {
+            if ($resultado->clave == $password) {
 
                 $data = array(
                     'nombre' => $nombre,
-                    'id' => $resultado->id_usuario,
+                    'id' => $resultado->nick,
                     'login' => true
                 );
-                //Guardar datos en sesion
                 $this->session->set_userdata($data);
-                header("Location: " . MAIN_URL . "/contenido");
-                //echo 'USER: ' . $this->session->userdata('nombre') . ' <br />ID: ' . $this->session->userdata('id');
+                header("Location: " . MAIN_URL . "/Dashboard");
             } else {
                 header("Location: " . MAIN_URL);
                 die();
