@@ -30,8 +30,7 @@
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>css/custom.css">
 
         <!-- Head Libs -->
-        <script src="<?php echo URL_ASSETS ?>vendor/modernizr/modernizr.js"></script>		
-        <script src="<?php echo URL_ASSETS ?>master/style-switcher/style.switcher.localstorage.js"></script>
+        <script src="<?php echo URL_ASSETS ?>vendor/modernizr/modernizr.js"></script>		        
 
     </head>
     <body>
@@ -110,8 +109,7 @@
         <!-- Vendor -->
         <script src="<?php echo URL_ASSETS ?>vendor/jquery/jquery.js"></script>		
         <script src="<?php echo URL_ASSETS ?>vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>		
-        <script src="<?php echo URL_ASSETS ?>vendor/jquery-cookie/jquery-cookie.js"></script>		
-        <script src="<?php echo URL_ASSETS ?>master/style-switcher/style.switcher.js"></script>		
+        <script src="<?php echo URL_ASSETS ?>vendor/jquery-cookie/jquery-cookie.js"></script>
         <script src="<?php echo URL_ASSETS ?>vendor/popper/umd/popper.min.js"></script>		
         <script src="<?php echo URL_ASSETS ?>vendor/bootstrap/js/bootstrap.js"></script>		
         <script src="<?php echo URL_ASSETS ?>vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>		
@@ -130,6 +128,5 @@
         <script src="<?php echo URL_ASSETS ?>js/theme.init.js"></script>
         
     </body>
-
-    <!-- Mirrored from preview.oklerthemes.com/porto-admin/2.0.0/pages-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Nov 2017 20:48:22 GMT -->
+    
 </html>
