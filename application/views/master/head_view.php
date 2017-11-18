@@ -27,7 +27,7 @@
         <!--Tablas Editables-->
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/select2/css/select2.css" />		
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />		
-        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/datatables/media/css/dataTables.bootstrap4.css" />
+        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/datatables/media/css/dataTables.bootstrap4.css" />                
 
         <!-- Theme CSS -->
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>css/theme.css" />
