@@ -22,6 +22,12 @@
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/magnific-popup/magnific-popup.css" />
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/pnotify/pnotify.custom.css" />
+
+        <!--Tablas Editables-->
+        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/select2/css/select2.css" />		
+        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />		
+        <link rel="stylesheet" href="<?php echo URL_ASSETS ?>vendor/datatables/media/css/dataTables.bootstrap4.css" />
 
         <!-- Theme CSS -->
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>css/theme.css" />
@@ -30,7 +36,6 @@
         <link rel="stylesheet" href="<?php echo URL_ASSETS ?>css/custom.css">
 
         <!-- Head Libs -->
-        <script src="<?php echo URL_ASSETS ?>vendor/modernizr/modernizr.js"></script>		
-        <script src="<?php echo URL_ASSETS ?>master/style-switcher/style.switcher.localstorage.js"></script>
+        <script src="<?php echo URL_ASSETS ?>vendor/modernizr/modernizr.js"></script>		        
 
     </head>

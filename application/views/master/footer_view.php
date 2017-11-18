@@ -73,7 +73,6 @@
 <script src="<?php echo URL_ASSETS ?>vendor/jquery/jquery.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/jquery-cookie/jquery-cookie.js"></script>		
-<script src="<?php echo URL_ASSETS ?>master/style-switcher/style.switcher.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/popper/umd/popper.min.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/bootstrap/js/bootstrap.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>		
@@ -81,6 +80,13 @@
 <script src="<?php echo URL_ASSETS ?>vendor/nanoscroller/nanoscroller.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/magnific-popup/jquery.magnific-popup.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/jquery-placeholder/jquery-placeholder.js"></script>
+<script src="<?php echo URL_ASSETS ?>vendor/loading-overlay/loadingoverlay.min.js"></script>
+<script src="<?php echo URL_ASSETS ?>vendor/pnotify/pnotify.custom.js"></script>
+
+<!--Tablas Editables-->
+<script src="<?php echo URL_ASSETS ?>vendor/select2/js/select2.js"></script>		
+<script src="<?php echo URL_ASSETS ?>vendor/datatables/media/js/jquery.dataTables.min.js"></script>		
+<script src="<?php echo URL_ASSETS ?>vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
 
 <!-- Theme Base, Components and Settings -->
 <script src="<?php echo URL_ASSETS ?>js/theme.js"></script>
@@ -90,6 +96,17 @@
 
 <!-- Theme Initialization Files -->
 <script src="<?php echo URL_ASSETS ?>js/theme.init.js"></script>
+
+<!-- Examples -->
+<script src="<?php echo URL_ASSETS ?>js/examples/examples.datatables.editable.js"></script>
+
+<script src="<?php echo URL_ASSETS ?>js/jsGeneral.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        APP.init();
+
+    });
+</script>
 
 </body>
 </html>
