@@ -46,9 +46,9 @@
                                 <span>Mantenedor</span>
                             </a>
                             <ul class="nav nav-children">
-                                <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/">
-                                        Proyectos
+                                <li class="<?php echo (($actualH == 'Proyectos/Obras') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Mantenedores/Obras ">
+                                        Proyectos/Obras
                                     </a>
                                 </li>
                             </ul>
