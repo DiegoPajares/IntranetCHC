@@ -17884,3 +17884,7 @@ html.dark .thumbnail {
 html.dark .notification-menu .title {
 	color: #c3c3c3;
 }
+
+#datatableButtons{
+    text-align: right !important;
+}

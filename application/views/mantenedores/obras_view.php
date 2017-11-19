@@ -16,6 +16,7 @@
                                     <a class="btn btn-primary" data-toggle="modal" id="btnRegistrar" href="#modalnuevo"> Nueva Obra <i class="fa fa-plus"></i> </a>                                
                                 </div>
                             </div>
+                            <div class="col-md-6" id="datatableButtons"></div>
                         </div>
                         <table class="table table-bordered table-striped mb-none" id="tablaObras" style="width: 100%;">
                             <thead>
@@ -212,15 +213,32 @@
 //                        }
 //                    }
 //                ],
-                dom: 'Blfrtip',
-                buttons: [
-                    {extend: "print", className: "btn dark btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}, {extend: "copy", className: "btn red btn-outline", text: "Copiar", exportOptions: {columns: ':visible'}}, {extend: "pdf", className: "btn green btn-outline", exportOptions: {columns: [0, 1, 2, 3]}}, {extend: "excel", className: "btn yellow btn-outline ", exportOptions: {columns: [0, 1, 2, 3]}}
-                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Filtrar resultados",
+                },
+//                dom: 'Blfrtip',
+//                buttons: [
+//                    {extend: "print", className: "btn dark btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}, {extend: "copy", className: "btn red btn-outline", text: "Copiar", exportOptions: {columns: ':visible'}}, {extend: "pdf", className: "btn green btn-outline", exportOptions: {columns: [0, 1, 2, 3]}}, {extend: "excel", className: "btn yellow btn-outline ", exportOptions: {columns: [0, 1, 2, 3]}}
+//                ],
                 drawCallback: function (settings, json) {
                     CargaInicial();
                     $.LoadingOverlay("hide");
                 }
+
             });
+
+            var botones = new $.fn.dataTable.Buttons(datatable, {
+                buttons: [
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]}}
+                    , {extend: "print", className: "btn dark btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}
+                    , {extend: "copy", className: "btn red btn-outline", text: "Copiar", exportOptions: {columns: ':visible'}}
+                    //                        , {extend: "colvis", className: "btn purple btn-outline", text: "Columnas"}
+                ],
+            });
+            botones.container().appendTo('#datatableButtons');
+            $('div.dataTables_filter input').addClass('form-control input-sm');
         }
 
         var eventos = function () {
