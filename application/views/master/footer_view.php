@@ -111,12 +111,6 @@
 <script src="<?php echo URL_ASSETS ?>js/examples/examples.datatables.tabletools.js"></script>
 
 <script src="<?php echo URL_ASSETS ?>js/jsGeneral.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function () {
-        APP.init();
-
-    });
-</script>
 
 </body>
 </html>

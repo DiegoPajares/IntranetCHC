@@ -42,7 +42,9 @@ Theme Version: 	2.0.0
 
 		build: function() {
 			this.datatable = this.$table.DataTable({
-				dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
+				// dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
+				sDom: '<"text-right mb-md"T><"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p',
+				buttons: [ 'print', 'excel', 'pdf' ],
 				aoColumns: [
 					null,
 					null,
@@ -51,12 +53,17 @@ Theme Version: 	2.0.0
 				]
 			});
 
-			window.dt = this.datatable;
+			$('<div />').addClass('dt-buttons mb-2 pb-1 text-right').prependTo('#datatable-tabletools_wrapper');
+			this.$table.DataTable().buttons().container().prependTo( '#datatable-tabletools_wrapper .dt-buttons' );
+			$('#datatable-tabletools_wrapper').find('.btn-secondary').removeClass('btn-secondary').addClass('btn-default');	
+
+			window.dt = this.datatable;			
 
 			return this;
 		},
 
-		events: function() {
+		events: function() {		
+
 			var _self = this;
 
 			this.$table
@@ -132,6 +139,7 @@ Theme Version: 	2.0.0
 		// ROW FUNCTIONS
 		// ==========================================================================================
 		rowAdd: function() {
+			console.log("ADD");
 			this.$addButton.attr({ 'disabled': 'disabled' });
 
 			var actions,
@@ -139,7 +147,7 @@ Theme Version: 	2.0.0
 				$row;
 
 			actions = [
-				'<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>',
+				'<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i>123123</a>',
 				'<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>',
 				'<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>',
 				'<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>'
@@ -159,6 +167,8 @@ Theme Version: 	2.0.0
 		},
 
 		rowCancel: function( $row ) {
+			console.log("CANCELAR");
+			console.log($row);
 			var _self = this,
 				$actions,
 				i,
@@ -181,6 +191,8 @@ Theme Version: 	2.0.0
 		},
 
 		rowEdit: function( $row ) {
+			console.log("EDITAR");
+			console.log($row);
 			var _self = this,
 				data;
 
@@ -198,6 +210,8 @@ Theme Version: 	2.0.0
 		},
 
 		rowSave: function( $row ) {
+			console.log("GUARDAR");
+			console.log($row);
 			var _self     = this,
 				$actions,
 				values    = [];
@@ -229,6 +243,8 @@ Theme Version: 	2.0.0
 		},
 
 		rowRemove: function( $row ) {
+			console.log("ELIMINAR");
+			console.log($row);
 			if ( $row.hasClass('adding') ) {
 				this.$addButton.removeAttr( 'disabled' );
 			}
@@ -244,7 +260,7 @@ Theme Version: 	2.0.0
 		rowSetActionsDefault: function( $row ) {
 			$row.find( '.on-editing' ).addClass( 'hidden' );
 			$row.find( '.on-default' ).removeClass( 'hidden' );
-		}
+		}		
 
 	};
 
