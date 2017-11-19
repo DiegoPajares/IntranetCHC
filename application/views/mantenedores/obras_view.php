@@ -79,7 +79,7 @@
                     <footer class="card-footer">
 			<div class="row">
 			    <div class="col-md-12 text-right">
-				<button type="submit" class="btn btn-info btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
 				<button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
                             </div>
 			</div>
@@ -128,7 +128,9 @@
                             if (data.Estado == 1) {
                                 return '<center><span class="label label-sm label-info"> Activo </span></center>';
                             } else {
-                                return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
+                                if (data.Estado == 2) {
+                                    return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
+                                }
                             }
                         }
                     }
@@ -174,21 +176,20 @@
                 $("#empresa").val(a[0].Empresa);
                 $("#nombre").val(a[0].Nombre);
             });
-/*
+
             $(".idEstado").click(function () {
-                //estadoAJAX(id, urlAjax, setEstado)
                 if ($(this).attr("estado") == 1) {
-                    estadoAJAX(this.id, "./Obras/actualizaEstadoObra", 0);
+                    estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 2);
                 } else
-                if ($(this).attr("estado") == 0) {
-                    estadoAJAX(this.id, "./Obras/actualizaEstadoObra", 1);
+                if ($(this).attr("estado") == 2) {
+                    estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 1);
                 }
             });
 
             $(".idEliminar").click(function () {
-                estadoAJAX(this.id, "./Consumidores/consumidor_cambiarEstado", 2);
+                estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 0);
             });
-    */    
+        
     };
 
         return {

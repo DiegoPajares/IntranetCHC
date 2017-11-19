@@ -31,7 +31,7 @@ class Obra_model extends CI_Model {
         }
     }
 
-    function ObraQry_updestado($idobra, $Estado) {
+    function ObraQry_updestado() {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
         }
@@ -39,8 +39,8 @@ class Obra_model extends CI_Model {
             $estado = $_REQUEST['estado'];
         }
 
-        $this->db->set('Estado', $Estado, FALSE);
-        $this->db->where('Id', $idobra);
+        $this->db->set('Estado', $estado, FALSE);
+        $this->db->where('Id', $id);
         $this->db->update('obras');
     }
 
