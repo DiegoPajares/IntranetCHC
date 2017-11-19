@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Obras extends CI_Controller {
 
     public function __construct() {
@@ -8,8 +10,6 @@ class Obras extends CI_Controller {
             header("Location: " . MAIN_URL);
         }
         $this->load->model('mantenedores/Obra_model');
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('image_lib');
     }
 
     public function index() {
@@ -22,54 +22,28 @@ class Obras extends CI_Controller {
 
     }
 
-    public function listaObras() {
-        $data = json_encode($this->Obra_model->MantenedoresQry_listar_obra()->result());
+    public function Obras_lista() {
+        $data = json_encode($this->Obra_model->obraQry_listar());
         return print_r($data);
     }
 
-    public function getObra_x_ID() {
-        $idObra = $_REQUEST["idObra"];
-        $data = json_encode($this->Obra_model->MantenedoresQry_get_obra_x_id($idObra)->result());
+    public function Obra_listaxID() {
+        $data = json_encode($this->Obra_model->obraQry_get_xid());
         return print_r($data);
     }
 
-    public function actualizaEstadoObra() {
-
-        $idObra = $_REQUEST["idObra"];
-        $accion = $_REQUEST["accion"];
-
-        if ($accion == 1) {
-            if ($this->Obra_model->MantenedoresQry_get_obra_x_id($idObra)->result()[0]->Obra_Estado == 1) {
-                $Estado = 0;
-            } else {
-                if ($this->Obra_model->MantenedoresQry_get_obra_x_id($idObra)->result()[0]->Obra_Estado == 0) {
-                    $Estado = 1;
-                } else {
-                    $Estado = 100;
-                }
-            }
-        } else {
-            $Estado = 3;
-        }
-
-        if ($Estado !== 100) {
-            $this->Obra_model->MantenedoresQry_upd_estado_obra($idObra, $Estado);
-        } else {
-            echo 'No es posible cambiar el estado';
-        }
+    public function Obra_actualizaEstado() {
+        $data = $this->Obra_model->obraQry_updestado();
+        return print_r($data);
     }
 
-    public function obra_registrarAjax() {
-
-        date_default_timezone_set('America/Lima');
-        $date = date('mdY_his', time());
-        if (isset($_POST["txtEdtIdobra"])) {
-            $data = $this->Obra_model->recursoshumanosQry_upd_obra();
-                echo 'Editado';
+    public function obra_registrar() {
+        if (isset($_POST["txtIdEditar"])) {
+            $data = $this->Obra_model->obraQry_updobra();
         } else {
-            $data = $this->Obra_model->recursoshumanosQry_ins_obra();
-            echo 'Registrado';
+            $data = $this->Obra_model->obraQry_ins();
         }
+        return print_r($data);
     }
 
 }

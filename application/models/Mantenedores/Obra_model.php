@@ -2,18 +2,27 @@
 
 class Obra_model extends CI_Model {
 
-    function mantenedoresQry_listar_obra() {
+    function obraQry_listar() {
 
-        $query = $this->db->query('select * from obras where Estado in (0,1,2) order by Id DESC;');
-
+        $this->db->select('*');
+        $this->db->from('obras');
+        $this->db->where('estado', 1);
+        $this->db->or_where('estado', 0);
+        $this->db->or_where('estado', 2);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        
         if (count($query) > 0) {
-            return $query;
+            return $query->result();
         } else {
             return null;
         }
     }
 
-    function mantenedoresQry_get_obra_x_id($idobra) {
+    function obraQry_get_xid() {
+        if (isset($_POST['id'])) {
+            $idobra = $_POST['id'];
+        }
         $query = $this->db->query('SELECT * FROM obras WHERE Id= "' . $idobra . '";');
         if (count($query) > 0) {
             return $query;
@@ -22,14 +31,20 @@ class Obra_model extends CI_Model {
         }
     }
 
-    function mantenedoresQry_upd_estado_obra($idobra, $Estado) {
+    function ObraQry_updestado($idobra, $Estado) {
+        if (isset($_REQUEST['id'])) {
+            $id = $_REQUEST['id'];
+        }
+        if (isset($_REQUEST['estado'])) {
+            $estado = $_REQUEST['estado'];
+        }
 
         $this->db->set('Estado', $Estado, FALSE);
         $this->db->where('Id', $idobra);
         $this->db->update('obras');
     }
 
-    function mantenedoresQry_ins_obra() {
+    function obraQry_ins() {
 
         $Obra_NombreCorto = null;
         $Obra_Nombre = null;
@@ -61,7 +76,7 @@ class Obra_model extends CI_Model {
         $this->db->insert('obras', $data);
     }
 
-    function mantenedoresQry_upd_obra() {
+    function obraQry_upd() {
 
         $Obra_NombreCorto = null;
         $Obra_Nombre = null;
@@ -88,7 +103,7 @@ class Obra_model extends CI_Model {
             'Monto_Inicial' => $Obra_MontoInicial,
         );
 
-        $this->db->where('Id', $_POST['txtEdtIdobra']);
+        $this->db->where('Id', $_POST['txtIdEditar']);
         $this->db->update('obras', $data);
     }
 
