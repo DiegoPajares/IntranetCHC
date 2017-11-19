@@ -19,7 +19,6 @@ class Obras extends CI_Controller {
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | Obras';
         $this->load->view('master/template', $data);
-
     }
 
     public function Obras_lista() {
@@ -28,7 +27,7 @@ class Obras extends CI_Controller {
     }
 
     public function Obra_listaxID() {
-        $data = json_encode($this->Obra_model->obraQry_get_xid());
+        $data = json_encode($this->Obra_model->obraQry_getxid());
         return print_r($data);
     }
 
@@ -37,13 +36,17 @@ class Obras extends CI_Controller {
         return print_r($data);
     }
 
-    public function obra_registrar() {
-        if (isset($_POST["txtIdEditar"])) {
-            $data = $this->Obra_model->obraQry_updobra();
+    public function Obra_registrar() {
+        if (!empty($_POST["txtIdEditar"])) {
+            $data = $this->Obra_model->obraQry_upd();
+            echo "1";
+            echo $data;
         } else {
             $data = $this->Obra_model->obraQry_ins();
+            echo "2";
+            echo $data;
         }
+        
         return print_r($data);
     }
-
 }

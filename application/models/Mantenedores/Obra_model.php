@@ -19,13 +19,13 @@ class Obra_model extends CI_Model {
         }
     }
 
-    function obraQry_get_xid() {
+    function obraQry_getxid() {
         if (isset($_POST['id'])) {
             $idobra = $_POST['id'];
         }
         $query = $this->db->query('SELECT * FROM obras WHERE Id= "' . $idobra . '";');
         if (count($query) > 0) {
-            return $query;
+            return $query->result();
         } else {
             return null;
         }
@@ -45,20 +45,16 @@ class Obra_model extends CI_Model {
     }
 
     function obraQry_ins() {
-
         $Obra_NombreCorto = null;
         $Obra_Nombre = null;
         $Obra_Empresa = null;
         $Obra_MontoInicial = null;
-        
-
         if (isset($_POST['nombrecorto'])) {
             $Obra_NombreCorto = $_POST['nombrecorto'];
         }
         if (isset($_POST['nombre'])) {
             $Obra_Nombre = $_POST['nombre'];
         }
-
         if (isset($_POST['empresa'])) {
             $Obra_Empresa = $_POST['empresa'];
         }
@@ -82,19 +78,25 @@ class Obra_model extends CI_Model {
         $Obra_Nombre = null;
         $Obra_Empresa = null;
         $Obra_MontoInicial = null;
+        $editarID = null;
+        
+        if (isset($_POST['txtIdEditar'])) {
+            $editarID = $_POST['txtIdEditar'];
+        }
 
+        if (isset($_POST['nombrecorto'])) {
+            $Obra_NombreCorto = $_POST['nombrecorto'];
+        }
+        if (isset($_POST['nombre'])) {
+            $Obra_Nombre = $_POST['nombre'];
+        }
 
-        if (isset($_POST['edtnombrecorto'])) {
-            $Obra_NombreCorto = $_POST['edtnombrecorto'];
+        if (isset($_POST['empresa'])) {
+            $Obra_Empresa = $_POST['empresa'];
         }
-        if (isset($_POST['edtnombre'])) {
-            $Obra_Nombre = $_POST['edtnombre'];
-        }
-        if (isset($_POST['edtempresa'])) {
-            $Obra_Empresa = $_POST['edtempresa'];
-        }
-        if (isset($_POST['edtmontoinicial'])) {
-            $Obra_MontoInicial = $_POST['edtmontoinicial'];
+
+        if (isset($_POST['montoinicial'])) {
+            $Obra_MontoInicial = $_POST['montoinicial'];
         }
         $data = array(
             'NombreCorto' => $Obra_NombreCorto,
@@ -102,8 +104,7 @@ class Obra_model extends CI_Model {
             'Empresa' => $Obra_Empresa,
             'Monto_Inicial' => $Obra_MontoInicial,
         );
-
-        $this->db->where('Id', $_POST['txtIdEditar']);
+        $this->db->where('id', $editarID);
         $this->db->update('obras', $data);
     }
 
