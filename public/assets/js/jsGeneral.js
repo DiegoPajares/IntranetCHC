@@ -42,13 +42,12 @@ function notificacion(tipo, mensaje) {
                 {
                     $.LoadingOverlay("show");
                 },
-                success: function (data)
-                {
+                success: function (){
                     $.LoadingOverlay("hide");
                     notificacion(1, "Registro realizado con éxito.");
                     $(nombreFRM)[0].reset();
-                    $(".modal-block").modal('hide');
-                    //$("#mdlnuevo").hide();
+                    $('.modal-block').modal('hide');
+                    //$("#mdlnuevo").modal('hide')
                     datatable.ajax.reload();
                 },
                 error: function (e){

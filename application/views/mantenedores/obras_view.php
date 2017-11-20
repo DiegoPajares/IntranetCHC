@@ -43,7 +43,7 @@
     <!-- end: page -->
     <!--******************* MODALS NUEVO ******************-->   
     <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
- <div id="mdlnuevo" class="modal-block modal-block-primary" tabindex="-1" >
+ <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
         <section class="card">
             <header class="card-header">
                 <h2 class="card-title">Nueva Obra</h2>
