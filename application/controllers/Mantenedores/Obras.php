@@ -39,12 +39,8 @@ class Obras extends CI_Controller {
     public function Obra_registrar() {
         if (!empty($_POST["txtIdEditar"])) {
             $data = $this->Obra_model->obraQry_upd();
-            echo "1";
-            echo $data;
         } else {
             $data = $this->Obra_model->obraQry_ins();
-            echo "2";
-            echo $data;
         }
         
         return print_r($data);

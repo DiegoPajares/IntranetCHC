@@ -22,10 +22,10 @@
                                 <span>Dashboard</span>
                             </a>                        
                         </li>
-                        <li class="nav-parent <?php echo (($actualP == 'xCobrar') ? 'nav-expanded nav-active' : ''); ?>">
+                        <li class="nav-parent <?php echo (($actualP == 'Por_Cobrar') ? 'nav-expanded nav-active' : ''); ?>">
                             <a class="nav-link" href="#">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span>xCobrar</span>
+                                <span>Por Cobrar</span>
                             </a>
                             <ul class="nav nav-children">
                                 <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
