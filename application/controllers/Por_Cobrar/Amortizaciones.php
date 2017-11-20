@@ -17,7 +17,7 @@ class Amortizaciones extends CI_Controller {
     public function index() {
         $data['actualP'] = 'Por_Cobrar';
         $data['actualH'] = 'Amortizaciones';
-        $data['main_content'] = 'por_camortizacionr/amortizaciones_view';
+        $data['main_content'] = 'por_cobrar/amortizaciones_view';
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | Amortizaciones';
         $this->load->view('master/template', $data);
