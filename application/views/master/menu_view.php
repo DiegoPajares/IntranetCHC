@@ -29,12 +29,12 @@
                             </a>
                             <ul class="nav nav-children">
                                 <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/xcobrar/amortizaciones">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Por_Cobrar/amortizaciones">
                                         Amortizaciones
                                     </a>
                                 </li>
                                 <li class="<?php echo (($actualH == 'ControlPagos') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Por_Cobrar/PorCobrar">
                                         Control de Pagos
                                     </a>
                                 </li>

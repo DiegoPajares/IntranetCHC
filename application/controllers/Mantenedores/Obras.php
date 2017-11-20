@@ -42,7 +42,6 @@ class Obras extends CI_Controller {
         } else {
             $data = $this->Obra_model->obraQry_ins();
         }
-        
         return print_r($data);
     }
 }

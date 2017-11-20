@@ -62,7 +62,8 @@ class Clieprov_model extends CI_Model {
             'ruc' => $ruc,
         );
 
-        $this->db->insert('clieprovs', $data);
+        $this->db->insert('clieprov', $data);
+        return $this->db->insert_id();
     }
 /*
     function clieprovQry_upd() {

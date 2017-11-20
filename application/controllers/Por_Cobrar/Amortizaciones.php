@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Amortizaciones extends CI_Controller {
-
+    public $tipo = 'A';
     public function __construct() {
         parent::__construct();
         if (!$this->session->userdata('login')) {
@@ -12,9 +12,10 @@ class Amortizaciones extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
     }
-
+    //$tipo= 'A';
+    
     public function index() {
-        $data['actualP'] = 'Por_Camortizacionr';
+        $data['actualP'] = 'Por_Cobrar';
         $data['actualH'] = 'Amortizaciones';
         $data['main_content'] = 'por_camortizacionr/amortizaciones_view';
         $data['page_assets'] = 'advance_form';
@@ -48,18 +49,19 @@ class Amortizaciones extends CI_Controller {
         $data = json_encode($this->Documento_model->documentoQry_listar());
         return print_r($data);
     }
+    
     public function docamortizacion_listaxID() {
-        $data = json_encode($this->Documento_model->documentoQry_getxid());
+        $data = json_encode($this->Documentoel->documentoQry_getxid());
         return print_r($data);
     }
     
     public function Amortizacion_lista() {
-        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_listar($tipo));
+        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_listar($this->tipo));
         return print_r($data);
     }
 
     public function Amortizacion_listaxID() {
-        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($tipo));
+        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo));
         return print_r($data);
     }
 
@@ -69,11 +71,11 @@ class Amortizaciones extends CI_Controller {
     }
 
     public function Amortizacion_registrar() {
-        $montototal = calcular_total();
+        $montototal = $this->calcular_total();
         if (!empty($_POST["txtIdEditar"])) {
             $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd();
         } else {
-            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_ins($montototal,'A');
+            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_ins($montototal,$this->tipo);
         }
         return print_r($data);
     } 
