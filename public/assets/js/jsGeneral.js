@@ -46,7 +46,7 @@ function notificacion(tipo, mensaje) {
                     $.LoadingOverlay("hide");
                     notificacion(1, "Registro realizado con éxito.");
                     $(nombreFRM)[0].reset();
-                    $('.modal-block').modal('hide');
+                    $('.modal-block .modal-dismiss').click();
                     //$("#mdlnuevo").modal('hide')
                     datatable.ajax.reload();
                 },
@@ -54,7 +54,7 @@ function notificacion(tipo, mensaje) {
                     $.LoadingOverlay("hide");
                     notificacion(0, "Hubo un error al realizar la acción solicitada.");
                     $(nombreFRM)[0].reset();
-                    $(".modal-block").modal("hide");
+                    $('.modal-block .modal-dismiss').click();
                 }
             });
         }));
@@ -75,14 +75,14 @@ function notificacion(tipo, mensaje) {
             success: function (data){
                 $.LoadingOverlay("hide");
                 notificacion(1, "Acción realizada con éxito.");
-                $(".modal-block").modal("hide");
+                $('.modal-block .modal-dismiss').click();
                 datatable.ajax.reload();
             },
             error: function (e)
             {
                 $.LoadingOverlay("hide");
                 notificacion(0, "Hubo un error al realizar la acción solicitada.");
-                $(".modal-block").modal("hide");
+                $('.modal-block .modal-dismiss').click();
             }
         });
     }
