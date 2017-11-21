@@ -40,10 +40,10 @@ class Cobrarpagardoc_model extends CI_Model {
         if (isset($_POST['cboobra'])) {
             $id = $_POST['cboobra'];
         }
-        $this->db->select('c.*,d.descripcion as desc_obra');
+        $this->db->select('c.*,d.Descripcion as desc_obra');
         $this->db->from('cobrarpagardoc c');
         $this->db->where('Tipo', $tipo);
-        $this->db->join('documento d', 'c.obras_id = d.id');
+        $this->db->join('documento d', 'c.documento_id = d.id');
         $this->db->and_where('c.obras_id', $id);
         $this->db->order_by('c.fecha', 'DESC');
         $query = $this->db->get();
