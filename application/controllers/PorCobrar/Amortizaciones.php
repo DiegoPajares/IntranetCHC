@@ -60,6 +60,11 @@ class Amortizaciones extends CI_Controller {
         return print_r($data);
     }
 
+    public function Amortizacion_listaxObra() {
+        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo));
+        return print_r($data);
+    }
+    
     public function Amortizacion_listaxID() {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo));
         return print_r($data);
