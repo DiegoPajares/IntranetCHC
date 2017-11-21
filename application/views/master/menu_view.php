@@ -22,19 +22,19 @@
                                 <span>Dashboard</span>
                             </a>                        
                         </li>
-                        <li class="nav-parent <?php echo (($actualP == 'Por_Cobrar') ? 'nav-expanded nav-active' : ''); ?>">
+                        <li class="nav-parent <?php echo (($actualP == 'PorCobrar') ? 'nav-expanded nav-active' : ''); ?>">
                             <a class="nav-link" href="#">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span>Por Cobrar</span>
                             </a>
                             <ul class="nav nav-children">
                                 <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Por_Cobrar/amortizaciones">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/PorCobrar/amortizaciones">
                                         Amortizaciones
                                     </a>
                                 </li>
                                 <li class="<?php echo (($actualH == 'ControlPagos') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Por_Cobrar/PorCobrar">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/PorCobrar/PorCobrar">
                                         Control de Pagos
                                     </a>
                                 </li>

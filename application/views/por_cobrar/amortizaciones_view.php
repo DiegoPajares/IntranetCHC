@@ -174,6 +174,10 @@
 
         var eventos = function () {
             registrarAJAX("#frmObra", "./Obras/Obra_registrar");
+
+            $("#selectObra").change(function () {
+                alert("Handler for .change() called.");
+            });
         }
 
         var CargaInicial = function () {
