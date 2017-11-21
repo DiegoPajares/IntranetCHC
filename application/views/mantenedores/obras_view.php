@@ -67,7 +67,8 @@
                         <label class="col-md-12 control-label" >Empresa de la obra</label>
                         <div class="col-md-12">
                             <!--<input class="form-control text-uppercase" name="empresa" id="empresa" required>-->                            
-                            <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }'>
+                            <select data-plugin-selectTwo class="form-control" id="selectEmpresa" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir empresa", "allowClear": true, "noResults": "poiqwe"}'>                                
+                                <option></option>
                                 <optgroup label="Alaskan/Hawaiian Time Zone">
                                     <option value="AK">Alaska</option>
                                     <option value="HI">Hawaii</option>
@@ -224,6 +225,7 @@
         }
 
         var CargaInicial = function () {
+
             $("#btnRegistrar").click(function () {
                 $("#frmObra")[0].reset();
                 $("#txtIdEditar").val(null);
