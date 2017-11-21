@@ -11,13 +11,21 @@
                     </header>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-md-6">                            
+                                <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
+                                    <option></option>                                    
+                                </select>                            
+                            </div>
+                            <div class="col-md-6"></div>
+                            <hr>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6">
-                                
                                 <div class="btn-group">
-                                    <a id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Nueva <i class="fa fa-plus"></i></a>
+                                    <a id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Amortización <i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
-                            <div class="col-md-5 text-right" id="datatableButtons">
+                            <div class="col-md-6 text-right" id="datatableButtons">
                             </div>
                         </div>
                         </br>
@@ -49,27 +57,27 @@
     <!-- end: page -->
     <!--******************* MODALS NUEVO ******************-->   
     <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
- <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
+    <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
         <section class="card">
             <header class="card-header">
                 <h2 class="card-title">Nueva Amortizacion</h2>
             </header>
             <div class="card-body"> 
-               <form action="#" class="form-horizontal" id="frmObra" method="POST">
+                <form action="#" class="form-horizontal" id="frmObra" method="POST">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
-                                <div class="col-md-6">
-                                    <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
-                                    <p><code>Max. 15 dígitos</code></p>
-                                </div>
+                        <div class="col-md-6">
+                            <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
+                            <p><code>Max. 15 dígitos</code></p>
+                        </div>
                     </div>   
                     <div class="form-group">
                         <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
-                                <div class="col-md-6">
-                                    <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
-                                </div>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
+                        </div>
                     </div>
-                   <div class="form-group">
+                    <div class="form-group">
                         <label class="col-md-12 control-label" >Empresa de la obra</label>
                         <div class="col-md-12">
                             <input class="form-control text-uppercase" name="empresa" id="empresa" required>
@@ -82,14 +90,14 @@
                             <p><code>M&aacute;ximo 400 caracteres.</code></p>
                         </div>
                     </div>
-                            <input type="hidden" name="txtIdEditar" id="txtIdEditar">
+                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">
                     <footer class="card-footer">
-			<div class="row">
-			    <div class="col-md-12 text-right">
-				<button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-				<button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
                             </div>
-			</div>
+                        </div>
                     </footer>
                 </form>
 
@@ -101,7 +109,6 @@
 
 
 <script>
-    /*
     var datatable;
     var APP = function () {
 
@@ -122,7 +129,7 @@
                         "mRender": function (data, type, full) {
                             return '<center><div class="btn-group">' +
                                     '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                                    '<ul class="dropdown-menu pull-left" role="menu">' +   
+                                    '<ul class="dropdown-menu pull-left" role="menu">' +
                                     '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
                                     '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
                                     '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
@@ -148,7 +155,7 @@
                     searchPlaceholder: "Filtrar resultados",
                 },
                 drawCallback: function (settings, json) {
-                    CargaInicial();
+                    //CargaInicial();
                     $.LoadingOverlay("hide");
                 }
 
@@ -156,7 +163,7 @@
 
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                        {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
                     , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
                     , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}
                 ],
@@ -170,35 +177,16 @@
         }
 
         var CargaInicial = function () {
-            $("#btnRegistrar").click(function () {
-                $("#frmObra")[0].reset();
-                $("#txtIdEditar").val(null);
-            });
 
-            $(".idEditar").click(function () {
-                $("#btnRegistrar").click();
-                var a = buscarxidAJAX(this.id, './Obras/Obra_listaxID');
-                $("#txtIdEditar").val(a[0].id);
-                $("#nombrecorto").val(a[0].NombreCorto);
-                $("#montoinicial").val(a[0].Monto_Inicial);
-                $("#empresa").val(a[0].Empresa);
-                $("#nombre").val(a[0].Nombre);
+            //            LISTA DATOS SELET2
+            listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
+            listaObrasHTML = "<option></option>";
+            $.each(listadoObras, function (index, datos) {
+                listaObrasHTML += "<option>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
+                $("#selectObra").html(listaObrasHTML);
             });
-
-            $(".idEstado").click(function () {
-                if ($(this).attr("estado") == 1) {
-                    estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 2);
-                } else
-                if ($(this).attr("estado") == 2) {
-                    estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 1);
-                }
-            });
-
-            $(".idEliminar").click(function () {
-                estadoAJAX(this.id, "./Obras/Obra_actualizaEstado", 0);
-            });
-        
-    };
+            //            FIN LISTA DATOS SELET2
+        };
 
         return {
             init: function () {
@@ -210,8 +198,8 @@
             ,
             recargaTabla: function () {
                 initDatatables();
-                CargaInicial();
+                //CargaInicial();
             }
         };
-    }();*/
+    }();
 </script>

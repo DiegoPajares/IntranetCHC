@@ -28,90 +28,92 @@ function notificacion(tipo, mensaje) {
         });
     }
 }
- function registrarAJAX(nombreFRM, AJAX_URL) {
-        $(nombreFRM).on('submit', (function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: AJAX_URL,
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function ()
-                {
-                    $.LoadingOverlay("show");
-                },
-                success: function (){
-                    $.LoadingOverlay("hide");
-                    notificacion(1, "Registro realizado con éxito.");
-                    $(nombreFRM)[0].reset();
-                    $('.modal-block .modal-dismiss').click();
-                    //$("#mdlnuevo").modal('hide')
-                    datatable.ajax.reload();
-                },
-                error: function (e){
-                    $.LoadingOverlay("hide");
-                    notificacion(0, "Hubo un error al realizar la acción solicitada.");
-                    $(nombreFRM)[0].reset();
-                    $('.modal-block .modal-dismiss').click();
-                }
-            });
-        }));
-    }
-
-    function estadoAJAX(idAttr, AJAX_URL, estado) {
-
+function registrarAJAX(nombreFRM, AJAX_URL) {
+    $(nombreFRM).on('submit', (function (e) {
+        e.preventDefault();
         $.ajax({
             url: AJAX_URL,
-            type: 'GET',
-            data: {
-                id: idAttr,
-                estado: estado
-            },
-            beforeSend: function () {
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function ()
+            {
                 $.LoadingOverlay("show");
             },
-            success: function (data){
+            success: function () {
                 $.LoadingOverlay("hide");
-                notificacion(1, "Acción realizada con éxito.");
+                notificacion(1, "Registro realizado con éxito.");
+                $(nombreFRM)[0].reset();
                 $('.modal-block .modal-dismiss').click();
+                //$("#mdlnuevo").modal('hide')
                 datatable.ajax.reload();
             },
-            error: function (e)
-            {
+            error: function (e) {
                 $.LoadingOverlay("hide");
                 notificacion(0, "Hubo un error al realizar la acción solicitada.");
+                $(nombreFRM)[0].reset();
                 $('.modal-block .modal-dismiss').click();
             }
         });
-    }
+    }));
+}
 
-    function buscarxidAJAX(id, urlAJAX) {
-        var resultado = [];
-        $.ajax({
-            url: urlAJAX,
-            dataType: 'json',
-            type: 'POST',
-            async: false,
-            data: {
-                id: id
-            },
-            beforeSend: function () {
-//                console.log("Procesando, espere por favor...");
-            },
-            success: function (response) {
-                $(response).each(function (i, obj) {
-                    resultado.push(obj);
-                });
-            },
-            error: function (response) {
-                resultado = "Error";
+function estadoAJAX(idAttr, AJAX_URL, estado) {
 
-            }
-        });
-        return resultado;
-    }
+    $.ajax({
+        url: AJAX_URL,
+        type: 'GET',
+        data: {
+            id: idAttr,
+            estado: estado
+        },
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        success: function (data) {
+            $.LoadingOverlay("hide");
+            notificacion(1, "Acción realizada con éxito.");
+            $('.modal-block .modal-dismiss').click();
+            datatable.ajax.reload();
+        },
+        error: function (e)
+        {
+            $.LoadingOverlay("hide");
+            notificacion(0, "Hubo un error al realizar la acción solicitada.");
+            $('.modal-block .modal-dismiss').click();
+        }
+    });
+}
+
+function buscarxidAJAX(id, urlAJAX) {
+    var resultado = [];
+    $.ajax({
+        url: urlAJAX,
+        dataType: 'json',
+        type: 'POST',
+        async: false,
+        data: {
+            id: id
+        },
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        success: function (response) {
+            $(response).each(function (i, obj) {
+                resultado.push(obj);
+            });
+            $.LoadingOverlay("hide");
+        },
+        error: function (response) {
+            resultado = "Error";
+            $.LoadingOverlay("hide");
+
+        }
+    });
+    return resultado;
+}
 
 $(document).ready(function () {
     APP.init();
