@@ -37,8 +37,8 @@ class Cobrarpagardoc_model extends CI_Model {
     }
     
     function cobrarpagardocQry_getxidObra($tipo) {
-        if (isset($_POST['cboobra'])) {
-            $id = $_POST['cboobra'];
+        if (isset($_REQUEST['cboobra'])) {
+            $id = $_REQUEST['cboobra'];
         }
         $this->db->select('c.*,d.Descripcion as desc_obra');
         $this->db->from('cobrarpagardoc c');

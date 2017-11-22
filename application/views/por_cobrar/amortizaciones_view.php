@@ -115,41 +115,43 @@
         var plugins = function () {
         }
 
-        var initDatatables = function () {
+        var initDatatables = function (idObra) {
             $.LoadingOverlay("show");
+            $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./Obras/Obras_lista",
+                "sAjaxSource": "./amortizaciones/Amortizacion_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
-                "aoColumns": [{"mData": "id"}, {"mData": "NombreCorto"}, {"mData": "Empresa"}, {"mData": "Monto_Inicial"}, {"mData": null}, {"mData": null}],
-                "aoColumnDefs": [
-                    {
-                        "aTargets": [5],
-                        "mData": "download_link",
-                        "mRender": function (data, type, full) {
-                            return '<center><div class="btn-group">' +
-                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                                    '<ul class="dropdown-menu pull-left" role="menu">' +
-                                    '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
-                                    '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
-                                    '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                                    '</ul></div></center>';
-                        }
-                    },
-                    {
-                        "aTargets": [4],
-                        "mData": "download_link",
-                        "mRender": function (data, type, full) {
-                            if (data.Estado == 1) {
-                                return '<center><span class="label label-sm label-info"> Activo </span></center>';
-                            } else {
-                                if (data.Estado == 2) {
-                                    return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
-                                }
-                            }
-                        }
-                    }
-                ],
+                "scrollX": true,
+                "aoColumns": [{"mData": "Descripcion"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "ValorInicial"}, {"mData": "ReajusteFP"}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": "DeduccionRAD"}, {"mData": "DediccionRAM"}, {"mData": "MontoTotal"}, {"mData": null}],
+                /*"aoColumnDefs": [
+                 {
+                 "aTargets": [5],
+                 "mData": "download_link",
+                 "mRender": function (data, type, full) {
+                 return '<center><div class="btn-group">' +
+                 '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
+                 '<ul class="dropdown-menu pull-left" role="menu">' +
+                 '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
+                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
+                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
+                 '</ul></div></center>';
+                 }
+                 },
+                 {
+                 "aTargets": [4],
+                 "mData": "download_link",
+                 "mRender": function (data, type, full) {
+                 if (data.Estado == 1) {
+                 return '<center><span class="label label-sm label-info"> Activo </span></center>';
+                 } else {
+                 if (data.Estado == 2) {
+                 return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
+                 }
+                 }
+                 }
+                 }
+                 ],*/
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: "Filtrar resultados",
@@ -160,7 +162,6 @@
                 }
 
             });
-
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
                     {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
@@ -174,9 +175,8 @@
 
         var eventos = function () {
             registrarAJAX("#frmObra", "./Obras/Obra_registrar");
-
             $("#selectObra").change(function () {
-                alert("Handler for .change() called.");
+                initDatatables($("#selectObra").val());
             });
         }
 
@@ -186,22 +186,21 @@
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
-                listaObrasHTML += "<option>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
+                listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2
         };
-
         return {
             init: function () {
 //                plugins();
                 eventos();
-                initDatatables();
+                //initDatatables();
                 CargaInicial();
             }
             ,
             recargaTabla: function () {
-                initDatatables();
+                //initDatatables();
                 //CargaInicial();
             }
         };
