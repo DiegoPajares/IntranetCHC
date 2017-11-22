@@ -7,7 +7,7 @@
             <section class="card">
                 <div class="tabs">
                     <header class="card-header">
-                        <h2 class="card-title">Amortizaciones</h2>
+                        <h2 class="card-title">Control de Pagos</h2>
                     </header>
                     <div class="card-body">
                         <div class="row">
@@ -29,20 +29,29 @@
                             </div>
                         </div>
                         </br>
-                        <table class="table table-bordered table-striped mb-none" id="tablaObras" style="width: 100%;">
+                        <table class="table table-bordered table-striped mb-none" id="tablaObras" style="width: 100%; text-align:center; align:center;  " >
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Fecha Factura</th>
-                                    <th>N° Factura</th>
-                                    <th>Total Valorizacion</th>
-                                    <th>Reajuste Formula Polinomica</th>
-                                    <th>Adelanto Directo</th>
-                                    <th>Adelanto Materiales</th>
-                                    <th>Deduccion Reajuste Ad. Directo</th>
-                                    <th>Deduccion Reajuste Ad. Materiales</th>
-                                    <th>Total</th>
-                                    <th>Opci&oacute;n</th>
+                                    <th rowspan="2">N°</th>
+                                    <th COLSPAN="5">FACTURA</th>
+                                    <th COLSPAN="2">CANCELACION</th>
+                                    <th COLSPAN="2">RESUMEN</th>
+                                    <th rowspan="2" >Detracci&oacute;n</th>
+                                    <th rowspan="2" >Opci&oacute;n</th>
+                                </tr>
+                                <tr>
+                                    <th>Numero</th>
+                                    <th>Concepto</th>
+                                    <th>Monto</th>
+                                    <th>Deducción</th>
+                                    <th>Emisión</th>
+                                    
+                                    <th>Monto</th>
+                                    <th>Fecha</th>
+                                    
+                                    <th>Saldo</th>
+                                    <th>Acumulado</th>
+                                     
                                 </tr>
                             </thead>
                             <tbody >
@@ -119,7 +128,7 @@
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./amortizaciones/Amortizacion_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./porCobrar/Amortizacion_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
