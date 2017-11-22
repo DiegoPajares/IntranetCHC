@@ -22,7 +22,6 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="btn-group">
-                                    <a id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Amortización <i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                             <div class="col-md-6 text-right" id="datatableButtons">

@@ -40,7 +40,7 @@ class Cobrarpagardoc_model extends CI_Model {
         if (isset($_REQUEST['cboobra'])) {
             $id = $_REQUEST['cboobra'];
         }
-        $this->db->select('c.*,d.Descripcion as desc_documento,o.MontoInicial');
+        $this->db->select('c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
         $this->db->from('cobrarpagardoc c');
         $this->db->join('documento d', 'c.documento_id = d.id');
         $this->db->join('obras o', 'c.obras_id = o.id');
