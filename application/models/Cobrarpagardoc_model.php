@@ -24,7 +24,7 @@ class Cobrarpagardoc_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('cobrarpagardoc');
         $this->db->where('Tipo', $tipo);
-        $this->db->and_where('id', $id);
+        $this->db->where('id', $id);
         $this->db->order_by('documento_id', 'DESC');
         $this->db->order_by('fecha', 'DESC');
         $query = $this->db->get();
@@ -63,7 +63,7 @@ class Cobrarpagardoc_model extends CI_Model {
         $this->db->from('cobrarpagardoc c');
         $this->db->join('documento d', 'c.documento_id = d.id');
         $this->db->where('c.Tipo', $tipo);
-        $this->db->and_where('c.obras_id', $id);
+        $this->db->where('c.obras_id', $id);
         $this->db->order_by('c.fecha', 'DESC');
         $query = $this->db->get();
         
