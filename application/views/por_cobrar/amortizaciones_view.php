@@ -14,7 +14,7 @@
                             <div class="col-md-6">                            
                                 <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
                                     <option></option>                                    
-                                </select>                            
+                                </select>
                             </div>
                             <div class="col-md-6"></div>
                             <hr>
@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="btn-group">
-                                    <a id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Amortización <i class="fa fa-plus"></i></a>
+                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Amortización <i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-6 text-right" id="datatableButtons">
@@ -36,7 +36,7 @@
                                     <th>Fecha Factura</th>
                                     <th>N° Factura</th>
                                     <th>Total Valorizacion</th>
-                                    <th>Reajuste Formula Polinomica</th>
+                                    <th>Reajuste Formula Polinómica</th>
                                     <th>Adelanto Directo</th>
                                     <th>Adelanto Materiales</th>
                                     <th>Deduccion Reajuste Ad. Directo</th>
@@ -62,46 +62,98 @@
             <header class="card-header">
                 <h2 class="card-title">Nueva Amortizacion</h2>
             </header>
-            <div class="card-body"> 
-                <form action="#" class="form-horizontal" id="frmObra" method="POST">
+            <form action="#" class="form-horizontal" id="frmObra" method="POST">
+                <div class="card-body">                 
                     <div class="form-group">
-                        <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
-                        <div class="col-md-6">
-                            <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
-                            <p><code>Max. 15 dígitos</code></p>
-                        </div>
-                    </div>   
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
-                        <div class="col-md-6">
-                            <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" >Empresa de la obra</label>
+                        <label class="col-md-6 control-label" for="nombreCortoObra">Nombre Corto de la Obra</label>
                         <div class="col-md-12">
-                            <input class="form-control text-uppercase" name="empresa" id="empresa" required>
+                            <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
+                            <input type="hidden" id="idObra" name="idObra">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12 control-label">Nombre de la obra</label>
-                        <div class="col-md-12">                                    
-                            <textarea class="form-control" rows="4" data-plugin-maxlength maxlength="400"  name="nombre" id="nombre" required></textarea>
-                            <p><code>M&aacute;ximo 400 caracteres.</code></p>
+                        <label class="col-md-6 control-label" for="selectClienteProv">Cliente Prov</label>
+                        <div class="col-md-12">
+                            <select data-plugin-selectTwo class="form-control" id="selectClienteProv" name="selectClienteProv" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Cliente", "allowClear": true}'>                                                            
+                                <option></option>
+                            </select>
                         </div>
                     </div>
-                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">
-                    <footer class="card-footer">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                                <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                    <div class="form-group">
+                        <label class="col-md-6 control-label" for="selectDescripcion">Descripción</label>
+                        <div class="col-md-12">
+                            <select data-plugin-selectTwo class="form-control" id="selectDescripcion" name="selectDescripcion" data-plugin-options='{"placeholder": "Tipo de Amortización", "allowClear": true}'>
+                                <option></option>
+                                <option>Adelanto Directo</option>
+                                <option>Adelanto Materiales</option>
+                                <option>Valorización</option>                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtFechaFactura">Fecha Factura</label>                            
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">
                             </div>
                         </div>
-                    </footer>
-                </form>
-
-            </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtNroFactura">Nro Factura</label>                            
+                            <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000" required/>                            
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtTotalValor">Total Valorización</label>
+                            <input name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtReajusteForm">Reajuste Formula Polinómica</label>
+                            <input name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtadelantDir">Adelanto Directo</label>
+                            <input name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtAdelantoMat">Adelanto Materiales</label>
+                            <input name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtDeduccionAdDir">Deduccion Reajuste Ad. Directo</label>
+                            <input name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtDeduccionAdMat">Deduccion Reajuste Ad. Materiales</label>
+                            <input name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-6 control-label" for="txtTotal">Total</label>
+                        <div class="col-md-6">
+                            <input name="txtTotal" id="txtTotal" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Total" required/>                            
+                        </div>
+                    </div>
+                    <br>
+                    <!--------------------------->                    
+                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+                </div>
+                <footer class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                        </div>
+                    </div>
+                </footer>
+            </form>
         </section>
     </div>     
 </section>
@@ -152,7 +204,7 @@
                  }
                  }
                  ],*/
-                "order": [[ 1, "asc" ]],
+                "order": [[1, "asc"]],
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: "Filtrar resultados",
@@ -178,19 +230,35 @@
             registrarAJAX("#frmObra", "./Obras/Obra_registrar");
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
+                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+                $("#idObra").val($("#selectObra").val());
+                $("#btnRegistrar").removeAttr('disabled');
             });
+
+            // EVENTO ABRE MODAL
+            $("#btnRegistrar").on('click', function (e) {
+                //            LISTA DATOS SELET2 CLIENTES
+                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listaClientesHTML = "<option></option>";
+                $.each(listadoClientes, function (index, datos) {
+                    listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
+                    $("#selectClienteProv").html(listaClientesHTML);
+                });
+                //            FIN LISTA DATOS SELET2 CLIENTES
+            });
+            // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {
-
-            //            LISTA DATOS SELET2
+            $("#btnRegistrar").attr('disabled', 'true');
+            //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
                 $("#selectObra").html(listaObrasHTML);
             });
-            //            FIN LISTA DATOS SELET2
+            //            FIN LISTA DATOS SELET2 OBRAS            
         };
         return {
             init: function () {
