@@ -42,9 +42,9 @@ class Cobrarpagardoc_model extends CI_Model {
         }
         $this->db->select('c.*,d.Descripcion as desc_obra');
         $this->db->from('cobrarpagardoc c');
-        $this->db->where('Tipo', $tipo);
         $this->db->join('documento d', 'c.documento_id = d.id');
-        $this->db->and_where('c.obras_id', $id);
+        $this->db->where('c.Tipo', $tipo);
+        $this->db->where('c.obras_id', $id);
         $this->db->order_by('c.fecha', 'DESC');
         $query = $this->db->get();
         
@@ -55,6 +55,25 @@ class Cobrarpagardoc_model extends CI_Model {
         }
     }
 
+    function cobrarpagardocQry_getxidObraSumatorias($tipo) {
+        if (isset($_POST['cboobra'])) {
+            $id = $_POST['cboobra'];
+        }
+        $this->db->select('c.*,d.Descripcion as desc_obra');
+        $this->db->from('cobrarpagardoc c');
+        $this->db->join('documento d', 'c.documento_id = d.id');
+        $this->db->where('c.Tipo', $tipo);
+        $this->db->and_where('c.obras_id', $id);
+        $this->db->order_by('c.fecha', 'DESC');
+        $query = $this->db->get();
+        
+        if (count($query) > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+    }
+    
     function cobrarpagardocQry_eliminar() {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
