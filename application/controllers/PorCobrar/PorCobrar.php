@@ -42,8 +42,7 @@ class PorCobrar extends CI_Controller {
             $data = $this->Ctactecpd_model->ctactecpdQry_eliminar();
             $query = $this->Ctactecpd_model->ctactecpdQry_getsumatoria();
             $query2 = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo);
-                $pago = $query3[0]->Pago;
-                $saldo=$query2[0]->Saldo+$pago;
+                $saldo=$query2[0]->Saldo+$query3[0]->Pago;
                 $pagado = $query[0]->Pago;
             $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd($pagado,$saldo);
             

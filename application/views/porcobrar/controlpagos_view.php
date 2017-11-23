@@ -88,7 +88,7 @@
                             </span>
                             <input id="txtFechaFactura" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
                         </div>
-                        <input type="hidden" id="id" name="id">
+                        <input type="hidden" id="cpd_id" name="cpd_id">
                     </div>
                     <div class="form-group col-md-1">
                         <label class="col-md-1 control-label" ></label>
@@ -218,13 +218,12 @@
 
             $(".btnDetAmort").on('click', function (e) {
                 var idAmort = $(this).attr("id");
-                $("#id").val(idAmort);
+                $("#cpd_id").val(idAmort);
                 $("#btnAbreModalDetAmort").click();
                 initDatatablesDetAmor(idAmort);
-            });
-
-            $(".Guardar").click(function () {
-                registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+                $(".Guardar").click(function () {
+                    registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+                });
             });
             $(".idEliminar").click(function () {
                 eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");

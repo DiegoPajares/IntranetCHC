@@ -35,8 +35,8 @@ class Ctactecpd_model extends CI_Model {
     }
     
     function ctactecpdQry_getsumatoria() {
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['cpd_id'])) {
+            $id = $_POST['cpd_id'];
         }
         $this->db->select('sum(Pago) as Pago');
         $this->db->from('ctactecpd');
@@ -55,14 +55,14 @@ class Ctactecpd_model extends CI_Model {
             $id = $_REQUEST['id'];
         }
         $this->db->where('id', $id);
-        $this->db->update('ctactecpd');
+        $this->db->delete('ctactecpd');
     }
     
     function ctactecpdQry_ins() {
         $Pago = null;
         $Fecha = null;
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['cpd_id'])) {
+            $id = $_POST['cpd_id'];
         }
         
         if (isset($_POST['txtFecha'])) {

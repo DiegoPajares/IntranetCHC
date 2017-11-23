@@ -18,9 +18,12 @@ class Cobrarpagardoc_model extends CI_Model {
     }
 
     function cobrarpagardocQry_getxid($tipo) {
-        if (isset($_REQUEST['id'])) {
+        if (isset($_POST['cpd_id'])) {
+            $id = $_POST['cpd_id'];
+        }else{
             $id = $_REQUEST['id'];
         }
+        
         $this->db->select('*');
         $this->db->from('cobrarpagardoc');
         $this->db->where('Tipo', $tipo);
@@ -146,7 +149,6 @@ class Cobrarpagardoc_model extends CI_Model {
             $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
         }
         
-        
         $data = array(
             'obras_id' => $obras_id,
             'clieprov_id' => $clieprov_id,
@@ -170,14 +172,14 @@ class Cobrarpagardoc_model extends CI_Model {
     }
 
     function cobrarpagardocQry_upd($pagado,$saldo) {
-        if($saldo=0){
+        if($saldo==0){
             $detraccion = 'SI';
         }else{
             $detraccion = 'NO';
         }
         
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['cpd_id'])) {
+            $id = $_POST['cpd_id'];
         }
         $data = array(
             'Pagado' => $pagado,
