@@ -166,7 +166,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Descripcion"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "ValorInicial"}, {"mData": "ReajusteFP"}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": "DeduccionRAD"}, {"mData": "DediccionRAM"}, {"mData": "MontoTotal"}, {"mData": null}],
+                "aoColumns": [{"mData": "Descripcion"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "ValorInicial"}, {"mData": "ReajusteFP"}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": "DeduccionRAD"}, {"mData": "DeduccionRAM"}, {"mData": "MontoTotal"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [3],
@@ -200,7 +200,7 @@
                         }
                     }, {
                         "aTargets": [8],
-                        "mData": "DediccionRAM",
+                        "mData": "DeduccionRAM",
                         "mRender": function (data, type, full) {
                             return parseFloat(data).toFixed(2);
                         }
