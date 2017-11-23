@@ -115,6 +115,35 @@ function buscarxidAJAX(id, urlAJAX) {
     return resultado;
 }
 
+
+
+  function eliminarAJAX(idAttr, AJAX_URL) {
+
+    $.ajax({
+        url: AJAX_URL,
+        type: 'GET',
+        data: {
+            id: idAttr
+        },
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        success: function (data) {
+            $.LoadingOverlay("hide");
+            notificacion(1, "Acción realizada con éxito.");
+            $('.modal-block .modal-dismiss').click();
+            datatable.ajax.reload();
+        },
+        error: function (e)
+        {
+            $.LoadingOverlay("hide");
+            notificacion(0, "Hubo un error al realizar la acción solicitada.");
+            $('.modal-block .modal-dismiss').click();
+        }
+    });
+}
+
+
 $(document).ready(function () {
     APP.init();
 });

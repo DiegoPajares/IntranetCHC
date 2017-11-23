@@ -211,7 +211,18 @@
                         "mRender": function (data, type, full) {
                             return parseFloat(data).toFixed(2);
                         }
-                    }
+                    },
+                    {
+                        "aTargets": [10],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<center><div class="btn-group">' +
+                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
+                                    '<ul class="dropdown-menu pull-left" role="menu">' +
+                                    '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
+                                    '</ul></div></center>';
+                        }
+                    },
                 ],
                 "order": [[1, "asc"]],
                 language: {
@@ -282,7 +293,11 @@
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
                 $("#selectObra").html(listaObrasHTML);
             });
-            //            FIN LISTA DATOS SELET2 OBRAS            
+            //            FIN LISTA DATOS SELET2 OBRAS 
+            
+             $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+            });
         };
         return {
             init: function () {
