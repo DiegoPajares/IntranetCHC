@@ -619,8 +619,8 @@ window.theme.fn = {
 
 		$.extend(true, $.fn.dataTable.defaults, {
 			oLanguage: {
-				sLengthMenu: '_MENU_ records per page',
-				sProcessing: '<i class="fa fa-spinner fa-spin"></i> Loading',
+				sLengthMenu: '_MENU_ x pagina',
+				sProcessing: '<i class="fa fa-spinner fa-spin"></i> Cargando',
 				sSearch: ''
 			},
 			fnInitComplete: function( settings, json ) {
@@ -639,7 +639,7 @@ window.theme.fn = {
 
 				$search
 					.attr({
-						placeholder: typeof options.searchPlaceholder !== 'undefined' ? options.searchPlaceholder : 'Search...'
+						placeholder: typeof options.searchPlaceholder !== 'undefined' ? options.searchPlaceholder : 'Buscar...'
 					})
 					.removeClass('form-control-sm').addClass('form-control pull-right');
 

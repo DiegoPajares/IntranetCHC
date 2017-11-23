@@ -227,7 +227,7 @@
                     searchPlaceholder: "Filtrar resultados",
                 },
                 drawCallback: function (settings, json) {
-                    CargaInicial();
+                    eventos();
                     $.LoadingOverlay("hide");
                 }
 
@@ -258,6 +258,10 @@
                 $("#btnRegistrar").removeAttr('disabled');
             });
 
+            $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+            });
+
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //$("#frmAmortizacion")[0].reset();
@@ -281,18 +285,11 @@
                     $("#desc_doc").val($("#selectDoc option:selected").text());
                     $("#btnRegistrar").removeAttr('disabled');
                 });
-
-
             });
             // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {
-            $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
-            });
-
-            $("#btnRegistrar").attr('disabled', 'true');
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";

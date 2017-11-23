@@ -9,7 +9,7 @@
                     <header class="card-header">
                         <h2 class="card-title">Control de Pagos</h2>
                     </header>
-                    <div class="card-body">
+                    <div class="card-body">                        
                         <div class="row">
                             <div class="col-md-6">                            
                                 <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
@@ -44,13 +44,10 @@
                                     <th>Monto</th>
                                     <th>Deducción</th>
                                     <th>Emisión</th>
-                                    
                                     <th>Monto</th>
                                     <th>Fecha</th>
-                                    
                                     <th>Saldo</th>
                                     <th>Acumulado</th>
-                                     
                                 </tr>
                             </thead>
                             <tbody >
@@ -62,64 +59,93 @@
             </section>
         </div>
     </div>
-    <!-- end: page -->
-    <!--******************* MODALS NUEVO ******************-->   
-    <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
-    <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
-        <section class="card">
-            <header class="card-header">
-                <h2 class="card-title">Nueva Amortizacion</h2>
-            </header>
-            <div class="card-body"> 
-                <form action="#" class="form-horizontal" id="frmObra" method="POST">
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
-                        <div class="col-md-6">
-                            <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
-                            <p><code>Max. 15 dígitos</code></p>
-                        </div>
-                    </div>   
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
-                        <div class="col-md-6">
-                            <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" >Empresa de la obra</label>
-                        <div class="col-md-12">
-                            <input class="form-control text-uppercase" name="empresa" id="empresa" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12 control-label">Nombre de la obra</label>
-                        <div class="col-md-12">                                    
-                            <textarea class="form-control" rows="4" data-plugin-maxlength maxlength="400"  name="nombre" id="nombre" required></textarea>
-                            <p><code>M&aacute;ximo 400 caracteres.</code></p>
-                        </div>
-                    </div>
-                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">
-                    <footer class="card-footer">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                                <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
-                            </div>
-                        </div>
-                    </footer>
-                </form>
-
-            </div>
-        </section>
-    </div>     
+    <!-- end: page -->    
 </section>
+
+<!--******************* MODALS NUEVO ******************-->   
+<!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
+<div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Nueva Amortizacion</h2>
+        </header>
+        <form action="#" class="form-horizontal" id="frmObra" method="POST">
+            <div class="card-body"> 
+                <div class="form-group">
+                    <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
+                    <div class="col-md-6">
+                        <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
+                        <p><code>Max. 15 dígitos</code></p>
+                    </div>
+                </div>   
+                <div class="form-group">
+                    <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12 control-label" >Empresa de la obra</label>
+                    <div class="col-md-12">
+                        <input class="form-control text-uppercase" name="empresa" id="empresa" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12 control-label">Nombre de la obra</label>
+                    <div class="col-md-12">                                    
+                        <textarea class="form-control" rows="4" data-plugin-maxlength maxlength="400"  name="nombre" id="nombre" required></textarea>
+                        <p><code>M&aacute;ximo 400 caracteres.</code></p>
+                    </div>
+                </div>
+                <input type="hidden" name="txtIdEditar" id="txtIdEditar">
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                    </div>
+                </div>
+            </footer>
+        </form>
+    </section>
+</div>
+
+<button id="btnAbreModalDetAmort" class="modal-with-form btn btn-default btn btn-info" href="#mdlDetAmortizacion" style="display: none;"></button>
+<div id="mdlDetAmortizacion" class="modal-block modal-block-sm mfp-hide">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">
+                Det Amortizacion
+                <button data-dismiss="modal" class="close modal-dismiss">×</button>
+            </h2>
+
+        </header>
+        <form action="#" class="form-horizontal" id="frmObra" method="POST">
+            <div class="card-body"> 
+                <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
+                    <thead>
+                        <tr>
+                            <th>Pago</th>
+                            <th>Fecha</th>
+                            <th>Opt</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+
+                    </tbody>
+                </table>                   
+            </div>
+        </form>
+    </section>
+</div>
 
 
 
 <script>
     var datatable;
-    $acumulado=0.0;
-    $result=0.0;
+    $acumulado = 0.0;
+    $result = 0.0;
     var APP = function () {
 
         var plugins = function () {
@@ -133,35 +159,40 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
+<<<<<<< HEAD
                 "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData":null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
+=======
+                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData": null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}, {"mData": null}],
+>>>>>>> 643a724b4bb0c5f30b18aca6cdcb6526dbb795c0
                 "aoColumnDefs": [
-                 {
-                    "aTargets": [8],
-                    "mData": "download_link",
-                    "mRender": function (data, type, full) {
-                         
-                        $acumulado = parseFloat(data.MontoCan) + parseFloat($acumulado) ;  
-                      return '' +$acumulado+ '';
+                    {
+                        "aTargets": [8],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+
+                            $acumulado = parseFloat(data.MontoCan) + parseFloat($acumulado);
+                            return '' + $acumulado + '';
+                        }
+                    },
+                    {
+                        "aTargets": [3],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            $acumulado = parseFloat(data.MontoTotal) + parseFloat($acumulado);
+                            $result = parseFloat(data.monto_Obra) - parseFloat($acumulado);
+                            return '' + $result + '';
+                        }
+                    },
+                    {
+                        "aTargets": [5],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+//                            return '<a href="#" id="' + data.id + '" class="idPagar dropdown-item text-1"> <i class="fa fa-check"></i> ' + data.MontoCan + '</a>';
+                            return '<button class="btnDetAmort" id="' + data.id + '">' + data.MontoCan + '</button>';
+                        }
                     }
-                 },
-                 {
-                    "aTargets": [3],
-                    "mData": "download_link",
-                    "mRender": function (data, type, full) {
-                        $acumulado= parseFloat(data.MontoTotal) + parseFloat($acumulado) ;
-                        $result = parseFloat(data.monto_Obra) - parseFloat($acumulado) ;  
-                      return '' +$result+ '';
-                    }
-                 },
-                 {
-                 "aTargets": [5],
-                 "mData": "download_link",
-                 "mRender": function (data, type, full) {
-                 return '<a href="#" id="' + data.id + '" class="idPagar dropdown-item text-1"> <i class="fa fa-check"></i> ' + data.MontoCan + '</a>' ;
-                 }
-                 }
-                 ],
-            /*"aoColumnDefs": [
+                ],
+                /*"aoColumnDefs": [
                  {
                  "aTargets": [5],
                  "mData": "download_link",
@@ -189,13 +220,13 @@
                  }
                  }
                  ],*/
-                "order": [[ 4, "asc" ]],
+                "order": [[4, "asc"]],
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: "Filtrar resultados",
                 },
                 drawCallback: function (settings, json) {
-                    //CargaInicial();
+                    eventos();
                     $.LoadingOverlay("hide");
                 }
 
@@ -220,6 +251,29 @@
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
             });
+
+            $(".btnDetAmort").on('click', function (e) {
+                var idAmort = $(this).attr("id");
+                $("#btnAbreModalDetAmort").click();
+                //----------DETALLE AMORTIZACION------------
+                var initDatatablesDetAmor = function (idObra) {
+                    $.LoadingOverlay("show");
+                    $('#tablaDetAmort').dataTable().fnDestroy();
+                    datatableDetAmort = $('#tablaDetAmort').DataTable({
+                        "sAjaxSource": "./PorCobrar/PorCobrar_listaxAmortizacion?id=" + idAmort,
+                        "sServerMethod": "POST",
+                        "sAjaxDataProp": "",
+                        "aoColumns": [{"mData": "Pago"}, {"mData": "Fecha"}, {"mData": null}],
+                        "order": [[1, "asc"]],
+                        drawCallback: function (settings, json) {
+                            $.LoadingOverlay("hide");
+                        }
+
+                    });
+                }
+                initDatatablesDetAmor();
+                //----------FIN DETALLE AMORTIZACION------------
+            });
         }
 
         var CargaInicial = function () {
@@ -232,7 +286,7 @@
                 $("#empresa").val(a[0].Empresa);
                 $("#nombre").val(a[0].Nombre);
             });
-            
+
             //            LISTA DATOS SELET2
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
@@ -241,7 +295,7 @@
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2
-            
+
         };
         return {
             init: function () {
