@@ -14,7 +14,7 @@
 
                 <form action="http://preview.oklerthemes.com/porto-admin/2.0.0/pages-search-results.html" class="search nav-form">
                     <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+                        <input type="text" class="form-control" name="q" id="q" placeholder="Buscar...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                         </span>

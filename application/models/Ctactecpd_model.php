@@ -3,8 +3,8 @@
 class Ctactecpd_model extends CI_Model {
 
     function ctactecpdQry_getxAmortización() {
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_REQUEST['id'])) {
+            $id = $_REQUEST['id'];
         }
         $this->db->select('*');
         $this->db->from('ctactecpd');
