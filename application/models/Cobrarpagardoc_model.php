@@ -143,12 +143,9 @@ class Cobrarpagardoc_model extends CI_Model {
         }
         if (isset($_POST['txtFechaFactura'])) {
             $fecha = trim($_POST['txtFechaFactura']);
-            $fecha = DateTime::createFromFormat('m/d/Y', $fecha)->format('Y-m-d');
+            $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
         }
-        if (isset($_POST['fechaAsig'])) {
-            $fechaAsig = trim($_POST['fechaAsig']);
-            $fechaAsig = DateTime::createFromFormat('d/m/Y', $fechaAsig)->format('Y-m-d');
-        }
+        
         
         $data = array(
             'obras_id' => $obras_id,
