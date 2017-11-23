@@ -44,51 +44,35 @@
     <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
         <section class="card">
             <header class="card-header">
-                <h2 class="card-title">Nueva Obra</h2>
+                <h2 class="card-title">Nuevo Cliente / Proveedor</h2>
             </header>
-            <div class="card-body"> 
-                <form action="#" class="form-horizontal" id="frmObra" method="POST">
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
-                        <div class="col-md-6">
-                            <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
-                            <p><code>Max. 15 dígitos</code></p>
-                        </div>
-                    </div>   
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
-                        <div class="col-md-6">
-                            <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" >Empresa de la obra</label>
-                        <div class="col-md-12">
-                            <!--<input class="form-control text-uppercase" name="empresa" id="empresa" required>-->                            
-                            <select data-plugin-selectTwo class="form-control" id="selectEmpresa" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir empresa", "allowClear": true, "noResults": "poiqwe"}'>                                
-                                <option></option>                                
-                            </select>                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12 control-label">Nombre de la obra</label>
-                        <div class="col-md-12">                                    
-                            <textarea class="form-control" rows="4" data-plugin-maxlength maxlength="400"  name="nombre" id="nombre" required></textarea>
-                            <p><code>M&aacute;ximo 400 caracteres.</code></p>
-                        </div>
-                    </div>
-                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">
-                    <footer class="card-footer">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                                <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+            <form action="#" class="form-horizontal" id="frmObra" method="POST">
+                <div class="card-body"> 
+                    <div class="form-row col-md-12">                                        
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="textareaDefault">Nombre / Razón Social</label>
+                            <div>
+                                <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>                            
+                            </div>
+                        </div>   
+                        <div class="form-group col-md-6">
+                            <label class="control-label" >DNI / RUC</label>
+                            <div>
+                                <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
                             </div>
                         </div>
-                    </footer>
-                </form>
-
-            </div>
+                    </div>
+                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+                </div>
+                <footer class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                        </div>
+                    </div>
+                </footer>
+            </form>
         </section>
     </div>     
 </section>
