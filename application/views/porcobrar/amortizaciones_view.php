@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtDescripcion">Descripcion</label>                            
-                                <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtFechaFactura">Fecha Factura</label>                            
@@ -95,12 +95,14 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
-                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">
+                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+
                             </div>
                         </div>
                     </div>
                     <div class="form-row col-md-12">
-                        
+
                         <div class="form-group col-md-6">
                             <label for="txtNroFactura">Nro Factura</label>                            
                             <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: FAC-0001-00000000" required/>                            
@@ -274,12 +276,12 @@
                     $("#selectDoc").html(listaHTML);
                 });
                 //            FIN LISTA DATOS SELET2 DOCUMENTOS
-            $("#selectDoc").change(function () {
-                $("#desc_doc").val($("#selectDoc option:selected").text());
-                $("#btnRegistrar").removeAttr('disabled');
-            });
-    
-    
+                $("#selectDoc").change(function () {
+                    $("#desc_doc").val($("#selectDoc option:selected").text());
+                    $("#btnRegistrar").removeAttr('disabled');
+                });
+
+
             });
             // FIN EVENTO ABRE MODAL
         }
