@@ -100,40 +100,37 @@
 
                             </div>
                         </div>
-                    </div>
-                    <div class="form-row col-md-12">
-
-                        <div class="form-group col-md-6">
-                            <label for="txtNroFactura">Nro Factura</label>                            
-                            <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: FAC-0001-00000000" required/>                            
-                        </div> 
-                    </div>
+                    </div>                    
+                    <div class="form-group col-md-12">
+                        <label for="txtNroFactura">Nro Factura</label>                            
+                        <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: FAC-0001-00000000" required/>                            
+                    </div>                     
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-4">
                             <label for="txtTotalValor">Total Valorización</label>
-                            <input type="number" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtadelantDir"> Adelanto Directo</label>
-                            <input type="number" step="0.01" name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtAdelantoMat"> Adelanto Materiales</label>
-                            <input type="number" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-4">
                             <label for="txtReajusteForm"> Reaj. Formula Polinómica</label>
-                            <input type="number" step="0.01" name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtDeduccionAdDir"> Deduc. Reaj. Ad. Directo</label>
-                            <input type="number" step="0.01" name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtDeduccionAdMat"> Deduc. Reaj. Ad. Materiales</label>
-                            <input type="number" step="0.01" name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" min="0" step="0.01" name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
                     <!--------------------------->                    
