@@ -7,7 +7,7 @@
             <section class="card">
                 <div class="tabs">
                     <header class="card-header">
-                        <h2 class="card-title">Control de Pagos</h2>
+                       
                     </header>
                     <div class="card-body">                        
                         <div class="row">
@@ -62,67 +62,39 @@
     <!-- end: page -->    
 </section>
 
-<!--******************* MODALS NUEVO ******************-->   
-<!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
-<div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
-    <section class="card">
-        <header class="card-header">
-            <h2 class="card-title">Nueva Amortizacion</h2>
-        </header>
-        <form action="#" class="form-horizontal" id="frmObra" method="POST">
-            <div class="card-body"> 
-                <div class="form-group">
-                    <label class="col-md-6 control-label" for="textareaDefault">Nombre Corto de la Obra</label>
-                    <div class="col-md-6">
-                        <input name="nombrecorto" id="nombrecorto" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: LOREMITSUM12345" required/>
-                        <p><code>Max. 15 dígitos</code></p>
-                    </div>
-                </div>   
-                <div class="form-group">
-                    <label class="col-md-6 control-label" >Monto Inicial de la obra</label>
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" id="montoinicial" name="montoinicial" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-12 control-label" >Empresa de la obra</label>
-                    <div class="col-md-12">
-                        <input class="form-control text-uppercase" name="empresa" id="empresa" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-12 control-label">Nombre de la obra</label>
-                    <div class="col-md-12">                                    
-                        <textarea class="form-control" rows="4" data-plugin-maxlength maxlength="400"  name="nombre" id="nombre" required></textarea>
-                        <p><code>M&aacute;ximo 400 caracteres.</code></p>
-                    </div>
-                </div>
-                <input type="hidden" name="txtIdEditar" id="txtIdEditar">
-            </div>
-            <footer class="card-footer">
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                        <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
-                    </div>
-                </div>
-            </footer>
-        </form>
-    </section>
-</div>
-
+<!--******************* MODALS Pago ******************-->   
 <button id="btnAbreModalDetAmort" class="modal-with-form btn btn-default btn btn-info" href="#mdlDetAmortizacion" style="display: none;"></button>
 <div id="mdlDetAmortizacion" class="modal-block modal-block-sm mfp-hide">
     <section class="card">
         <header class="card-header">
             <h2 class="card-title">
-                Det Amortizacion
+                Pagos Realizados
                 <button data-dismiss="modal" class="close modal-dismiss">×</button>
             </h2>
 
         </header>
-        <form action="#" class="form-horizontal" id="frmObra" method="POST">
-            <div class="card-body"> 
+        <form action="#" class="form-horizontal" id="frmPago" method="POST">
+            <div class="card-body">
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-5 control-label" >Pago</label>
+                        <input type="number" class="form-control" id="pago" name="pago" required>
+                    </div>
+                    <div class="form-group col-md-5">
+                            <label for="txtFecha">Fecha</label>                            
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input id="txtFechaFactura" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                            </div>
+                    </div>
+                    <div class="form-group col-md-1">
+                            <label class="col-md-1 control-label" ></label>
+                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success"> +</button>
+                    </div>
+                </div>
+                
                 <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
                     <thead>
                         <tr>
@@ -159,11 +131,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-<<<<<<< HEAD
                 "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData":null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
-=======
-                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData": null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}, {"mData": null}],
->>>>>>> 643a724b4bb0c5f30b18aca6cdcb6526dbb795c0
                 "aoColumnDefs": [
                     {
                         "aTargets": [8],
@@ -187,39 +155,10 @@
                         "aTargets": [5],
                         "mData": "download_link",
                         "mRender": function (data, type, full) {
-//                            return '<a href="#" id="' + data.id + '" class="idPagar dropdown-item text-1"> <i class="fa fa-check"></i> ' + data.MontoCan + '</a>';
                             return '<button class="btnDetAmort" id="' + data.id + '">' + data.MontoCan + '</button>';
                         }
                     }
                 ],
-                /*"aoColumnDefs": [
-                 {
-                 "aTargets": [5],
-                 "mData": "download_link",
-                 "mRender": function (data, type, full) {
-                 return '<center><div class="btn-group">' +
-                 '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                 '<ul class="dropdown-menu pull-left" role="menu">' +
-                 '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                 '</ul></div></center>';
-                 }
-                 },
-                 {
-                 "aTargets": [4],
-                 "mData": "download_link",
-                 "mRender": function (data, type, full) {
-                 if (data.Estado == 1) {
-                 return '<center><span class="label label-sm label-info"> Activo </span></center>';
-                 } else {
-                 if (data.Estado == 2) {
-                 return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
-                 }
-                 }
-                 }
-                 }
-                 ],*/
                 "order": [[4, "asc"]],
                 language: {
                     search: "_INPUT_",
@@ -243,7 +182,7 @@
         }
 
         var eventos = function () {
-            registrarAJAX("#frmObra", "./Obras/Obra_registrar");
+            registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
             $("#selectObra").change(function () {
                 var ids = $("#selectObra").val();
                 var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
@@ -255,7 +194,7 @@
             $(".btnDetAmort").on('click', function (e) {
                 var idAmort = $(this).attr("id");
                 $("#btnAbreModalDetAmort").click();
-                //----------DETALLE AMORTIZACION------------
+                //----------DETALLE PAGOS------------
                 var initDatatablesDetAmor = function (idObra) {
                     $.LoadingOverlay("show");
                     $('#tablaDetAmort').dataTable().fnDestroy();
@@ -272,7 +211,7 @@
                     });
                 }
                 initDatatablesDetAmor();
-                //----------FIN DETALLE AMORTIZACION------------
+                //----------FIN DETALLE PAGOS------------
             });
         }
 
@@ -286,7 +225,6 @@
                 $("#empresa").val(a[0].Empresa);
                 $("#nombre").val(a[0].Nombre);
             });
-
             //            LISTA DATOS SELET2
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
@@ -299,12 +237,10 @@
         };
         return {
             init: function () {
-//                plugins();
                 eventos();
                 //initDatatables();
                 CargaInicial();
-            }
-            ,
+            },
             recargaTabla: function () {
                 //initDatatables();
                 //CargaInicial();

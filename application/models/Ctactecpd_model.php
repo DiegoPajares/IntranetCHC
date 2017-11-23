@@ -49,9 +49,9 @@ class Ctactecpd_model extends CI_Model {
             $id = $_REQUEST['id'];
         }
         
-        if (isset($_POST['fecha'])) {
-            $Fecha = trim($_POST['fecha']);
-            $Fecha = DateTime::createFromFormat('d/m/Y', $Fecha)->format('Y-m-d');
+        if (isset($_POST['txtFecha'])) {
+            $Fecha = trim($_POST['txtFecha']);
+            $Fecha = DateTime::createFromFormat('m/d/Y', $fecha)->format('Y-m-d');
         }
         if (isset($_POST['pago'])) {
             $Pago = $_POST['pago'];

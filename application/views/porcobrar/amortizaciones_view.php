@@ -7,7 +7,6 @@
             <section class="card">
                 <div class="tabs">
                     <header class="card-header">
-                        <h2 class="card-title">Amortizaciones</h2>
                     </header>
                     <div class="card-body">
                         <div class="row">
@@ -105,7 +104,7 @@
                     </div>                    
                     <div class="form-group col-md-12">
                         <label for="txtNroFactura">Nro Factura</label>                            
-                        <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: FAC-0001-00000000" required/>                            
+                        <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
                     </div>                     
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-4">

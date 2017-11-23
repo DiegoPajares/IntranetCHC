@@ -7,7 +7,7 @@
             <section class="card">
                 <div class="tabs">
                     <header class="card-header">
-                        <h2 class="card-title">Proyectos/Obras</h2>
+                        
                     </header>
                     <div class="card-body">
                         <div class="row">
