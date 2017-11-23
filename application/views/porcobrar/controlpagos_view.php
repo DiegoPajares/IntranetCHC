@@ -16,7 +16,9 @@
                                     <option></option>                                    
                                 </select>                            
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <input name="valorObra" id="valorObra" class="form-control text-uppercase" required disabled/>
+                            </div>
                             <hr>
                         </div>
                         <div class="row">
@@ -213,6 +215,10 @@
         var eventos = function () {
             registrarAJAX("#frmObra", "./Obras/Obra_registrar");
             $("#selectObra").change(function () {
+                var ids = $("#selectObra").val();
+                var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
+                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
+                $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
             });
         }

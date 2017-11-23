@@ -60,7 +60,6 @@ class Cobrarpagardoc_model extends CI_Model {
           if (isset($_REQUEST['cboobra'])) {
             $id = $_REQUEST['cboobra'];
         }
-        //$this->db->select('ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.ValorInicial-MontoCan) as saldo ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
         $this->db->select('cta.id as cta_id,ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.MontoTotal-ifnull(sum(cta.Pago),0)) as saldoResum ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
         $this->db->from('cobrarpagardoc c');
         $this->db->join('documento d', 'c.documento_id = d.id');
@@ -83,8 +82,9 @@ class Cobrarpagardoc_model extends CI_Model {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
         }
-        $this->db->where('Id', $id);
-        $this->db->update('cobrarpagardoc');
+        
+        $this->db->where('id', $id);
+        $this->db->delete('cobrarpagardoc');
     }
 
     function cobrarpagardocQry_ins($montototal,$tipo) {

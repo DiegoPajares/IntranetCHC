@@ -11,13 +11,15 @@
                     </header>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">                            
-                                <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
-                                    <option></option>                                    
-                                </select>
-                            </div>
-                            <div class="col-md-6"></div>
-                            <hr>
+                                <div class="col-md-6"> 
+                                    <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
+                                        <option></option>                                    
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input name="valorObra" id="valorObra" class="form-control text-uppercase" required disabled/>
+                                </div>
+                                <hr>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
@@ -244,6 +246,12 @@
         var eventos = function () {
             registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
             $("#selectObra").change(function () {
+                
+                var ids = $("#selectObra").val();
+                var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
+                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
+                $("#valorObra").val(monto);
+                
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
