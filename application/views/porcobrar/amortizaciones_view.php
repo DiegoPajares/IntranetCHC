@@ -80,7 +80,7 @@
                     <div class="form-row col-md-12">
                         <div class="form-group  col-md-4">
                             <label for="selectDoc">Documento</label>
-                            <select data-plugin-selectTwo class="form-control" id="selectDoc" name="selectDoc" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Documento", "allowClear": true}'>                                                            
+                            <select data-plugin-selectTwo class="form-control" id="selectDoc" name="selectDoc" data-plugin-options='{ "placeholder": "Elegir Documento", "allowClear": true}'>                                                            
                                 <option></option>
                             </select>
                             <input type="hidden" id="desc_doc" name="desc_doc">
