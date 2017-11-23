@@ -225,7 +225,7 @@
                     searchPlaceholder: "Filtrar resultados",
                 },
                 drawCallback: function (settings, json) {
-                    //CargaInicial();
+                    CargaInicial();
                     $.LoadingOverlay("hide");
                 }
 
@@ -281,7 +281,8 @@
 
         var CargaInicial = function () {
              $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+//                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+alert("123");
             });
             
             $("#btnRegistrar").attr('disabled', 'true');
