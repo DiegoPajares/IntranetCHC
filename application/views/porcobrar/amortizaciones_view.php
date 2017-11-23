@@ -218,13 +218,9 @@
                         "aTargets": [10],
                         "mData": "download_link",
                         "mRender": function (data, type, full) {
-                            return '<center><div class="btn-group">' +
-                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                                    '<ul class="dropdown-menu pull-left" role="menu">' +
-                                    '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                                    '</ul></div></center>';
+                            return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
                         }
-                    },
+                    }
                 ],
                 "order": [[1, "asc"]],
                 language: {
@@ -239,9 +235,9 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
@@ -287,6 +283,10 @@
         }
 
         var CargaInicial = function () {
+             $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+            });
+            
             $("#btnRegistrar").attr('disabled', 'true');
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
@@ -296,11 +296,8 @@
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2 OBRAS 
-            
-             $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
-            });
         };
+        
         return {
             init: function () {
 //                plugins();
@@ -311,7 +308,7 @@
             ,
             recargaTabla: function () {
                 //initDatatables();
-                //CargaInicial();
+                CargaInicial();
             }
         };
     }();

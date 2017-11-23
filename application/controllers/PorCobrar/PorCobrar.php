@@ -30,7 +30,7 @@ class PorCobrar extends CI_Controller {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo));
         return print_r($data);
     }
-
+        
     public function PorCobrar_listaxAmortizacion() {
         $data = json_encode($this->Ctactecpd_model->ctactecpdQry_getxAmortización());
         return print_r($data);

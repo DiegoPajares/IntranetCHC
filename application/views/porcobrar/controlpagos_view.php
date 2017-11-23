@@ -156,13 +156,7 @@
                  "aTargets": [5],
                  "mData": "download_link",
                  "mRender": function (data, type, full) {
-                 return '<center><div class="btn-group">' +
-                 '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                 '<ul class="dropdown-menu pull-left" role="menu">' +
-                 '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                 '</ul></div></center>';
+                 return '<a href="#" id="' + data.id + '" class="idPagar dropdown-item text-1"> <i class="fa fa-check"></i> ' + data.MontoCan + '</a>' ;
                  }
                  }
                  ],
@@ -224,7 +218,16 @@
         }
 
         var CargaInicial = function () {
-
+            $(".idPagar").click(function () {
+                $("#btnRegistrar").click();
+                var a = buscarxidAJAX(this.id, './PorCobrar/PorCobrar_listaxAmortizacion');
+                $("#txtIdEditar").val(a[0].id);
+                $("#nombrecorto").val(a[0].NombreCorto);
+                $("#montoinicial").val(a[0].Monto_Inicial);
+                $("#empresa").val(a[0].Empresa);
+                $("#nombre").val(a[0].Nombre);
+            });
+            
             //            LISTA DATOS SELET2
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
@@ -233,6 +236,7 @@
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2
+            
         };
         return {
             init: function () {
