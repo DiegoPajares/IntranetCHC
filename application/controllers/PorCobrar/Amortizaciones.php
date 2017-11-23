@@ -12,34 +12,34 @@ class Amortizaciones extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
     }
-    //$tipo= 'A';
+    
     
     public function index() {
         $data['actualP'] = 'Por_Cobrar';
         $data['actualH'] = 'Amortizaciones';
-        $data['main_content'] = 'por_cobrar/amortizaciones_view';
+        $data['main_content'] = 'porcobrar/amortizaciones_view';
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | Amortizaciones';
         $this->load->view('master/template', $data);
     }
     function calcular_total(){
-        if (isset($_POST['valorinicial'])) {
-            $valorinicial = $_POST['valorinicial'];
+        if (isset($_POST['txtTotalValor'])) {
+            $valorinicial = $_POST['txtTotalValor'];
         }
-        if (isset($_POST['reajustefp'])) {
-            $reajustefp = $_POST['reajustefp'];
+        if (isset($_POST['txtReajusteForm'])) {
+            $reajustefp = $_POST['txtReajusteForm'];
         }
-        if (isset($_POST['adelantodirecto'])) {
-            $adelantodirecto = $_POST['adelantodirecto'];
+        if (isset($_POST['txtadelantDir'])) {
+            $adelantodirecto = $_POST['txtadelantDir'];
         }
-        if (isset($_POST['adelantomateriales'])) {
-            $adelantomateriales = $_POST['adelantomateriales'];
+        if (isset($_POST['txtAdelantoMat'])) {
+            $adelantomateriales = $_POST['txtAdelantoMat'];
         }
-        if (isset($_POST['deduccionrad'])) {
-            $deduccionrad = $_POST['deduccionrad'];
+        if (isset($_POST['txtDeduccionAdDir'])) {
+            $deduccionrad = $_POST['txtDeduccionAdDir'];
         }
-        if (isset($_POST['deduccionram'])) {
-            $deduccionram = $_POST['deduccionram'];
+        if (isset($_POST['txtDeduccionAdMat'])) {
+            $deduccionram = $_POST['txtDeduccionAdMat'];
         }
         $montototal=$valorinicial+$reajustefp-$adelantodirecto-$adelantomateriales-$deduccionrad-$deduccionram;
         return $montototal;

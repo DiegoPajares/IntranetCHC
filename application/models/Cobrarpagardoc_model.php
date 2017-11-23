@@ -57,15 +57,19 @@ class Cobrarpagardoc_model extends CI_Model {
     }
 
     function cobrarpagardocQry_getxidObraSumatorias($tipo) {
-        if (isset($_REQUEST['cboobra'])) {
+          if (isset($_REQUEST['cboobra'])) {
             $id = $_REQUEST['cboobra'];
         }
-        $this->db->select('c.*,d.Descripcion as desc_obra');
+        //$this->db->select('ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.ValorInicial-MontoCan) as saldo ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
+        $this->db->select('ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.MontoTotal-ifnull(sum(cta.Pago),0)) as saldoResum ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
         $this->db->from('cobrarpagardoc c');
         $this->db->join('documento d', 'c.documento_id = d.id');
+        $this->db->join('obras o', 'c.obras_id = o.id');
+        $this->db->join('ctactecpd cta', 'cta.CobrarPagarDoc_id = c.id','left');
         $this->db->where('c.Tipo', $tipo);
         $this->db->where('c.obras_id', $id);
-        $this->db->order_by('c.fecha', 'DESC');
+        $this->db->group_by('c.id','ASC');
+        $this->db->order_by('c.fecha','ASC');
         $query = $this->db->get();
         
         if (count($query) > 0) {
@@ -100,53 +104,62 @@ class Cobrarpagardoc_model extends CI_Model {
         $saldo = $montototal;
         $documento_id = null;
         
-        if (isset($_POST['cbodocumento'])) {
-            $documento_id = $_POST['cbodocumento'];
+        if (isset($_POST['selectDoc'])) {
+            $documento_id = $_POST['selectDoc'];
         }
-        if (isset($_POST['cboobra'])) {
-            $obras_id = $_POST['cboobra'];
+        if (isset($_POST['idObra'])) {
+            $obras_id = $_POST['idObra'];
         }
-        if (isset($_POST['clieprov_id'])) {
-            $clieprov_id = $_POST['clieprov_id'];
+        if (isset($_POST['selectClienteProv'])) {
+            $clieprov_id = $_POST['selectClienteProv'];
         }
-        if (isset($_POST['descripcion'])) {
-            $descripcion = $_POST['descripcion'];
+        if (isset($_POST['txtDescripcion'])) {
+            $descripcion = $_POST['txtDescripcion'];
         }
-        if (isset($_POST['numero'])) {
-            $numero = $_POST['numero'];
+        if (isset($_POST['desc_doc'])) {
+            $doc = $_POST['desc_doc'];
         }
-        if (isset($_POST['valorinicial'])) {
-            $valorinicial = $_POST['valorinicial'];
+        
+        if (isset($_POST['txtNroFactura'])) {
+            $numero = $_POST['txtNroFactura'];
         }
-        if (isset($_POST['reajustefp'])) {
-            $reajustefp = $_POST['reajustefp'];
+        if (isset($_POST['txtTotalValor'])) {
+            $valorinicial = $_POST['txtTotalValor'];
         }
-        if (isset($_POST['adelantodirecto'])) {
-            $adelantodirecto = $_POST['adelantodirecto'];
+        if (isset($_POST['txtReajusteForm'])) {
+            $reajustefp = $_POST['txtReajusteForm'];
         }
-        if (isset($_POST['adelantomateriales'])) {
-            $adelantomateriales = $_POST['adelantomateriales'];
+        if (isset($_POST['txtadelantDir'])) {
+            $adelantodirecto = $_POST['txtadelantDir'];
         }
-        if (isset($_POST['deduccionrad'])) {
-            $deduccionrad = $_POST['deduccionrad'];
+        if (isset($_POST['txtAdelantoMat'])) {
+            $adelantomateriales = $_POST['txtAdelantoMat'];
         }
-        if (isset($_POST['deduccionram'])) {
-            $deduccionram = $_POST['deduccionram'];
+        if (isset($_POST['txtDeduccionAdDir'])) {
+            $deduccionrad = $_POST['txtDeduccionAdDir'];
         }
-        if (isset($_POST['fecha'])) {
-            $fecha = trim($_POST['fecha']);
-            $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
+        if (isset($_POST['txtDeduccionAdMat'])) {
+            $deduccionram = $_POST['txtDeduccionAdMat'];
         }
+        if (isset($_POST['txtFechaFactura'])) {
+            $fecha = trim($_POST['txtFechaFactura']);
+            $fecha = DateTime::createFromFormat('m/d/Y', $fecha)->format('Y-m-d');
+        }
+        if (isset($_POST['fechaAsig'])) {
+            $fechaAsig = trim($_POST['fechaAsig']);
+            $fechaAsig = DateTime::createFromFormat('d/m/Y', $fechaAsig)->format('Y-m-d');
+        }
+        
         $data = array(
             'obras_id' => $obras_id,
             'clieprov_id' => $clieprov_id,
-            'Descripcion' => $descripcion,
+            'Descripcion' => $doc . " " .$descripcion,
             'Fecha' => $fecha,
             'Numero' => $numero,
             'ValorInicial' => $valorinicial,
             'ReajusteFP' => $reajustefp,
             'AdelantoDirecto' => $adelantodirecto,
-            'AfdelantoMateriales' => $adelantomateriales,
+            'AdelantoMateriales' => $adelantomateriales,
             'DeduccionRAD' => $deduccionrad,
             'DeduccionRAM' => $deduccionram,
             'MontoTotal' => $montototal,

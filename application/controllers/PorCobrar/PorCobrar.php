@@ -22,7 +22,7 @@ class PorCobrar extends CI_Controller {
     }
     
     public function PorCobrarAmortizacion_listaxObra() {
-        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo));
+        $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObraSumatorias($this->tipo));
         return print_r($data);
     }
 
