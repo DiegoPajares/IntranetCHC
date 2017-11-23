@@ -108,40 +108,33 @@
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-6">
                             <label for="txtTotalValor">Total Valorización</label>
-                            <input name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtReajusteForm">Reajuste Formula Polinómica</label>
-                            <input name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-6">
                             <label for="txtadelantDir">Adelanto Directo</label>
-                            <input name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtAdelantoMat">Adelanto Materiales</label>
-                            <input name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-6">
                             <label for="txtDeduccionAdDir">Deduccion Reajuste Ad. Directo</label>
-                            <input name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtDeduccionAdMat">Deduccion Reajuste Ad. Materiales</label>
-                            <input name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                            <input type="number" step="0.01" name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="txtTotal">Total</label>
-                        <div class="col-md-6">
-                            <input name="txtTotal" id="txtTotal" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Total" required/>                            
-                        </div>
-                    </div>
-                    <br>
                     <!--------------------------->                    
                     <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
                 </div>
@@ -176,34 +169,51 @@
                 "sAjaxDataProp": "",
                 "scrollX": true,
                 "aoColumns": [{"mData": "Descripcion"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "ValorInicial"}, {"mData": "ReajusteFP"}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": "DeduccionRAD"}, {"mData": "DediccionRAM"}, {"mData": "MontoTotal"}, {"mData": null}],
-                /*"aoColumnDefs": [
-                 {
-                 "aTargets": [5],
-                 "mData": "download_link",
-                 "mRender": function (data, type, full) {
-                 return '<center><div class="btn-group">' +
-                 '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                 '<ul class="dropdown-menu pull-left" role="menu">' +
-                 '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEstado dropdown-item text-1"> <i class="fa fa-check"></i> Cambiar Estado</a>' +
-                 '<li><a href="#" id="' + data.id + '" estado="' + data.Estado + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                 '</ul></div></center>';
-                 }
-                 },
-                 {
-                 "aTargets": [4],
-                 "mData": "download_link",
-                 "mRender": function (data, type, full) {
-                 if (data.Estado == 1) {
-                 return '<center><span class="label label-sm label-info"> Activo </span></center>';
-                 } else {
-                 if (data.Estado == 2) {
-                 return '<center><span class="label label-sm label-danger"> Inactivo </span></center>';
-                 }
-                 }
-                 }
-                 }
-                 ],*/
+                "aoColumnDefs": [
+                    {
+                        "aTargets": [3],
+                        "mData": "ValorInicial",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [4],
+                        "mData": "ReajusteFP",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [5],
+                        "mData": "AdelantoDirecto",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [6],
+                        "mData": "AdelantoMateriales",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [7],
+                        "mData": "DeduccionRAD",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [8],
+                        "mData": "DeduccionRAM",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }, {
+                        "aTargets": [9],
+                        "mData": "MontoTotal",
+                        "mRender": function (data, type, full) {
+                            return parseFloat(data).toFixed(2);
+                        }
+                    }
+                ],
                 "order": [[1, "asc"]],
                 language: {
                     search: "_INPUT_",
