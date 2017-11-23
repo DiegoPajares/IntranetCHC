@@ -232,9 +232,9 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
@@ -280,11 +280,10 @@
         }
 
         var CargaInicial = function () {
-             $(".idEliminar").click(function () {
-//                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
-alert("123");
+            $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
             });
-            
+
             $("#btnRegistrar").attr('disabled', 'true');
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
@@ -295,7 +294,7 @@ alert("123");
             });
             //            FIN LISTA DATOS SELET2 OBRAS 
         };
-        
+
         return {
             init: function () {
 //                plugins();
