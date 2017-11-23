@@ -18,8 +18,8 @@ class Cobrarpagardoc_model extends CI_Model {
     }
 
     function cobrarpagardocQry_getxid($tipo) {
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_REQUEST['id'])) {
+            $id = $_REQUEST['id'];
         }
         $this->db->select('*');
         $this->db->from('cobrarpagardoc');

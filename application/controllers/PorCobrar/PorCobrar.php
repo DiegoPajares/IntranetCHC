@@ -44,13 +44,14 @@ class PorCobrar extends CI_Controller {
     public function Ctacte_registrar() {
         $this->db->trans_start(); 
             $data = $this->Ctactecpd_model->ctactecpdQry_ins();
+            $query = $this->Cobrarpagardoc_model->ctactecpdQry_getsumatoria();
             $query2 = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo);
                 
-                if (isset($_POST['pagado'])) {
-                    $pagado = $_POST['pagado'];
+                if (isset($_POST['txtpago'])) {
+                    $pagado = $_POST['txtpago'];
                 }
-                $saldo=$query2[0]->MontoTotal-$pagado;
-                
+                $saldo=$query2[0]->Saldo-$pagado;
+                $pagado = $query[0]->Pago;
         $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd($pagado,$saldo);
         
                 $this->db->trans_complete();  // rollback automático

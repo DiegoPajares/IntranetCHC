@@ -18,6 +18,22 @@ class Ctactecpd_model extends CI_Model {
         }
     }
 
+    function ctactecpdQry_getsumatoria() {
+        if (isset($_REQUEST['id'])) {
+            $id = $_REQUEST['id'];
+        }
+        $this->db->select('sum(Pago) as Pago');
+        $this->db->from('ctactecpd');
+        $this->db->where('CobrarPagarDoc_id', $id);
+        $query = $this->db->get();
+        
+        if (count($query) > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+    }
+    
     function ctactecpdQry_eliminar() {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
