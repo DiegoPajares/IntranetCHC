@@ -88,10 +88,11 @@
                                 </span>
                                 <input id="txtFechaFactura" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
                             </div>
+                            <input type="hidden" id="id" name="id">
                     </div>
                     <div class="form-group col-md-1">
                             <label class="col-md-1 control-label" ></label>
-                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success"> +</button>
+                            <button type="submit" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
                     </div>
                 </div>
                 
@@ -116,16 +117,17 @@
 
 <script>
     var datatable;
-    $acumulado = 0.0;
-    $result = 0.0;
+
     var APP = function () {
 
         var plugins = function () {
         }
 
-        var initDatatables = function (idObra) {
+        var initDatatables = function (idObra) {            
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
+            $acumulado = 0.0;
+            $result = 0.0;
             datatable = $('#tablaObras').DataTable({
                 "sAjaxSource": "./porCobrar/PorCobrarAmortizacion_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
@@ -172,30 +174,16 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
             $('div.dataTables_filter input').addClass('form-control input-sm');
         }
-
-        var eventos = function () {
-            registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
-            $("#selectObra").change(function () {
-                var ids = $("#selectObra").val();
-                var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
-                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
-                $("#valorObra").val(monto);
-                initDatatables($("#selectObra").val());
-            });
-
-            $(".btnDetAmort").on('click', function (e) {
-                var idAmort = $(this).attr("id");
-                $("#btnAbreModalDetAmort").click();
-                //----------DETALLE PAGOS------------
-                var initDatatablesDetAmor = function (idObra) {
+//-------------------DETALLE PAGOS------------
+                var initDatatablesDetAmor = function (idAmort) {
                     $.LoadingOverlay("show");
                     $('#tablaDetAmort').dataTable().fnDestroy();
                     datatableDetAmort = $('#tablaDetAmort').DataTable({
@@ -203,28 +191,46 @@
                         "sServerMethod": "POST",
                         "sAjaxDataProp": "",
                         "aoColumns": [{"mData": "Pago"}, {"mData": "Fecha"}, {"mData": null}],
+                        "aoColumnDefs": [{
+                            "aTargets": [2],
+                            "mData": "download_link",
+                            "mRender": function (data, type, full) {
+                                return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
+                            }
+                        }],
                         "order": [[1, "asc"]],
                         drawCallback: function (settings, json) {
+                            //eventos();
                             $.LoadingOverlay("hide");
                         }
-
                     });
                 }
-                initDatatablesDetAmor();
-                //----------FIN DETALLE PAGOS------------
+//-------------------FIN DETALLE PAGOS------------
+        var eventos = function () {
+            
+            $("#selectObra").change(function () {
+                var id = $("#selectObra").val();
+                var a = buscarxidAJAX( id  , '../mantenedores/Obras/Obra_listaxID');
+                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
+                $("#valorObra").val(monto);
+                initDatatables($("#selectObra").val());
+            });
+            
+            $(".btnDetAmort").on('click', function (e) {
+                var idAmort = $(this).attr("id");
+                $("#id").val(idAmort);     
+                $("#btnAbreModalDetAmort").click();
+                initDatatablesDetAmor(idAmort);
+                $(".Guardar").click(function () {
+                    registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+                });
+                $(".idEliminar").click(function () {
+                    eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
+                });
             });
         }
 
         var CargaInicial = function () {
-            $(".idPagar").click(function () {
-                $("#btnRegistrar").click();
-                var a = buscarxidAJAX(this.id, './PorCobrar/PorCobrar_listaxAmortizacion');
-                $("#txtIdEditar").val(a[0].id);
-                $("#nombrecorto").val(a[0].NombreCorto);
-                $("#montoinicial").val(a[0].Monto_Inicial);
-                $("#empresa").val(a[0].Empresa);
-                $("#nombre").val(a[0].Nombre);
-            });
             //            LISTA DATOS SELET2
             listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
@@ -238,7 +244,6 @@
         return {
             init: function () {
                 eventos();
-                //initDatatables();
                 CargaInicial();
             },
             recargaTabla: function () {

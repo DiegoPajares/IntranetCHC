@@ -229,13 +229,12 @@
                     eventos();
                     $.LoadingOverlay("hide");
                 }
-
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');

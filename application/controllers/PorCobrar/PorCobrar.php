@@ -37,24 +37,36 @@ class PorCobrar extends CI_Controller {
     }
     
     public function Ctacte_Eliminar() {
-        $data = $this->Ctactecpd_model->ctactecpdQry_eliminar();
+        $this->db->trans_start(); 
+            $query3 = $this->Ctactecpd_model->ctactecpdQry_getxid();
+            $data = $this->Ctactecpd_model->ctactecpdQry_eliminar();
+            $query = $this->Ctactecpd_model->ctactecpdQry_getsumatoria();
+            $query2 = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo);
+                $pago = $query3[0]->Pago;
+                $saldo=$query2[0]->Saldo+$pago;
+                $pagado = $query[0]->Pago;
+            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd($pagado,$saldo);
+            
+        $this->db->trans_complete();  // rollback automático
+        if ($this->db->trans_status() === FALSE) {
+            $data = 0;
+        }
         return print_r($data);
     }
 
     public function Ctacte_registrar() {
         $this->db->trans_start(); 
             $data = $this->Ctactecpd_model->ctactecpdQry_ins();
-            $query = $this->Cobrarpagardoc_model->ctactecpdQry_getsumatoria();
+            $query = $this->Ctactecpd_model->ctactecpdQry_getsumatoria();
             $query2 = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo);
-                
                 if (isset($_POST['pago'])) {
-                    $pagado = $_POST['pago'];
+                    $pago = $_POST['pago'];
                 }
-                $saldo=$query2[0]->Saldo-$pagado;
+                $saldo=$query2[0]->Saldo-$pago;
                 $pagado = $query[0]->Pago;
-        $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd($pagado,$saldo);
+            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd($pagado,$saldo);
         
-                $this->db->trans_complete();  // rollback automático
+        $this->db->trans_complete();  // rollback automático
         if ($this->db->trans_status() === FALSE) {
             $data = 0;
         }
