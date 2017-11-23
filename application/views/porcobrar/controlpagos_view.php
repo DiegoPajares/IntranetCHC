@@ -37,7 +37,6 @@
                                     <th COLSPAN="2">CANCELACION</th>
                                     <th COLSPAN="2">RESUMEN</th>
                                     <th rowspan="2" >Detracci&oacute;n</th>
-                                    <th rowspan="2" >Opci&oacute;n</th>
                                 </tr>
                                 <tr>
                                     <th>Numero</th>
@@ -134,7 +133,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData":null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}, {"mData": null}],
+                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData":null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
                 "aoColumnDefs": [
                  {
                     "aTargets": [8],
