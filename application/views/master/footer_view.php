@@ -95,6 +95,9 @@
 <script src="<?php echo URL_ASSETS ?>vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>		
 <script src="<?php echo URL_ASSETS ?>vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
 
+<!--Masked Inputs-->
+<script src="<?php echo URL_ASSETS ?>vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+
 <!-- Theme Base, Components and Settings -->
 <script src="<?php echo URL_ASSETS ?>js/theme.js"></script>
 
@@ -110,7 +113,7 @@
 <script src="<?php echo URL_ASSETS ?>js/examples/examples.datatables.row.with.details.js"></script>
 <script src="<?php echo URL_ASSETS ?>js/examples/examples.datatables.tabletools.js"></script>
 <script src="<?php echo URL_ASSETS ?>js/examples/examples.modals.js"></script>
-<!--<script src="<?php //echo URL_ASSETS ?>js/jsGeneral.js" type="text/javascript"></script>-->
+<!--<script src="<?php //echo URL_ASSETS  ?>js/jsGeneral.js" type="text/javascript"></script>-->
 
 <script src="<?php echo URL_ASSETS ?>js/jsGeneral.js" type="text/javascript"></script>
 

@@ -15,7 +15,7 @@ class PorCobrar extends CI_Controller {
     public function index() {
         $data['actualP'] = 'Por_Cobrar';
         $data['actualH'] = 'ControlPagos';
-        $data['main_content'] = 'por_cobrar/controlpagos_view';
+        $data['main_content'] = 'porcobrar/controlpagos_view';
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | Control de Pagos';
         $this->load->view('master/template', $data);
