@@ -7,7 +7,7 @@
             <section class="card">
                 <div class="tabs">
                     <header class="card-header">
-                       
+
                     </header>
                     <div class="card-body">                        
                         <div class="row">
@@ -81,21 +81,21 @@
                         <input type="number" class="form-control" id="pago" name="pago" required>
                     </div>
                     <div class="form-group col-md-5">
-                            <label for="txtFecha">Fecha</label>                            
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input id="txtFechaFactura" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
-                            </div>
-                            <input type="hidden" id="id" name="id">
+                        <label for="txtFecha">Fecha</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <input id="txtFechaFactura" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                        </div>
+                        <input type="hidden" id="id" name="id">
                     </div>
                     <div class="form-group col-md-1">
-                            <label class="col-md-1 control-label" ></label>
-                            <button type="submit" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
+                        <label class="col-md-1 control-label" ></label>
+                        <button type="submit" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
                     </div>
                 </div>
-                
+
                 <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
                     <thead>
                         <tr>
@@ -123,7 +123,7 @@
         var plugins = function () {
         }
 
-        var initDatatables = function (idObra) {            
+        var initDatatables = function (idObra) {
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             $acumulado = 0.0;
@@ -133,7 +133,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData":null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
+                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData": null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [8],
@@ -174,59 +174,60 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3,4,5,6,7,8,9]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
             $('div.dataTables_filter input').addClass('form-control input-sm');
         }
 //-------------------DETALLE PAGOS------------
-                var initDatatablesDetAmor = function (idAmort) {
-                    $.LoadingOverlay("show");
-                    $('#tablaDetAmort').dataTable().fnDestroy();
-                    datatableDetAmort = $('#tablaDetAmort').DataTable({
-                        "sAjaxSource": "./PorCobrar/PorCobrar_listaxAmortizacion?id=" + idAmort,
-                        "sServerMethod": "POST",
-                        "sAjaxDataProp": "",
-                        "aoColumns": [{"mData": "Pago"}, {"mData": "Fecha"}, {"mData": null}],
-                        "aoColumnDefs": [{
-                            "aTargets": [2],
-                            "mData": "download_link",
-                            "mRender": function (data, type, full) {
-                                return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
-                            }
-                        }],
-                        "order": [[1, "asc"]],
-                        drawCallback: function (settings, json) {
-                            //eventos();
-                            $.LoadingOverlay("hide");
+        var initDatatablesDetAmor = function (idAmort) {
+            $.LoadingOverlay("show");
+            $('#tablaDetAmort').dataTable().fnDestroy();
+            datatableDetAmort = $('#tablaDetAmort').DataTable({
+                "sAjaxSource": "./PorCobrar/PorCobrar_listaxAmortizacion?id=" + idAmort,
+                "sServerMethod": "POST",
+                "sAjaxDataProp": "",
+                "aoColumns": [{"mData": "Pago"}, {"mData": "Fecha"}, {"mData": null}],
+                "aoColumnDefs": [{
+                        "aTargets": [2],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
                         }
-                    });
+                    }],
+                "order": [[1, "asc"]],
+                drawCallback: function (settings, json) {
+                    eventos();
+                    $.LoadingOverlay("hide");
                 }
+            });
+        }
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
-            
+
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX( id  , '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
             });
-            
+
             $(".btnDetAmort").on('click', function (e) {
                 var idAmort = $(this).attr("id");
-                $("#id").val(idAmort);     
+                $("#id").val(idAmort);
                 $("#btnAbreModalDetAmort").click();
                 initDatatablesDetAmor(idAmort);
-                $(".Guardar").click(function () {
-                    registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
-                });
-                $(".idEliminar").click(function () {
-                    eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
-                });
+            });
+
+            $(".Guardar").click(function () {
+                registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+            });
+            $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
             });
         }
 
