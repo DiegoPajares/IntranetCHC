@@ -48,7 +48,12 @@
                             <ul class="nav nav-children">
                                 <li class="<?php echo (($actualH == 'Proyectos/Obras') ? 'nav-active' : ''); ?>">
                                     <a class="nav-link" href="<?php echo MAIN_URL ?>/Mantenedores/Obras">
-                                        Proyectos/Obras
+                                        Proyectos / Obras
+                                    </a>
+                                </li>
+                                <li class="<?php echo (($actualH == 'Cliente/Proveedor') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Mantenedores/Clieprovs">
+                                        Cliente / Proveedor
                                     </a>
                                 </li>
                             </ul>

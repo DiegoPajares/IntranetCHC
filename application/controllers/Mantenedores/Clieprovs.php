@@ -14,7 +14,7 @@ class Clieprovs extends CI_Controller {
 
     public function index() {
         $data['actualP'] = 'Mantenedor';
-        $data['actualH'] = 'Clieprovs';
+        $data['actualH'] = 'Cliente/Proveedor';
         $data['main_content'] = 'mantenedores/clieprovs_view';
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | Clientes/Proveedores';
@@ -30,14 +30,17 @@ class Clieprovs extends CI_Controller {
         $data = json_encode($this->Clieprov_model->clieprovQry_getxid());
         return print_r($data);
     }
-/*
-    public function Clieprov_actualizaEstado() {
-        $data = $this->Clieprov_model->clieprovQry_updestado();
-        return print_r($data);
-    }
-*/
+
+    /*
+      public function Clieprov_actualizaEstado() {
+      $data = $this->Clieprov_model->clieprovQry_updestado();
+      return print_r($data);
+      }
+     */
+
     public function Clieprov_registrar() {
         $data = $this->Clieprov_model->clieprovQry_ins();
         return print_r($data);
     }
+
 }
