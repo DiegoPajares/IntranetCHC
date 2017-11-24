@@ -73,8 +73,9 @@
             </h2>
 
         </header>
-        <form action="#" class="form-horizontal" id="frmPago" method="POST">
-            <div class="card-body">
+
+        <div class="card-body">
+            <form action="#" class="form-horizontal" id="frmPago" method="POST">
                 <div class="form-row col-md-12">
                     <div class="form-group col-md-6">
                         <label class="col-md-5 control-label" >Pago</label>
@@ -91,25 +92,25 @@
                         <input type="hidden" id="cpd_id" name="cpd_id">
                     </div>
                     <div class="form-group col-md-1">
-                        <label class="col-md-1 control-label" ></label>
-                        <button type="submit" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
+                        <label class="col-md-1 control-label" ></label>                        
+                        <button type="submit" id="Guardar" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
                     </div>
                 </div>
+            </form>
+            <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
+                <thead>
+                    <tr>
+                        <th>Pago</th>
+                        <th>Fecha</th>
+                        <th>Opt</th>
+                    </tr>
+                </thead>
+                <tbody >
 
-                <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
-                    <thead>
-                        <tr>
-                            <th>Pago</th>
-                            <th>Fecha</th>
-                            <th>Opt</th>
-                        </tr>
-                    </thead>
-                    <tbody >
+                </tbody>
+            </table>                   
+        </div>
 
-                    </tbody>
-                </table>                   
-            </div>
-        </form>
     </section>
 </div>
 
@@ -137,16 +138,13 @@
                 "aoColumnDefs": [
                     {
                         "aTargets": [8],
-                        "mData": "download_link",
                         "mRender": function (data, type, full) {
-
                             $acumulado = parseFloat(data.MontoCan) + parseFloat($acumulado);
                             return '' + $acumulado + '';
                         }
                     },
                     {
                         "aTargets": [3],
-                        "mData": "download_link",
                         "mRender": function (data, type, full) {
                             $acumulado = parseFloat(data.MontoTotal) + parseFloat($acumulado);
                             $result = parseFloat(data.monto_Obra) - parseFloat($acumulado);
@@ -155,19 +153,19 @@
                     },
                     {
                         "aTargets": [5],
-                        "mData": "download_link",
                         "mRender": function (data, type, full) {
                             return '<button class="btnDetAmort" id="' + data.id + '">' + data.MontoCan + '</button>';
                         }
                     }
                 ],
                 "order": [[4, "asc"]],
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Filtrar resultados",
-                },
                 drawCallback: function (settings, json) {
-                    eventos();
+                    $(".btnDetAmort").on('click', function (e) {
+                        var idAmort = $(this).attr("id");
+                        $("#cpd_id").val(idAmort);
+                        $("#btnAbreModalDetAmort").click();
+                        initDatatablesDetAmor(idAmort);
+                    });
                     $.LoadingOverlay("hide");
                 }
 
@@ -200,14 +198,16 @@
                     }],
                 "order": [[1, "asc"]],
                 drawCallback: function (settings, json) {
-                    eventos();
                     $.LoadingOverlay("hide");
+
+                    $(".idEliminar").on('click', function (e) {
+                        eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
+                    });
                 }
             });
         }
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
-
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
                 var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
@@ -221,13 +221,8 @@
                 $("#cpd_id").val(idAmort);
                 $("#btnAbreModalDetAmort").click();
                 initDatatablesDetAmor(idAmort);
-                $(".Guardar").click(function () {
-                    registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
-                });
             });
-            $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
-            });
+
         }
 
         var CargaInicial = function () {
@@ -239,6 +234,11 @@
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2
+
+            $("#Guardar").on('click', function (e) {
+                registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+                console.log("Guardar");
+            });
 
         };
         return {
