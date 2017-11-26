@@ -41,13 +41,13 @@ function registrarAJAX(nombreFRM, AJAX_URL) {
             beforeSend: function ()
             {
                 $.LoadingOverlay("show");
+                console.log("Registrar Ajax");
             },
             success: function () {
                 $.LoadingOverlay("hide");
                 notificacion(1, "Registro realizado con éxito.");
                 $(nombreFRM)[0].reset();
                 $('.modal-block .modal-dismiss').click();
-                //$("#mdlnuevo").modal('hide')
                 datatable.ajax.reload();
             },
             error: function (e) {
@@ -117,7 +117,7 @@ function buscarxidAJAX(id, urlAJAX) {
 
 
 
-  function eliminarAJAX(idAttr, AJAX_URL) {
+function eliminarAJAX(idAttr, AJAX_URL) {
 
     $.ajax({
         url: AJAX_URL,

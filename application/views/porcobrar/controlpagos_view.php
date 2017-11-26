@@ -79,7 +79,7 @@
                 <div class="form-row col-md-12">
                     <div class="form-group col-md-6">
                         <label class="col-md-5 control-label" >Pago</label>
-                        <input type="number" class="form-control" id="pago" name="pago" required>
+                        <input type="number" min="0" step="0.01" class="form-control" id="pago" name="pago" required>
                     </div>
                     <div class="form-group col-md-5">
                         <label for="txtFecha">Fecha</label>                            
@@ -154,13 +154,14 @@
                     {
                         "aTargets": [5],
                         "mRender": function (data, type, full) {
-                            return '<button class="btnDetAmort" id="' + data.id + '">' + data.MontoCan + '</button>';
+                            return '<button class="btnDetAmort modal-with-form btn btn-default btn btn-info" href="#mdlDetAmortizacion" id="' + data.id + '">' + data.MontoCan + '</button>';
                         }
                     }
                 ],
                 "order": [[4, "asc"]],
                 drawCallback: function (settings, json) {
                     $(".btnDetAmort").on('click', function (e) {
+//                        $("#mdlDetAmortizacion").modal('show');
                         var idAmort = $(this).attr("id");
                         $("#cpd_id").val(idAmort);
                         $("#btnAbreModalDetAmort").click();
@@ -188,6 +189,7 @@
                 "sAjaxSource": "./PorCobrar/PorCobrar_listaxAmortizacion?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
+                "dom": 'rtip',
                 "aoColumns": [{"mData": "Pago"}, {"mData": "Fecha"}, {"mData": null}],
                 "aoColumnDefs": [{
                         "aTargets": [2],
@@ -215,14 +217,6 @@
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
             });
-
-            $(".btnDetAmort").on('click', function (e) {
-                var idAmort = $(this).attr("id");
-                $("#cpd_id").val(idAmort);
-                $("#btnAbreModalDetAmort").click();
-                initDatatablesDetAmor(idAmort);
-            });
-
         }
 
         var CargaInicial = function () {
@@ -236,8 +230,36 @@
             //            FIN LISTA DATOS SELET2
 
             $("#Guardar").on('click', function (e) {
-                registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
-                console.log("Guardar");
+                e.preventDefault();
+                $.ajax({
+                    url: './PorCobrar/Ctacte_registrar',
+                    type: "POST",
+                    data: {
+                        cpd_id: cpdid,
+                        txtFecha: txtFechaFactura,
+                        pago: pago
+                    },
+                    beforeSend: function ()
+                    {
+                        $.LoadingOverlay("show");
+                        console.log("Registrar Ajax");
+                    },
+                    success: function () {
+                        $.LoadingOverlay("hide");
+                        notificacion(1, "Registro realizado con éxito.");
+                        $("#frmPago")[0].reset();
+                        $('.modal-block .modal-dismiss').click();
+                        datatable.ajax.reload();
+                    },
+                    error: function (e) {
+                        $.LoadingOverlay("hide");
+                        notificacion(0, "Hubo un error al realizar la acción solicitada.");
+                        $("#frmPago")[0].reset();
+                        $('.modal-block .modal-dismiss').click();
+                    }
+                });
+//                }));
+                console.log(cpdid + " " + txtFechaFactura + " " + pago);
             });
 
         };
