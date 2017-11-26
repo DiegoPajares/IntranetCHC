@@ -230,6 +230,9 @@
             //            FIN LISTA DATOS SELET2
 
             $("#Guardar").on('click', function (e) {
+                var cpdid = $("#cpd_id").val();
+                var txtFechaFactura = $("#txtFechaFactura").val();
+                var pago = $("#pago").val();
                 e.preventDefault();
                 $.ajax({
                     url: './PorCobrar/Ctacte_registrar',
@@ -242,7 +245,6 @@
                     beforeSend: function ()
                     {
                         $.LoadingOverlay("show");
-                        console.log("Registrar Ajax");
                     },
                     success: function () {
                         $.LoadingOverlay("hide");
@@ -258,8 +260,6 @@
                         $('.modal-block .modal-dismiss').click();
                     }
                 });
-//                }));
-                console.log(cpdid + " " + txtFechaFactura + " " + pago);
             });
 
         };
