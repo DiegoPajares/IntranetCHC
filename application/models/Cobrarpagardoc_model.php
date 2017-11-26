@@ -82,8 +82,8 @@ class Cobrarpagardoc_model extends CI_Model {
     }
     
     function cobrarpagardocQry_eliminar() {
-        if (isset($_REQUEST['id'])) {
-            $id = $_REQUEST['id'];
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
         }
         
         $this->db->where('id', $id);

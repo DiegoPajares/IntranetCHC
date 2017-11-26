@@ -121,7 +121,7 @@ function eliminarAJAX(idAttr, AJAX_URL) {
 
     $.ajax({
         url: AJAX_URL,
-        type: 'GET',
+        type: 'POST',
         data: {
             id: idAttr
         },

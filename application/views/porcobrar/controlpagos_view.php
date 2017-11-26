@@ -201,7 +201,6 @@
                 "order": [[1, "asc"]],
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
-
                     $(".idEliminar").on('click', function (e) {
                         eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
                     });
@@ -230,6 +229,8 @@
             //            FIN LISTA DATOS SELET2
 
             $("#Guardar").on('click', function (e) {
+                //registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
+                
                 var cpdid = $("#cpd_id").val();
                 var txtFechaFactura = $("#txtFechaFactura").val();
                 var pago = $("#pago").val();
@@ -260,6 +261,7 @@
                         $('.modal-block .modal-dismiss').click();
                     }
                 });
+               
             });
 
         };

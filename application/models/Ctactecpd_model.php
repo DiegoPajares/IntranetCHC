@@ -19,8 +19,8 @@ class Ctactecpd_model extends CI_Model {
     }
     
     function ctactecpdQry_getxid() {
-        if (isset($_REQUEST['id'])) {
-            $id = $_REQUEST['id'];
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
         }
         $this->db->select('*');
         $this->db->from('ctactecpd');
@@ -51,8 +51,8 @@ class Ctactecpd_model extends CI_Model {
     }
     
     function ctactecpdQry_eliminar() {
-        if (isset($_REQUEST['id'])) {
-            $id = $_REQUEST['id'];
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
         }
         $this->db->where('id', $id);
         $this->db->delete('ctactecpd');
