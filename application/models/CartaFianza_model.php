@@ -97,8 +97,6 @@ class CartaFianza_model extends CI_Model {
             $obras_id = $_POST['cboObras'];
         }
         
-        
-        
         $data = array(
             'obras_id' => $obras_id,
             'FielCumplimiento' => $FielCumplimiento,
@@ -131,6 +129,7 @@ class CartaFianza_model extends CI_Model {
         );
         $this->db->insert('cf_fechas', $data);
     }
+   
     function cartafianzaQry_upd() {
 
         if (isset($_POST['txtIdEditar'])) {
