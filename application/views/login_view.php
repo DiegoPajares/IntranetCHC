@@ -37,20 +37,20 @@
         <!-- start: page -->
         <section class="body-sign">
             <div class="center-sign">
-                <a href="http://preview.oklerthemes.com/" class="logo float-left">
+                <a href="http://www.pycsolutions.com/" class="logo float-left">
                     <img src="<?php echo URL_ASSETS ?>img/logo.png" height="54" alt="Porto Admin" />
                 </a>
 
                 <div class="panel card-sign">
                     <div class="card-title-sign mt-3 text-right">
-                        <h2 class="title text-uppercase font-weight-bold m-0"><i class="fa fa-user mr-1"></i> Sign In</h2>
+                        <h2 class="title text-uppercase font-weight-bold m-0"><i class="fa fa-user mr-1"></i> Login</h2>
                     </div>
                     <div class="card-body">
                         <form action="<?php echo MAIN_URL ?>/login/iniciarSesion" method="POST">
                             <div class="form-group mb-3">
                                 <label>Usuario</label>
                                 <div class="input-group input-group-icon">
-                                    <input name="nick" type="text" class="form-control form-control-lg" />
+                                    <input name="nick" type="text" class="form-control form-control-lg" tabindex="1"/>
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-user"></i>
@@ -62,10 +62,9 @@
                             <div class="form-group mb-3">
                                 <div class="clearfix">
                                     <label class="float-left">Password</label>
-                                    <a href="pages-recover-password.html" class="float-right">Lost Password?</a>
                                 </div>
                                 <div class="input-group input-group-icon">
-                                    <input name="clave" type="password" class="form-control form-control-lg" />
+                                    <input name="clave" type="password" class="form-control form-control-lg" tabindex="2"/>
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-lock"></i>
@@ -74,34 +73,17 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input id="RememberMe" name="rememberme" type="checkbox"/>
-                                        <label for="RememberMe">Remember Me</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 text-right">
-                                    <button>Entrar</button>
-                                </div>
-                            </div>
-
-                            <span class="mt-3 mb-3 line-thru text-center text-uppercase">
-                                <span>or</span>
-                            </span>
-
                             <div class="mb-1 text-center">
-                                <a class="btn btn-facebook mb-3 ml-1 mr-1" href="#">Connect with <i class="fa fa-facebook"></i></a>
-                                <a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Connect with <i class="fa fa-twitter"></i></a>
+                                <button class="btn btn-facebook mb-3 ml-1 mr-1" href="#">Ingresar</button>
                             </div>
 
-                            <p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>
+                            <!--<p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p>-->
 
                         </form>
                     </div>
                 </div>
 
-                <p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2017. All Rights Reserved.</p>
+                <p class="text-center text-muted mt-3 mb-3">P&C - &copy; Copyright 2017. Todos los derechos reservados.</p>
             </div>
         </section>
         <!-- end: page -->
@@ -126,7 +108,7 @@
 
         <!-- Theme Initialization Files -->
         <script src="<?php echo URL_ASSETS ?>js/theme.init.js"></script>
-        
+
     </body>
-    
+
 </html>

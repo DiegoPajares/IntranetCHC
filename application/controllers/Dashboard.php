@@ -6,7 +6,9 @@ class Dashboard extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        //$this->load->model('master/master_model');
+        if (!$this->session->userdata('login')) {
+            header("Location: " . MAIN_URL);
+        }
     }
 
     public function index() {

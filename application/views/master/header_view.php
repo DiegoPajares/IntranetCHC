@@ -10,16 +10,7 @@
             </div>
 
             <!-- start: search & user box -->
-            <div class="header-right">
-
-                <form action="http://preview.oklerthemes.com/porto-admin/2.0.0/pages-search-results.html" class="search nav-form">
-                    <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="q" placeholder="Buscar...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
+            <div class="header-right">                
 
                 <span class="separator"></span>
 
@@ -192,8 +183,8 @@
                             <img src="<?php echo URL_ASSETS ?>img/%21logged-user.jpg" alt="Joseph Doe" class="rounded-circle" data-lock-picture="img/%21logged-user.jpg" />
                         </figure>
                         <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                            <span class="name">John Doe Junior</span>
-                            <span class="role">administrator</span>
+                            <span class="name"><?php echo $this->session->userdata('nombre'); ?></span>
+                            <span class="role">administrador</span>
                         </div>
 
                         <i class="fa custom-caret"></i>
@@ -203,13 +194,13 @@
                         <ul class="list-unstyled mb-2">
                             <li class="divider"></li>
                             <li>
-                                <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
+                                <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> Mi Perfil</a>
                             </li>
+                            <!--                            <li>
+                                                            <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+                                                        </li>-->
                             <li>
-                                <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-                            </li>
-                            <li>
-                                <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
+                                <a role="menuitem" tabindex="-1" href="<?php echo MAIN_URL; ?>/Login/cerrarSesion"><i class="fa fa-power-off"></i> Logout</a>
                             </li>
                         </ul>
                     </div>
