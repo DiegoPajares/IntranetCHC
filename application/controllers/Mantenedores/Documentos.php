@@ -9,7 +9,7 @@ class Documentos extends CI_Controller {
         if (!$this->session->userdata('login')) {
             header("Location: " . MAIN_URL);
         }
-        $this->load->model('mantenedores/Documento_model');
+        $this->load->model('Mantenedores/Documento_model');
     }
 
     public function index() {

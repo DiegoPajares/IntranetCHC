@@ -9,7 +9,7 @@ class Obras extends CI_Controller {
         if (!$this->session->userdata('login')) {
             header("Location: " . MAIN_URL);
         }
-        $this->load->model('mantenedores/Obra_model');
+        $this->load->model('Mantenedores/Obra_model');
     }
 
     public function index() {

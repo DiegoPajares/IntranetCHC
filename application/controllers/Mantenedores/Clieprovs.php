@@ -9,7 +9,7 @@ class Clieprovs extends CI_Controller {
         if (!$this->session->userdata('login')) {
             header("Location: " . MAIN_URL);
         }
-        $this->load->model('mantenedores/Clieprov_model');
+        $this->load->model('Mantenedores/Clieprov_model');
     }
 
     public function index() {
