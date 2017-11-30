@@ -15,7 +15,7 @@ class CartaFianza extends CI_Controller {
     public function index() {
         $data['actualP'] = 'CartaFianza';
         $data['actualH'] = 'CartaFianza';
-        $data['main_content'] = 'cartafianza_view';
+        $data['main_content'] = 'cartafianza/cartafianza_view';
         $data['page_assets'] = 'advance_form';
         $data['titulo'] = 'INTRANET | CartaFianza';
         $this->load->view('master/template', $data);
@@ -35,18 +35,17 @@ class CartaFianza extends CI_Controller {
         $data = json_encode($this->CartaFianza_model->cartafianzaQry_getxid());
         return print_r($data);
     }
-    
+
     public function CartaFianza_actualizaEstado() {
         $data = $this->CartaFianza_model->cartafianzaQry_updestado();
         return print_r($data);
     }
-    
+
     public function CartaFianzaFec_actualizaEstado() {
         $data = $this->CartaFianza_model->cartafianzafecQry_ins();
         return print_r($data);
     }
 
-    
     public function CartaFianza_registrar() {
         if (!empty($_POST["txtIdEditar"])) {
             $data = $this->CartaFianza_model->cartafianzaQry_upd();
@@ -55,4 +54,5 @@ class CartaFianza extends CI_Controller {
         }
         return print_r($data);
     }
+
 }

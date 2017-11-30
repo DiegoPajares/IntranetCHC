@@ -24,7 +24,7 @@
                         </li>
                         <li class="nav-parent <?php echo (($actualP == 'PorCobrar') ? 'nav-expanded nav-active' : ''); ?>">
                             <a class="nav-link" href="#">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
+                                <i class="fa fa-money" aria-hidden="true"></i>
                                 <span>Por Cobrar</span>
                             </a>
                             <ul class="nav nav-children">
@@ -57,6 +57,12 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li  class="<?php echo (($actualP == 'CartaFianza') ? 'nav-active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo MAIN_URL ?>/cartafianza">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <span>Carta Fianza</span>
+                            </a>                        
                         </li>
                     </ul>
                 </nav>
