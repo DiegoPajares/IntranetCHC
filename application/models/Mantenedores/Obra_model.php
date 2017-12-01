@@ -7,7 +7,6 @@ class Obra_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('obras');
         $this->db->where('estado', 1);
-        $this->db->or_where('estado', 0);
         $this->db->or_where('estado', 2);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
