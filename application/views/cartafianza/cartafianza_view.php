@@ -161,12 +161,6 @@
         var eventos = function () {
             registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             $("#selectObra").change(function () {
-
-                var ids = $("#selectObra").val();
-//                var a = buscarxidAJAX(ids, '../Mantenedores/Obras/Obra_listaxID');
-//                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
-//                $("#valorObra").val(monto);
-
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
@@ -176,16 +170,6 @@
             $(".idEliminar").click(function () {
                 eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
             });
-
-            // EVENTO ABRE MODAL
-            $("#btnRegistrar").on('click', function (e) {
-                //$("#frmAmortizacion")[0].reset();
-                $("#selectDoc").change(function () {
-                    $("#desc_doc").val($("#selectDoc option:selected").text());
-                    $("#btnRegistrar").removeAttr('disabled');
-                });
-            });
-            // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {
