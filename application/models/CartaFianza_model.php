@@ -92,25 +92,25 @@ class CartaFianza_model extends CI_Model {
         if (isset($_POST['txtFielCumplimiento'])) {
             $FielCumplimiento = $_POST['txtFielCumplimiento'];
         }
-        if (isset($_POST['txtnumero'])) {
-            $numero = $_POST['txtnumero'];
+        if (isset($_POST['txtNroCarta'])) {
+            $numero = $_POST['txtNroCarta'];
         }
-        if (isset($_POST['txtgastofinac'])) {
-            $gastofinac = $_POST['txtgastofinac'];
+        if (isset($_POST['txtGastoFinanciero'])) {
+            $gastofinac = $_POST['txtGastoFinanciero'];
         }
-        if (isset($_POST['txtfechaemision'])) {
-            $fechaemisionini = trim($_POST['txtfechaemision']);
+        if (isset($_POST['txtFechaIni'])) {
+            $fechaemisionini = trim($_POST['txtFechaIni']);
             $fechaemisionini = DateTime::createFromFormat('d/m/Y', $fechaemisionini)->format('Y-m-d');
         }
-        if (isset($_POST['txtfechaven'])) {
-            $fechavencren = trim($_POST['txtfechaven']);
+        if (isset($_POST['txtFechaFin'])) {
+            $fechavencren = trim($_POST['txtFechaFin']);
             $fechavencren = DateTime::createFromFormat('d/m/Y', $fechavencren)->format('Y-m-d');
         }
-        if (isset($_POST['txtmontorenov'])) {
-            $montorenov = $_POST['txtmontorenov'];
+        if (isset($_POST['txtRenovacion'])) {
+            $montorenov = $_POST['txtRenovacion'];
         }
-        if (isset($_POST['cboObras'])) {
-            $obras_id = $_POST['cboObras'];
+        if (isset($_POST['idObra'])) {
+            $obras_id = $_POST['idObra'];
         }
 
         $data = array(

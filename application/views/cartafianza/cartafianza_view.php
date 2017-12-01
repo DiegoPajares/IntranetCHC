@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="btn-group">
-                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Carta Fianza <i class="fa fa-plus"></i></button>
+                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" disabled href="#mdlnuevo">Agregar Carta Fianza <i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-6 text-right" id="datatableButtons">
@@ -59,7 +59,7 @@
             <header class="card-header">
                 <h2 class="card-title">Nueva Carta Fianza</h2>
             </header>
-            <form action="#" class="form-horizontal" id="frmAmortizacion" method="POST">
+            <form action="#" class="form-horizontal" id="frmCartaFianza" method="POST">
                 <div class="card-body">                 
                     <div class="form-row col-md-12">
                         <div class="form-group col-md-6">
@@ -136,7 +136,7 @@
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./cartafianza/CartaFianza_listaxidObra?idObra=" + idObra,
+                "sAjaxSource": "./CartaFianza/CartaFianza_listaxidObra?idObra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -159,13 +159,13 @@
         }
 
         var eventos = function () {
-            registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
+            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             $("#selectObra").change(function () {
 
                 var ids = $("#selectObra").val();
-                var a = buscarxidAJAX(ids, '../mantenedores/Obras/Obra_listaxID');
-                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
-                $("#valorObra").val(monto);
+//                var a = buscarxidAJAX(ids, '../Mantenedores/Obras/Obra_listaxID');
+//                monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
+//                $("#valorObra").val(monto);
 
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
@@ -180,22 +180,6 @@
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //$("#frmAmortizacion")[0].reset();
-                //            LISTA DATOS SELET2 CLIENTES
-                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
-                listaClientesHTML = "<option></option>";
-                $.each(listadoClientes, function (index, datos) {
-                    listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
-                    $("#selectClienteProv").html(listaClientesHTML);
-                });
-                //            FIN LISTA DATOS SELET2 CLIENTES
-                //            LISTA DATOS SELECT2 DOCUMENTOS
-                listado = buscarxidAJAX('0', "../mantenedores/documentos/Documentos_lista");
-                listaHTML = "<option></option>";
-                $.each(listado, function (index, datos) {
-                    listaHTML += "<option value='" + datos.id + "'>" + datos.Descripcion + "</option>";
-                    $("#selectDoc").html(listaHTML);
-                });
-                //            FIN LISTA DATOS SELET2 DOCUMENTOS
                 $("#selectDoc").change(function () {
                     $("#desc_doc").val($("#selectDoc option:selected").text());
                     $("#btnRegistrar").removeAttr('disabled');
@@ -206,7 +190,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "./Mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
@@ -219,11 +203,6 @@
             init: function () {
 //                plugins();
                 eventos();
-                //initDatatables();
-                CargaInicial();
-            }
-            ,
-            recargaTabla: function () {
                 //initDatatables();
                 CargaInicial();
             }
