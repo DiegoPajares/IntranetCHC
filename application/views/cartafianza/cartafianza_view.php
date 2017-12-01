@@ -15,8 +15,7 @@
                                     <option></option>                                    
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <input name="valorObra" id="valorObra" class="form-control text-uppercase" required disabled/>
+                            <div class="col-md-6">                                
                             </div>
                             <hr>
                         </div>
@@ -68,67 +67,44 @@
                             <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
                             <input type="hidden" id="idObra" name="idObra">
                         </div>
-                        <div class="form-group  col-md-6">
-                            <label for="selectClienteProv">Cliente/Proveedor</label>
-                            <select data-plugin-selectTwo class="form-control" id="selectClienteProv" name="selectClienteProv" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Cliente/Proveedor", "allowClear": true}'>                                                            
-                                <option></option>
-                            </select>
+                        <div class="form-group col-md-12">
+                            <label for="txtFielCumplimiento">Fiel Cumplimiento</label>                            
+                            <input name="txtFielCumplimiento" id="txtFielCumplimiento" class="form-control text-uppercase" data-plugin-maxlength maxlength="100" placeholder="Ejm: FAC-0001-00000000999" required/>                            
                         </div>
-                    </div>
-                    <div class="form-row col-md-12">
-                        <div class="form-group  col-md-4">
-                            <label for="selectDoc">Documento</label>
-                            <select data-plugin-selectTwo class="form-control" id="selectDoc" name="selectDoc" data-plugin-options='{ "placeholder": "Elegir Documento", "allowClear": true}'>                                                            
-                                <option></option>
-                            </select>
-                            <input type="hidden" id="desc_doc" name="desc_doc">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtDescripcion">Descripcion</label>                            
-                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtFechaFactura">Fecha Factura</label>                            
+                        <div class="form-group col-md-12">
+                            <label for="txtNroCarta">Nro Cara Fianza</label>                            
+                            <input name="txtNroCarta" id="txtNroCarta" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
+                        </div>                    
+                        <div class="form-group col-md-6">
+                            <label for="txtFechaIni">Fecha Inicio</label>                            
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </span>
                                 <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
-                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                                <input id="txtFechaIni" name="txtFechaIni" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtFechaFin">Fecha Fin</label>                            
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                                <input id="txtFechaFin" name="txtFechaFin" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
 
                             </div>
                         </div>
-                    </div>                    
-                    <div class="form-group col-md-12">
-                        <label for="txtNroFactura">Nro Factura</label>                            
-                        <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
-                    </div>                     
+                    </div>                                        
                     <div class="form-row col-md-12">
-                        <div class="form-group col-md-4">
-                            <label for="txtTotalValor">Total Valorización</label>
-                            <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        <div class="form-group col-md-6">
+                            <label for="txtGastoFinanciero">Gasto Financiero</label>
+                            <input type="number" min="0" step="0.01" name="txtGastoFinanciero" id="txtGastoFinanciero" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtadelantDir"> Adelanto Directo</label>
-                            <input type="number" min="0" step="0.01" name="txtadelantDir" id="txtadelantDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtAdelantoMat"> Adelanto Materiales</label>
-                            <input type="number" min="0" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
-                    </div>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-4">
-                            <label for="txtReajusteForm"> Reaj. Formula Polinómica</label>
-                            <input type="number" min="0" step="0.01" name="txtReajusteForm" id="txtReajusteForm" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtDeduccionAdDir"> Deduc. Reaj. Ad. Directo</label>
-                            <input type="number" min="0" step="0.01" name="txtDeduccionAdDir" id="txtDeduccionAdDir" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtDeduccionAdMat"> Deduc. Reaj. Ad. Materiales</label>
-                            <input type="number" min="0" step="0.01" name="txtDeduccionAdMat" id="txtDeduccionAdMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        <div class="form-group col-md-6">
+                            <label for="txtRenovacion">Monto Renovación</label>
+                            <input type="number" min="0" step="0.01" name="txtRenovacion" id="txtRenovacion" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
                     <!--------------------------->                    
@@ -165,7 +141,7 @@
                 "sAjaxDataProp": "",
                 "scrollX": true,
                 "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"}, {"mData": "montorenov"}, {"mData": "fechaemisionini"}, {"mData": "fechavencren"}, {"mData": null}],
-                "order": [[1, "asc"]],
+                "order": [[0, "desc"]],
                 drawCallback: function (settings, json) {
                     eventos();
                     $.LoadingOverlay("hide");
@@ -173,9 +149,9 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [1, 2, 3, 4, 5, 6]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [1, 2, 3, 4, 5, 6]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [1, 2, 3, 4, 5, 6]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
