@@ -25,6 +25,11 @@ class CartaFianza extends CI_Controller {
         $data = json_encode($this->CartaFianza_model->cartafianzaQry_listar());
         return print_r($data);
     }
+    
+    public function CartaFianza_listaxidObra() {
+        $data = json_encode($this->CartaFianza_model->cartafianzaQry_getxidObra());
+        return print_r($data);
+    }
 
     public function CartaFianzaDet_listaxIDCF() {
         $data = json_encode($this->CartaFianza_model->cartafianzadetQry_getxidCF());

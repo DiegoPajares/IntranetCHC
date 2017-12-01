@@ -11,7 +11,7 @@ class CartaFianza_model extends CI_Model {
         $this->db->or_where('estado', 2);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
-        
+
         if (count($query) > 0) {
             return $query->result();
         } else {
@@ -30,16 +30,15 @@ class CartaFianza_model extends CI_Model {
             return null;
         }
     }
-    
-    function cartafianzadetQry_getxidCF() {
-        if (isset($_POST['id'])) {
-            $idcartafianza = $_POST['id'];
+
+    function cartafianzaQry_getxidObra() {
+        if (isset($_REQUEST['idObra'])) {
+            $idObra = $_REQUEST['idObra'];
         }
-         $this->db->select('d.*,dd.*');
-        $this->db->from('cartafianza d');
-        $this->db->join('cf_fechas dd', 'dd.det_cartafianza_id = d.id');
-        $this->db->where('d.CartaFianza_id', $idcartafianza);
-        $this->db->order_by('d.id', 'DESC');
+        $this->db->select('*');
+        $this->db->from('cartafianza');
+        $this->db->where('obras_id', $idObra);
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         
         if (count($query) > 0) {
@@ -48,8 +47,25 @@ class CartaFianza_model extends CI_Model {
             return null;
         }
     }
-    
-    
+
+    function cartafianzadetQry_getxidCF() {
+        if (isset($_POST['id'])) {
+            $idcartafianza = $_POST['id'];
+        }
+        $this->db->select('d.*,dd.*');
+        $this->db->from('cartafianza d');
+        $this->db->join('cf_fechas dd', 'dd.det_cartafianza_id = d.id');
+        $this->db->where('d.CartaFianza_id', $idcartafianza);
+        $this->db->order_by('d.id', 'DESC');
+        $query = $this->db->get();
+
+        if (count($query) > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+    }
+
     function CartaFianzaQry_updestado() {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
@@ -71,8 +87,8 @@ class CartaFianza_model extends CI_Model {
         $fechaemisionini = null;
         $fechavencren = null;
         $obras_id = null;
-        
-        
+
+
         if (isset($_POST['txtFielCumplimiento'])) {
             $FielCumplimiento = $_POST['txtFielCumplimiento'];
         }
@@ -96,7 +112,7 @@ class CartaFianza_model extends CI_Model {
         if (isset($_POST['cboObras'])) {
             $obras_id = $_POST['cboObras'];
         }
-        
+
         $data = array(
             'obras_id' => $obras_id,
             'FielCumplimiento' => $FielCumplimiento,
@@ -108,7 +124,7 @@ class CartaFianza_model extends CI_Model {
         );
         $this->db->insert('cartafianza', $data);
     }
-    
+
     function cartafianzafecQry_ins() {
         if (isset($_POST['cf_id'])) {
             $cartafianza_id = $_POST['cf_id'];
@@ -121,7 +137,7 @@ class CartaFianza_model extends CI_Model {
             $fechavencimiento = trim($_POST['txtfechavencimiento']);
             $fechavencimiento = DateTime::createFromFormat('d/m/Y', $fechavencimiento)->format('Y-m-d');
         }
-         $data = array(
+        $data = array(
             'cartafianza_id' => $cartafianza_id,
             'fechaemision' => $fechaemision,
             'fechavencimiento' => $fechavencimiento,
@@ -129,22 +145,22 @@ class CartaFianza_model extends CI_Model {
         );
         $this->db->insert('cf_fechas', $data);
     }
-   
+
     function cartafianzaQry_upd() {
 
         if (isset($_POST['txtIdEditar'])) {
             $editarID = $_POST['txtIdEditar'];
         }
 
-         $FielCumplimiento = null;
+        $FielCumplimiento = null;
         $numero = null;
         $gastofinac = null;
         $montorenov = null;
         $fechaemisionini = null;
         $fechavencren = null;
         $obras_id = null;
-        
-        
+
+
         if (isset($_POST['txtFielCumplimiento'])) {
             $FielCumplimiento = $_POST['txtFielCumplimiento'];
         }

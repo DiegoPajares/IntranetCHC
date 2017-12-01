@@ -34,15 +34,12 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Fecha Factura</th>
-                                    <th>N° Factura</th>
-                                    <th>Total Valorizacion</th>
-                                    <th>Reajuste Formula Polinómica</th>
-                                    <th>Adelanto Directo</th>
-                                    <th>Adelanto Materiales</th>
-                                    <th>Deduccion Reajuste Ad. Directo</th>
-                                    <th>Deduccion Reajuste Ad. Materiales</th>
-                                    <th>Total</th>
+                                    <th>Fiel Cmpl</th>
+                                    <th>N° CF</th>
+                                    <th>Gasto</th>
+                                    <th>Monto</th>
+                                    <th>Inicio</th>
+                                    <th>Fin</th>                                    
                                     <th>Opci&oacute;n</th>
                                 </tr>
                             </thead>
@@ -163,68 +160,12 @@
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./amortizaciones/Amortizacion_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./cartafianza/CartaFianza_listaxidObra?idObra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Descripcion"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "ValorInicial"}, {"mData": "ReajusteFP"}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": "DeduccionRAD"}, {"mData": "DeduccionRAM"}, {"mData": "MontoTotal"}, {"mData": null}],
-                "aoColumnDefs": [
-                    {
-                        "aTargets": [3],
-                        "mData": "ValorInicial",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [4],
-                        "mData": "ReajusteFP",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [5],
-                        "mData": "AdelantoDirecto",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [6],
-                        "mData": "AdelantoMateriales",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [7],
-                        "mData": "DeduccionRAD",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [8],
-                        "mData": "DeduccionRAM",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    }, {
-                        "aTargets": [9],
-                        "mData": "MontoTotal",
-                        "mRender": function (data, type, full) {
-                            return parseFloat(data).toFixed(2);
-                        }
-                    },
-                    {
-                        "aTargets": [10],
-                        "mData": "download_link",
-                        "mRender": function (data, type, full) {
-                            return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
-                        }
-                    }
-                ],
+                "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"}, {"mData": "montorenov"}, {"mData": "fechaemisionini"}, {"mData": "fechavencren"}, {"mData": null}],
                 "order": [[1, "asc"]],
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Filtrar resultados",
-                },
                 drawCallback: function (settings, json) {
                     eventos();
                     $.LoadingOverlay("hide");
@@ -232,9 +173,9 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');

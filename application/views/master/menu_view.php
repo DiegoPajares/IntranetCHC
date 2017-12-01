@@ -59,7 +59,7 @@
                             </ul>
                         </li>
                         <li  class="<?php echo (($actualP == 'CartaFianza') ? 'nav-active' : ''); ?>">
-                            <a class="nav-link" href="<?php echo MAIN_URL ?>/cartafianza">
+                            <a class="nav-link" href="<?php echo MAIN_URL ?>/CartaFianza">
                                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                 <span>Carta Fianza</span>
                             </a>                        
