@@ -169,7 +169,7 @@
                 "sAjaxSource": "./Obras/Obras_lista",
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
-                "aoColumns": [{"mData": "id"}, {"mData": "NombreCorto"}, {"mData": "Empresa"}, {"mData": "Monto_Inicial"}, {"mData": null}, {"mData": null}],
+                "aoColumns": [{"mData": "id"}, {"mData": "NombreCorto"}, {"mData": "Empresa"}, {"mData": "Monto_Inicial"}, {"mData": "Estado"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [5],
