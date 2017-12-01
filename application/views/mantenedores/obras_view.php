@@ -186,7 +186,7 @@
                     },
                     {
                         "aTargets": [4],
-                        "mData": "download_link",
+                        "mData": "Estado",
                         "mRender": function (data, type, full) {
                             if (data.Estado == 1) {
                                 return '<center><span class="label label-sm label-info"> Activo </span></center>';
