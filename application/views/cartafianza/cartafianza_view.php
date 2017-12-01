@@ -230,7 +230,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "./mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "./Mantenedores/obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
