@@ -64,6 +64,18 @@
                                 <span>Carta Fianza</span>
                             </a>                        
                         </li>
+                        <li  class="<?php echo (($actualP == 'Requerimiento Económico') ? 'nav-active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo MAIN_URL ?>/ReqEconomico">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <span>Carta Fianza</span>
+                            </a>                        
+                        </li>
+                        <li  class="<?php echo (($actualP == 'Por Pagar') ? 'nav-active' : ''); ?>">
+                            <a class="nav-link" href="<?php echo MAIN_URL ?>/PorPagar">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <span>Carta Fianza</span>
+                            </a>                        
+                        </li>
                     </ul>
                 </nav>
 
