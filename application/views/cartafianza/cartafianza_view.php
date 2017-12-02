@@ -159,7 +159,7 @@
         }
 
         var eventos = function () {
-            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
+            
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
@@ -173,6 +173,7 @@
         }
 
         var CargaInicial = function () {
+            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
