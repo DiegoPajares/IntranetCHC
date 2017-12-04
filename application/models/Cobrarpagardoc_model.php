@@ -3,13 +3,12 @@
 class Cobrarpagardoc_model extends CI_Model {
 
     function cobrarpagardocQry_listar($tipo) {
-        $this->db->select('*');
-        $this->db->from('cobrarpagardoc');
-        $this->db->where('Tipo', $tipo);
-        $this->db->order_by('documento_id', 'DESC');
-        $this->db->order_by('fecha', 'DESC');
+         $this->db->select('c.*,d.Descripcion as desc_documento');
+        $this->db->from('cobrarpagardoc c');
+        $this->db->join('documento d', 'c.documento_id = d.id');
+        $this->db->where('c.Tipo', $tipo);
+        $this->db->order_by('c.fecha','ASC');
         $query = $this->db->get();
-        
         if (count($query) > 0) {
             return $query->result();
         } else {
@@ -63,13 +62,34 @@ class Cobrarpagardoc_model extends CI_Model {
           if (isset($_REQUEST['cboobra'])) {
             $id = $_REQUEST['cboobra'];
         }
-        $this->db->select('cta.id as cta_id,ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.MontoTotal-ifnull(sum(cta.Pago),0)) as saldoResum ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
+        $this->db->select('cp.Razon_Social as Empresa,cp.ruc,cta.id as cta_id,ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.MontoTotal-ifnull(sum(cta.Pago),0)) as saldoResum ,c.*,d.Descripcion as desc_documento,o.Monto_Inicial as monto_Obra');
+        $this->db->from('cobrarpagardoc c');
+        $this->db->join('documento d', 'c.documento_id = d.id');
+        $this->db->join('obras o', 'c.obras_id = o.id');
+        $this->db->join('clieprov cp', 'c.clieprov_id = cp.id');
+        $this->db->join('ctactecpd cta', 'cta.CobrarPagarDoc_id = c.id','left');
+        $this->db->where('c.Tipo', $tipo);
+        $this->db->where('c.obras_id', $id);
+        $this->db->group_by('c.id','ASC');
+        $this->db->order_by('c.fecha','ASC');
+        $query = $this->db->get();
+        
+        if (count($query) > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+    }
+    
+    
+    function cobrarpagardocQry_Sumatorias($tipo) {
+
+        $this->db->select('cta.id as cta_id,ifnull(sum(cta.Pago),0) as MontoCan,min(cta.fecha) fechaCan,(c.MontoTotal-ifnull(sum(cta.Pago),0)) as saldoResum ,c.*,d.Descripcion as desc_documento,o.*');
         $this->db->from('cobrarpagardoc c');
         $this->db->join('documento d', 'c.documento_id = d.id');
         $this->db->join('obras o', 'c.obras_id = o.id');
         $this->db->join('ctactecpd cta', 'cta.CobrarPagarDoc_id = c.id','left');
         $this->db->where('c.Tipo', $tipo);
-        $this->db->where('c.obras_id', $id);
         $this->db->group_by('c.id','ASC');
         $this->db->order_by('c.fecha','ASC');
         $query = $this->db->get();

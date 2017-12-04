@@ -33,21 +33,16 @@
                         <table class="table table-bordered table-striped mb-none" id="tablaObras" style="width: 100%; text-align:center; align:center;  " >
                             <thead>
                                 <tr>
-                                    <th COLSPAN="5">FACTURA</th>
-                                    <th COLSPAN="2">CANCELACION</th>
-                                    <th COLSPAN="2">RESUMEN</th>
-                                    <th rowspan="2" >Detracci&oacute;n</th>
-                                </tr>
-                                <tr>
+                                    <th>Detalle</th>
+                                    <th>Empresa</th>
+                                    <th>Ruc</th>
+                                    <th>fecha</th>
                                     <th>Numero</th>
-                                    <th>Concepto</th>
                                     <th>Monto</th>
-                                    <th>Deducción</th>
-                                    <th>Emisión</th>
-                                    <th>Monto</th>
-                                    <th>Fecha</th>
                                     <th>Saldo</th>
-                                    <th>Acumulado</th>
+                                    <th>Banco</th>
+                                    <th>N° Cuenta</th>
+                                    <th>CCI</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -63,8 +58,8 @@
 </section>
 
 <!--******************* MODALS Pago ******************-->   
-<button id="btnAbreModalDetAmort" class="modal-with-form btn btn-default btn btn-info" href="#mdlDetAmortizacion" style="display: none;"></button>
-<div id="mdlDetAmortizacion" class="modal-block modal-block-sm mfp-hide">
+<button id="btnAbreModalDetReqEc" class="modal-with-form btn btn-default btn btn-info" href="#mdlDetReqEconomico" style="display: none;"></button>
+<div id="mdlDetReqEconomico" class="modal-block modal-block-sm mfp-hide">
     <section class="card">
         <header class="card-header">
             <h2 class="card-title">
@@ -97,7 +92,7 @@
                     </div>
                 </div>
             </form>
-            <table class="table table-bordered table-striped mb-none" id="tablaDetAmort" style="width: 100%; text-align:center; align:center;  " >
+            <table class="table table-bordered table-striped mb-none" id="tablaDetReqEc" style="width: 100%; text-align:center; align:center;  " >
                 <thead>
                     <tr>
                         <th>Pago</th>
@@ -115,7 +110,6 @@
 </div>
 
 
-
 <script>
     var datatable;
 
@@ -130,41 +124,45 @@
             $acumulado = 0.0;
             $result = 0.0;
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./porCobrar/PorCobrarAmortizacion_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./reqEconomico/PorPagarReqEconomico_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": "MontoTotal"}, {"mData": null}, {"mData": "Fecha"}, {"mData": null}, {"mData": "fechaCan"}, {"mData": "saldoResum"}, {"mData": null}, {"mData": "Detraccion"}],
+                "aoColumns": [{"mData": "detalle"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}],
                 "aoColumnDefs": [
                     {
-                        "aTargets": [8],
+                        "aTargets": [1],
+                        "mData": "Empresa",
                         "mRender": function (data, type, full) {
-                            $acumulado = parseFloat(data.MontoCan) + parseFloat($acumulado);
-                            return '' + $acumulado + '';
-                        }
-                    },
-                    {
-                        "aTargets": [3],
-                        "mRender": function (data, type, full) {
-                            $acumulado = parseFloat(data.MontoTotal) + parseFloat($acumulado);
-                            $result = parseFloat(data.monto_Obra) - parseFloat($acumulado);
-                            return '' + $result + '';
+                            if (data != null) {
+                                return '<center><span class="label label-sm label-info">' + data.Empresa + ' </span></center>';
+                            }else{
+                                return '<center><span class="label label-sm label-info"> - </span></center>';
+                            }
                         }
                     },
                     {
                         "aTargets": [5],
                         "mRender": function (data, type, full) {
-                            return '<button class="btnDetAmort modal-with-form btn btn-default btn btn-info" href="#mdlDetAmortizacion" id="' + data.id + '">' + data.MontoCan + '</button>';
+                            $MontoTotal = parseFloat(data.MontoTotal);
+                            return '' + $MontoTotal + '';
+                        }
+                    },
+ 
+                    {
+                        "aTargets": [6],
+                        "mRender": function (data, type, full) {
+                            $saldoResum = parseFloat(data.saldoResum);
+                            return '<button class="btnDetReqEc modal-with-form btn btn-default btn btn-info" href="#mdlDetReqEconomico" id="' + data.id + '">' + $saldoResum + '</button>';
                         }
                     }
                 ],
-                "order": [[4, "asc"]],
+                "order": [[3, "asc"]],
                 drawCallback: function (settings, json) {
-                    $(".btnDetAmort").on('click', function (e) {
-//                        $("#mdlDetAmortizacion").modal('show');
+                    $(".btnDetReqEc").on('click', function (e) {
                         var idAmort = $(this).attr("id");
                         $("#cpd_id").val(idAmort);
-                        $("#btnAbreModalDetAmort").click();
+                        $("#btnAbreModalDetReqEc").click();
                         initDatatablesDetAmor(idAmort);
                     });
                     $.LoadingOverlay("hide");
@@ -184,9 +182,9 @@
 //-------------------DETALLE PAGOS------------
         var initDatatablesDetAmor = function (idAmort) {
             $.LoadingOverlay("show");
-            $('#tablaDetAmort').dataTable().fnDestroy();
-            datatableDetAmort = $('#tablaDetAmort').DataTable({
-                "sAjaxSource": "./PorCobrar/PorCobrar_listaxAmortizacion?id=" + idAmort,
+            $('#tablaDetReqEc').dataTable().fnDestroy();
+            datatableDetAmort = $('#tablaDetReqEc').DataTable({
+                "sAjaxSource": "./reqEconomico/PorPagar_listaxReqEconomico?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
@@ -202,7 +200,7 @@
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
-                        eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
+                        eliminarAJAX(this.id, "./reqEconomico/Ctacte_Eliminar");
                     });
                 }
             });
@@ -211,7 +209,7 @@
         var eventos = function () {
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '.../mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
@@ -229,14 +227,13 @@
             //            FIN LISTA DATOS SELET2
 
             $("#Guardar").on('click', function (e) {
-                //registrarAJAX("#frmPago", "./PorCobrar/Ctacte_registrar");
                 
                 var cpdid = $("#cpd_id").val();
                 var txtFechaFactura = $("#txtFechaFactura").val();
                 var pago = $("#pago").val();
                 e.preventDefault();
                 $.ajax({
-                    url: '../PorCobrar/PorCobrar/Ctacte_registrar',
+                    url: './reqEconomico/Ctacte_registrar',
                     type: "POST",
                     data: {
                         cpd_id: cpdid,
