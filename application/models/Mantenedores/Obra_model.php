@@ -48,6 +48,10 @@ class Obra_model extends CI_Model {
         $Obra_Nombre = null;
         $Obra_Empresa = null;
         $Obra_MontoInicial = null;
+        $fechacontrato = null;
+        $proceso = null;
+                
+        
         if (isset($_POST['nombrecorto'])) {
             $Obra_NombreCorto = $_POST['nombrecorto'];
         }
@@ -61,11 +65,21 @@ class Obra_model extends CI_Model {
         if (isset($_POST['montoinicial'])) {
             $Obra_MontoInicial = $_POST['montoinicial'];
         }
+         if (isset($_POST['fechacontrato'])) {
+            $fechacontrato = $_POST['fechacontrato'];
+        }
+         if (isset($_POST['proceso'])) {
+            $proceso = $_POST['proceso'];
+        }
+        
+        
         $data = array(
             'NombreCorto' => $Obra_NombreCorto,
             'Nombre' => $Obra_Nombre,
             'Empresa' => $Obra_Empresa,
             'Monto_Inicial' => $Obra_MontoInicial,
+            'proceso' => $proceso,
+            'fechacontrato' => $fechacontrato
         );
 
         $this->db->insert('obras', $data);
@@ -78,6 +92,8 @@ class Obra_model extends CI_Model {
         $Obra_Empresa = null;
         $Obra_MontoInicial = null;
         $editarID = null;
+         $fechacontrato = null;
+        $proceso = null;
         
         if (isset($_POST['txtIdEditar'])) {
             $editarID = $_POST['txtIdEditar'];
@@ -97,11 +113,19 @@ class Obra_model extends CI_Model {
         if (isset($_POST['montoinicial'])) {
             $Obra_MontoInicial = $_POST['montoinicial'];
         }
+         if (isset($_POST['fechacontrato'])) {
+            $fechacontrato = $_POST['fechacontrato'];
+        }
+         if (isset($_POST['proceso'])) {
+            $proceso = $_POST['proceso'];
+        }
         $data = array(
             'NombreCorto' => $Obra_NombreCorto,
             'Nombre' => $Obra_Nombre,
             'Empresa' => $Obra_Empresa,
             'Monto_Inicial' => $Obra_MontoInicial,
+            'proceso' => $proceso,
+            'fechacontrato' => $fechacontrato
         );
         $this->db->where('id', $editarID);
         $this->db->update('obras', $data);
