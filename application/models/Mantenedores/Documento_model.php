@@ -6,6 +6,7 @@ class Documento_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('documento');
         $this->db->where('Estado', 1);
+        $this->db->where_not_in('id', 99);
         $this->db->order_by('id', 'DESC');
         
         $query = $this->db->get();
