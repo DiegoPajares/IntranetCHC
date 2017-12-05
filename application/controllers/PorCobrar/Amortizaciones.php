@@ -3,7 +3,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Amortizaciones extends CI_Controller {
+
     public $tipo = 'A';
+
     public function __construct() {
         parent::__construct();
         if (!$this->session->userdata('login')) {
@@ -12,8 +14,7 @@ class Amortizaciones extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
     }
-    
-    
+
     public function index() {
         $data['actualP'] = 'Por_Cobrar';
         $data['actualH'] = 'Amortizaciones';
@@ -22,7 +23,8 @@ class Amortizaciones extends CI_Controller {
         $data['titulo'] = 'INTRANET | Amortizaciones';
         $this->load->view('master/template', $data);
     }
-    function calcular_total(){
+
+    function calcular_total() {
         if (isset($_POST['txtTotalValor'])) {
             $valorinicial = $_POST['txtTotalValor'];
         }
@@ -41,20 +43,20 @@ class Amortizaciones extends CI_Controller {
         if (isset($_POST['txtDeduccionAdMat'])) {
             $deduccionram = $_POST['txtDeduccionAdMat'];
         }
-        $montototal=$valorinicial+$reajustefp-$adelantodirecto-$adelantomateriales-$deduccionrad-$deduccionram;
+        $montototal = $valorinicial + $reajustefp - $adelantodirecto - $adelantomateriales - $deduccionrad - $deduccionram;
         return $montototal;
     }
-    
+
     public function docamortizacion_lista() {
         $data = json_encode($this->Documento_model->documentoQry_listar());
         return print_r($data);
     }
-    
+
     public function docamortizacion_listaxID() {
         $data = json_encode($this->Documentoel->documentoQry_getxid());
         return print_r($data);
     }
-    
+
     public function Amortizacion_lista() {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_listar($this->tipo));
         return print_r($data);
@@ -64,7 +66,7 @@ class Amortizaciones extends CI_Controller {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo));
         return print_r($data);
     }
-    
+
     public function Amortizacion_listaxID() {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_getxid($this->tipo));
         return print_r($data);
@@ -80,8 +82,23 @@ class Amortizaciones extends CI_Controller {
         if (!empty($_POST["txtIdEditar"])) {
             $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd();
         } else {
-            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_ins($montototal,$this->tipo);
+            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_ins($montototal, $this->tipo);
         }
         return print_r($data);
-    } 
+    }
+
+    public function generaReporte() {
+//        $data['rptTotal'] = $_POST['rptTotal'];
+        $data['titulo'] = 'Costos de Asignaciones por trabajador';      
+        $data['amortizaciones'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo);
+
+//        $this->load->library('pdf');
+//        $this->pdf->load_view('reportes/reporte_amortizacion', $data);
+//        $this->pdf->set_paper('A4', 'landscape');
+//        $this->pdf->render();
+//        $this->pdf->stream("RPT_Prueba.pdf");
+        
+        $this->load->view('reportes/reporte_amortizacion', $data);//descomentar para ver en HTML y no como PDF
+    }
+
 }

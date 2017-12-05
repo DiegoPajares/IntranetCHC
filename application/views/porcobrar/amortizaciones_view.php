@@ -10,15 +10,15 @@
                     </header>
                     <div class="card-body">
                         <div class="row">
-                                <div class="col-md-6"> 
-                                    <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
-                                        <option></option>                                    
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <input name="valorObra" id="valorObra" class="form-control text-uppercase" required disabled/>
-                                </div>
-                                <hr>
+                            <div class="col-md-6"> 
+                                <select data-plugin-selectTwo class="form-control" id="selectObra" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Obra", "allowClear": true}'>                                
+                                    <option></option>                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input name="valorObra" id="valorObra" class="form-control text-uppercase" required disabled/>
+                            </div>
+                            <hr>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
@@ -52,7 +52,14 @@
                         </table>
                     </div>
                 </div>
-            </section>
+                <div class="card-body">
+
+                    <form name="frmReporteAmortizaciones" id="frmReporteAmortizaciones" action="./Amortizaciones/generaReporte" method="POST">
+                        <input type="hidden" name="cboobra" id="rptIdObra">
+                        <button class="btn btn-warning">Generar Reporte</button>
+                    </form>
+                </div>
+            </section>            
         </div>
     </div>
     <!-- end: page -->
@@ -232,9 +239,9 @@
             });
             var botones = new $.fn.dataTable.Buttons(datatable, {
                 buttons: [
-                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
-                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
-                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10]}}
+                    {extend: "pdf", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
+                    , {extend: "excel", className: "btn btn-info", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
+                    , {extend: "print", className: "btn red btn-outline", text: "Imprimir", exportOptions: {columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
                 ],
             });
             botones.container().appendTo('#datatableButtons');
@@ -243,15 +250,16 @@
 
         var eventos = function () {
             registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
-            $("#selectObra").change(function () {    
+            $("#selectObra").change(function () {
                 var ids = $("#selectObra").val();
-                var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(ids, '../mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
-                
+
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
+                $("#rptIdObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
             });
 
