@@ -76,6 +76,29 @@
                                 <span>Por Pagar</span>
                             </a>                        
                         </li>
+                        <li class="nav-parent <?php echo (($actualP == 'Reportes') ? 'nav-expanded nav-active' : ''); ?>">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                <span>Reportes</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <li class="<?php echo (($actualH == 'Reportes/Amortizaciones') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Reportes/Amortizaciones">
+                                        Amortizaciones
+                                    </a>
+                                </li>
+                                <li class="<?php echo (($actualH == 'Reportes/Pagos') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Reportes/ControlPagos">
+                                        Control de Pagos
+                                    </a>
+                                </li>
+                                <li class="<?php echo (($actualH == 'Reportes/CartaFianza') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/Reportes/CartaFianza">
+                                        Cartas Fianza
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 
