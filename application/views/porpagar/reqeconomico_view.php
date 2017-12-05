@@ -24,6 +24,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="btn-group">
+                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Requerimiento económico <i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-6 text-right" id="datatableButtons">
@@ -110,6 +111,88 @@
 </div>
 
 
+ <!--******************* MODALS NUEVO ******************-->   
+    <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
+    <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Nueva Requerimiento Economico</h2>
+            </header>
+            <form action="#" class="form-horizontal" id="frmReqEconomico" method="POST">
+                <div class="card-body">                 
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="nombreCortoObra">Obra</label>
+                            <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
+                            <input type="hidden" id="idObra" name="idObra">
+                        </div>
+                        <div class="form-group  col-md-6">
+                            <label for="selectClienteProv">Cliente/Proveedor</label>
+                            <select data-plugin-selectTwo class="form-control" id="selectClienteProv" name="selectClienteProv" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Cliente/Proveedor", "allowClear": true}'>                                                            
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group  col-md-4">
+                            <input type="hidden" id="selectDoc" name="selectDoc" value="99">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtDescripcion">Detalle</label>                            
+                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtFechaFactura">Fecha</label>                            
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtNroFactura">Comprobante Nro</label>                            
+                            <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtTotalValor">Monto</label>
+                            <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>                     
+                    <div class="form-row col-md-12">
+                        
+                        <div class="form-group col-md-4">
+                            <label for="txtBanco">Banco</label>                            
+                            <input name="txtBanco" id="txtBanco" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtCuenta">Cuenta</label>                            
+                            <input name="txtCuenta" id="txtCuenta" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtCci">CCI</label>                            
+                            <input name="txtCci" id="txtCci" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        </div>
+                    </div>
+                    <!--------------------------->                    
+                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+                </div>
+                <footer class="card-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                        </div>
+                    </div>
+                </footer>
+            </form>
+        </section>
+    </div>   
+
 <script>
     var datatable;
 
@@ -128,7 +211,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "detalle"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}],
+                "aoColumns": [{"mData": "Descripcion"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [1],
@@ -207,13 +290,37 @@
         }
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
+            registrarAJAX("#frmReqEconomico", "./ReqEconomico/ReqEconomico_registrar");
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX(id, '.../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
+                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+                $("#idObra").val($("#selectObra").val());
+                $("#btnRegistrar").removeAttr('disabled');
             });
+            $(".idEliminar").click(function () {
+                eliminarAJAX(this.id, "./ReqEconomico/ReqEconomico_Eliminar");
+            });
+            
+             // EVENTO ABRE MODAL
+            $("#btnRegistrar").on('click', function (e) {
+                //            LISTA DATOS SELET2 CLIENTES
+                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listaClientesHTML = "<option></option>";
+                $.each(listadoClientes, function (index, datos) {
+                    listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
+                    $("#selectClienteProv").html(listaClientesHTML);
+                });
+                //            FIN LISTA DATOS SELET2 CLIENTES
+                
+                $("#selectClienteProv").change(function () {
+                    $("#btnRegistrar").removeAttr('disabled');
+                });
+            });
+            // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {

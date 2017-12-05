@@ -243,8 +243,7 @@
 
         var eventos = function () {
             registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
-            $("#selectObra").change(function () {
-                
+            $("#selectObra").change(function () {    
                 var ids = $("#selectObra").val();
                 var a = buscarxidAJAX( ids  , '../mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);

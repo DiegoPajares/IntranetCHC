@@ -126,6 +126,9 @@ class Cobrarpagardoc_model extends CI_Model {
         $detraccion = 'NO';
         $saldo = $montototal;
         $documento_id = null;
+        $banco = null;
+        $cuenta = null;
+        $cci=null;
         
         if (isset($_POST['selectDoc'])) {
             $documento_id = $_POST['selectDoc'];
@@ -142,7 +145,6 @@ class Cobrarpagardoc_model extends CI_Model {
         if (isset($_POST['desc_doc'])) {
             $doc = $_POST['desc_doc'];
         }
-        
         if (isset($_POST['txtNroFactura'])) {
             $numero = $_POST['txtNroFactura'];
         }
@@ -169,6 +171,16 @@ class Cobrarpagardoc_model extends CI_Model {
             $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
         }
         
+        if (isset($_POST['txtBanco'])) {
+            $banco = $_POST['txtBanco'];
+        }
+        if (isset($_POST['txtCuenta'])) {
+            $cuenta = $_POST['txtCuenta'];
+        }
+        if (isset($_POST['txtCci'])) {
+            $cci = $_POST['txtCci'];
+        }
+        
         $data = array(
             'obras_id' => $obras_id,
             'clieprov_id' => $clieprov_id,
@@ -187,6 +199,9 @@ class Cobrarpagardoc_model extends CI_Model {
             'Tipo' => $tipo,
             'Detraccion' => $detraccion,
             'documento_id' => $documento_id,
+            'banco' => $banco,
+            'cuenta' => $cuenta,
+            'cci' => $cci
         );
         $this->db->insert('cobrarpagardoc', $data);
     }
