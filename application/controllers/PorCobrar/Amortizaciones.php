@@ -13,6 +13,7 @@ class Amortizaciones extends CI_Controller {
         }
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
+        $this->load->model('Mantenedores/Obra_model');
     }
 
     public function index() {
@@ -88,17 +89,18 @@ class Amortizaciones extends CI_Controller {
     }
 
     public function generaReporte() {
-//        $data['rptTotal'] = $_POST['rptTotal'];
-        $data['titulo'] = 'Costos de Asignaciones por trabajador';      
+        $data['titulo'] = 'Costos de Asignaciones por trabajador';
         $data['amortizaciones'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo);
+        $_POST['id'] = $_REQUEST['cboobra'];
+        $data['info_obra'] = $this->Obra_model->obraQry_getxid();
 
 //        $this->load->library('pdf');
 //        $this->pdf->load_view('reportes/reporte_amortizacion', $data);
 //        $this->pdf->set_paper('A4', 'landscape');
 //        $this->pdf->render();
 //        $this->pdf->stream("RPT_Prueba.pdf");
-        
-        $this->load->view('reportes/reporte_amortizacion', $data);//descomentar para ver en HTML y no como PDF
+
+        $this->load->view('reportes/reporte_amortizacion', $data); //descomentar para ver en HTML y no como PDF
     }
 
 }

@@ -56,7 +56,7 @@
 
                     <form name="frmReporteAmortizaciones" id="frmReporteAmortizaciones" action="./Amortizaciones/generaReporte" method="POST">
                         <input type="hidden" name="cboobra" id="rptIdObra">
-                        <button class="btn btn-warning">Generar Reporte</button>
+                        <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
                     </form>
                 </div>
             </section>            
@@ -261,6 +261,7 @@
                 $("#idObra").val($("#selectObra").val());
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
+                $("#btnGeneraReporte").removeAttr('disabled');                
             });
 
             $(".idEliminar").click(function () {
