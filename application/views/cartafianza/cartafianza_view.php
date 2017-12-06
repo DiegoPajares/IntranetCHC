@@ -148,6 +148,15 @@
                 "sAjaxDataProp": "",
                 "scrollX": true,
                 "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"}, {"mData": "montorenov"}, {"mData": "fechaemisionini"}, {"mData": "fechavencren"}, {"mData": null}],
+                "aoColumnDefs": [
+                    {
+                        "aTargets": [7],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
+                        }
+                    }
+                ],
                 "order": [[0, "desc"]],
                 drawCallback: function (settings, json) {
                     eventos();
