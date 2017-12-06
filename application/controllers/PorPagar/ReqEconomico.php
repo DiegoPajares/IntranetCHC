@@ -12,6 +12,7 @@ class ReqEconomico extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
         $this->load->model('Ctactecpd_model');
+        $this->load->model('Mantenedores/Obra_model');
     }
     
     public function index() {
@@ -102,4 +103,20 @@ class ReqEconomico extends CI_Controller {
         
         return print_r($data);
     } 
+    
+    public function generaReporte() {
+        $data['titulo'] = 'Reporte Requerimiento Economico';
+        $data['reqeco'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObraSumatorias($this->tipo);
+        $_POST['id'] = $_REQUEST['cboobra'];
+        $data['info_obra'] = $this->Obra_model->obraQry_getxid();
+
+//        $this->load->library('pdf');
+//        $this->pdf->load_view('reportes/reporte_amortizacion', $data);
+//        $this->pdf->set_paper('A4', 'landscape');
+//        $this->pdf->render();
+//        $this->pdf->stream("RPT_Prueba.pdf");
+
+        $this->load->view('reportes/reporte_reqeconomico', $data); //descomentar para ver en HTML y no como PDF
+    }
+    
 }

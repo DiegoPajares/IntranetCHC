@@ -38,7 +38,7 @@
                                     <th>Empresa</th>
                                     <th>Ruc</th>
                                     <th>fecha</th>
-                                    <th>Numero</th>
+                                    <th>Comprobante N°</th>
                                     <th>Monto</th>
                                     <th>Saldo</th>
                                     <th>Banco</th>
@@ -51,6 +51,13 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-body">
+
+                    <form name="frmReporteReqEconomico" id="frmReporteReqEconomico" action="./ReqEconomico/generaReporte" method="POST">
+                        <input type="hidden" name="cboobra" id="rptIdObra">
+                        <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
+                    </form>
                 </div>
             </section>
         </div>
@@ -300,6 +307,8 @@
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
+                $("#rptIdObra").val($("#selectObra").val());
+                $("#btnGeneraReporte").removeAttr('disabled'); 
             });
             $(".idEliminar").click(function () {
                 eliminarAJAX(this.id, "./ReqEconomico/ReqEconomico_Eliminar");

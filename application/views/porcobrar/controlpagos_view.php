@@ -56,6 +56,13 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-body">
+
+                    <form name="frmReporteControlPagos" id="frmReporteControlPagos" action="./PorCobrar/generaReporte" method="POST">
+                        <input type="hidden" name="cboobra" id="rptIdObra">
+                        <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
+                    </form>
+                </div>
             </section>
         </div>
     </div>
@@ -215,7 +222,10 @@
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
+                $("#rptIdObra").val($("#selectObra").val());
+                $("#btnGeneraReporte").removeAttr('disabled'); 
             });
+            
         }
 
         var CargaInicial = function () {
