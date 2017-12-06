@@ -5,22 +5,24 @@
             th{ background-color: #c37719; color: #FFFFFF;}
         </style>
     </head>
-    <body>
-        <!--<h2><?php echo $titulo; ?></h2>-->        
+    <body>          
         <table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+
+            <tr><td colspan="6"></td></tr>
             <tr>
-                <td>Entidad:</td><td><b><?php echo $info_obra[0]->Empresa ?></b></td>
-                <td>RUC:</td><td>$info_obra[0]->Ruc</td>
+                <td><b>Entidad:</b></td><td><?php echo $info_obra[0]->Empresa ?></td>
+                <td><b>RUC:</b></td><td>Lorem Ipsum Dolor Chavez</td>
+                <td><b>Domicilio:</b></td><td>Lorem Ipsum Dolor Chavez</td>
             </tr>
             <tr>
-                <td>Obra:</td><td colspan="5"><b><?php echo $info_obra[0]->Nombre ?></b></td>
+                <td><b>Obra:</b></td><td colspan="5"><?php echo $info_obra[0]->Nombre ?></td>
             </tr>
             <tr>
-                <td>Proceso:</td><td colspan="5"><b><?php echo $info_obra[0]->proceso ?></b></td>
+                <td><b>Proceso:</b></td><td colspan="5"><?php echo $info_obra[0]->proceso ?></td>
             </tr>
             <tr>
-                <td>Monto:</td><td><b><?php echo number_format((float) $info_obra[0]->Monto_Inicial, 2, '.', ''); ?></b></td>
-                <td>Fecha:</td><td><b><?php echo $info_obra[0]->fechacontrato ?></b></td>
+                <td><b>Monto:</b></td><td><?php echo number_format((float) $info_obra[0]->Monto_Inicial, 2, '.', ''); ?></td>
+                <td><b>Fecha:</b></td><td><?php echo $info_obra[0]->fechacontrato ?></td>
                 <td colspan="2">&nbsp;</td>
             </tr>
         </table>
@@ -43,8 +45,8 @@
             </tr>
             <?php
             foreach ($amortizaciones as $key => $fila) {
-                $index = ($key+1)%2;
-                echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');                
+                $index = ($key + 1) % 2;
+                echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
                 echo '<td>' . $fila->Descripcion . '</td>';
                 echo '<td>' . $fila->Fecha . '</td>';
                 echo '<td>' . $fila->Numero . '</td>';
