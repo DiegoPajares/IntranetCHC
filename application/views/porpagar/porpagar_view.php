@@ -119,8 +119,6 @@
 
     </section>
 </div>
-
-
  <!--******************* MODALS NUEVO ******************-->   
     <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
     <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
