@@ -10,8 +10,7 @@
         <table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
             <tr>
                 <td>Entidad:</td><td><b><?php echo $info_obra[0]->Empresa ?></b></td>
-                <td>RUC:</td><td>Lorem Ipsum Dolor Chavez</td>
-                <td>Domicilio:</td><td><b>Lorem Ipsum Dolor Chavez</b></td>
+                <td>RUC:</td><td>$info_obra[0]->Ruc</td>
             </tr>
             <tr>
                 <td>Obra:</td><td colspan="5"><b><?php echo $info_obra[0]->Nombre ?></b></td>
@@ -33,8 +32,8 @@
             <tr>
                 <th>Desc</th>
                 <th align="center">Fecha</th>
-                <th align="center"># Fact.</th>
-                <th align="center">Total Val.</th>
+                <th align="center">Num. Fact.</th>
+                <th align="center">Tot. Valorización</th>
                 <th align="center">Reajuste Frml Polinómica</th>
                 <th align="center">Adelanto Directo</th>
                 <th align="center">Adelanto Materiales</th>
