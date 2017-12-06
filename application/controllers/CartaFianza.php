@@ -67,13 +67,13 @@ class CartaFianza extends CI_Controller {
         $_POST['id'] = $_REQUEST['idObra'];
         $data['info_obra'] = $this->Obra_model->obraQry_getxid();
 
-//        $this->load->library('pdf');
-//        $this->pdf->load_view('reportes/reporte_cartafianza', $data);
-//        $this->pdf->set_paper('A4', 'landscape');
-//        $this->pdf->render();
-//        $this->pdf->stream("RPT_Prueba.pdf");
+        $this->load->library('pdf');
+        $this->pdf->load_view('reportes/reporte_cartafianza', $data);
+        $this->pdf->set_paper('A4', 'landscape');
+        $this->pdf->render();
+        $this->pdf->stream("RPT_Prueba.pdf");
 
-        $this->load->view('reportes/reporte_cartafianza', $data); //descomentar para ver en HTML y no como PDF
+//        $this->load->view('reportes/reporte_cartafianza', $data); //descomentar para ver en HTML y no como PDF
     }
 
 }

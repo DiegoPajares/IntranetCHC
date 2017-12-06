@@ -5,10 +5,10 @@
             th{ background-color: #c37719; color: #FFFFFF;}
         </style>
     </head>
-    <body>                        
+    <body>        
         <table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
             <tr>
-                <td colspan="2"><img src="<?php echo URL_PUBLIC_IMG; ?>logo.png"></td>
+                <td colspan="2"><img src="<?php echo URL_PUBLIC_IMG; ?>logo.jpg"></td>
                 <td colspan="2"><h2><?php echo $titulo; ?></h2></td>
                 <td colspan="2"></td>
             </tr>
