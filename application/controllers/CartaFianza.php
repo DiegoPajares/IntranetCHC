@@ -10,6 +10,7 @@ class CartaFianza extends CI_Controller {
             header("Location: " . MAIN_URL);
         }
         $this->load->model('CartaFianza_model');
+        $this->load->model('Mantenedores/Obra_model');
     }
 
     public function index() {
@@ -25,7 +26,7 @@ class CartaFianza extends CI_Controller {
         $data = json_encode($this->CartaFianza_model->cartafianzaQry_listar());
         return print_r($data);
     }
-    
+
     public function CartaFianza_listaxidObra() {
         $data = json_encode($this->CartaFianza_model->cartafianzaQry_getxidObra());
         return print_r($data);
@@ -58,6 +59,21 @@ class CartaFianza extends CI_Controller {
             $data = $this->CartaFianza_model->cartafianzaQry_ins();
         }
         return print_r($data);
+    }
+
+    public function generaReporte() {
+        $data['titulo'] = 'Reporte Cartas Fianza';
+        $data['cartafianza'] = $this->CartaFianza_model->cartafianzaQry_getxidObra();
+        $_POST['id'] = $_REQUEST['idObra'];
+        $data['info_obra'] = $this->Obra_model->obraQry_getxid();
+
+//        $this->load->library('pdf');
+//        $this->pdf->load_view('reportes/reporte_cartafianza', $data);
+//        $this->pdf->set_paper('A4', 'landscape');
+//        $this->pdf->render();
+//        $this->pdf->stream("RPT_Prueba.pdf");
+
+        $this->load->view('reportes/reporte_cartafianza', $data); //descomentar para ver en HTML y no como PDF
     }
 
 }

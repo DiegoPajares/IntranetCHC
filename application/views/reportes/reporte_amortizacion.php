@@ -46,7 +46,7 @@
             foreach ($amortizaciones as $key => $fila) {
                 $index = ($key+1)%2;
                 echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');                
-                echo '<td>' . $fila->Descripcion . ' ' . ($key+1)%2 . '</td>';
+                echo '<td>' . $fila->Descripcion . '</td>';
                 echo '<td>' . $fila->Fecha . '</td>';
                 echo '<td>' . $fila->Numero . '</td>';
                 echo '<td>' . number_format((float) $fila->ValorInicial, 2, '.', '') . '</td>';
@@ -58,7 +58,7 @@
                 echo '<td>' . number_format((float) $fila->MontoTotal, 2, '.', '') . '</td>';
                 echo '</tr>';
             }
-            ?>       
+            ?>
         </table>
     </body>
 </html>

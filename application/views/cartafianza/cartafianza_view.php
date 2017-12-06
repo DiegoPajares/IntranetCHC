@@ -47,6 +47,13 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-body">
+
+                        <form name="frmReporte" id="frmReporte" action="./CartaFianza/generaReporte" method="POST">
+                            <input type="hidden" name="idObra" id="rptIdObra">
+                            <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
+                        </form>
+                    </div>
                 </div>
             </section>
         </div>
@@ -159,12 +166,14 @@
         }
 
         var eventos = function () {
-            
+
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
+                $("#rptIdObra").val($("#selectObra").val());
+                $("#btnGeneraReporte").removeAttr('disabled');
             });
 
             $(".idEliminar").click(function () {

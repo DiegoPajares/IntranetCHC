@@ -89,7 +89,7 @@ class Amortizaciones extends CI_Controller {
     }
 
     public function generaReporte() {
-        $data['titulo'] = 'Costos de Asignaciones por trabajador';
+        $data['titulo'] = 'Reporte Amortizacones';
         $data['amortizaciones'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObra($this->tipo);
         $_POST['id'] = $_REQUEST['cboobra'];
         $data['info_obra'] = $this->Obra_model->obraQry_getxid();
