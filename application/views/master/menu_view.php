@@ -81,7 +81,7 @@
 
                 <hr class="separator" />
 
-                <div class="sidebar-widget widget-tasks">
+<!--                <div class="sidebar-widget widget-tasks">
                     <div class="widget-header">
                         <h6>Projects</h6>
                         <div class="widget-toggle">+</div>
@@ -93,7 +93,7 @@
                             <li><a href="#">Porto Admin</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
 
             </div>
 
