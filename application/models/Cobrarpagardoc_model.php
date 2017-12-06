@@ -130,6 +130,7 @@ class Cobrarpagardoc_model extends CI_Model {
         $banco = null;
         $cuenta = null;
         $cci=null;
+        $doc = '';
         
         if (isset($_POST['selectDoc'])) {
             $documento_id = $_POST['selectDoc'];

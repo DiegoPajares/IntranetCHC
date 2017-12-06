@@ -34,16 +34,19 @@
                         <table class="table table-bordered table-striped mb-none" id="tablaObras" style="width: 100%; text-align:center; align:center;  " >
                             <thead>
                                 <tr>
-                                    <th>Detalle</th>
                                     <th>Empresa</th>
                                     <th>Ruc</th>
                                     <th>fecha</th>
                                     <th>Numero</th>
+                                    <th>Detalle</th>
                                     <th>Monto</th>
+                                    <th>Adelanto</th>
                                     <th>Saldo</th>
                                     <th>Banco</th>
                                     <th>N° Cuenta</th>
                                     <th>CCI</th>
+                                    <th>Detracción</th>
+                                    <th>Opci&oacute;n</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -51,6 +54,13 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-body">
+
+                    <form name="frmReportePorPagar" id="frmReportePorPagar" action="./PorPagar/generaReporte" method="POST">
+                        <input type="hidden" name="cboobra" id="rptIdObra">
+                        <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
+                    </form>
                 </div>
             </section>
         </div>
@@ -133,13 +143,13 @@
                             </select>
                         </div>
                     </div>
+                             <div class="form-group  col-md-4">
+                            <input type="hidden" id="selectDoc" name="selectDoc" value="-1">
+                        </div>       
                     <div class="form-row col-md-12">
-                        <div class="form-group  col-md-4">
-                            <input type="hidden" id="selectDoc" name="selectDoc" value="99">
-                        </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-8">
                             <label for="txtDescripcion">Detalle</label>                            
-                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="50" placeholder="Ejm: LOREM IPSUM" required/>                            
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtFechaFactura">Fecha</label>                            
@@ -149,11 +159,10 @@
                                 </span>
                                 <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
                                 <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
-
                             </div>
                         </div>
                     </div>                    
-                    <div class="form-group col-md-12">
+                    <div class="form-row col-md-12">
                         <div class="form-group col-md-6">
                             <label for="txtNroFactura">Comprobante Nro</label>                            
                             <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
@@ -161,8 +170,19 @@
                         <div class="form-group col-md-6">
                             <label for="txtTotalValor">Monto</label>
                             <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>                        
+                    </div> 
+                    <div class="form-row col-md-12">    
+                        <div class="form-group col-md-6">
+                            <label for="txtadelantDir">Adelanto</label>
+                            <input type="number" min="0" step="0.01" name="txtadelantDir" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
-                    </div>                     
+                        <div class="form-group col-md-4">
+                            <label for="txtAdelantoMat"> Detraccion</label>
+                            <input type="number" min="0" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>
+                    
                     <div class="form-row col-md-12">
                         
                         <div class="form-group col-md-4">
@@ -211,10 +231,10 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Descripcion"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}],
+                "aoColumns": [{"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "Descripcion"},  {"mData": null}, {"mData": "AdelantoDirecto"}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"},{"mData": "AdelantoMateriales"},{"mData": null}],
                 "aoColumnDefs": [
                     {
-                        "aTargets": [1],
+                        "aTargets": [0],
                         "mData": "Empresa",
                         "mRender": function (data, type, full) {
                             if (data != null) {
@@ -233,14 +253,21 @@
                     },
  
                     {
-                        "aTargets": [6],
+                        "aTargets": [7],
                         "mRender": function (data, type, full) {
                             $saldoResum = parseFloat(data.saldoResum);
                             return '<button class="btnDetReqEc modal-with-form btn btn-default btn btn-info" href="#mdlDetPorPagar" id="' + data.id + '">' + $saldoResum + '</button>';
                         }
+                    },
+                    {
+                        "aTargets": [12],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<a href="#" id="' + data.id + '" class="idEliminartodo dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
+                        }
                     }
                 ],
-                "order": [[3, "asc"]],
+                "order": [[2, "asc"]],
                 drawCallback: function (settings, json) {
                     $(".btnDetReqEc").on('click', function (e) {
                         var idAmort = $(this).attr("id");
@@ -300,8 +327,10 @@
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
+                $("#rptIdObra").val($("#selectObra").val());
+                $("#btnGeneraReporte").removeAttr('disabled'); 
             });
-            $(".idEliminar").click(function () {
+            $(".idEliminartodo").click(function () {
                 eliminarAJAX(this.id, "./PorPagar/PorPagar_Eliminar");
             });
             

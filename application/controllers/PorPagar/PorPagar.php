@@ -23,6 +23,18 @@ class PorPagar extends CI_Controller {
         $this->load->view('master/template', $data);
     }
     
+    
+    function calcular_total() {
+        if (isset($_POST['txtTotalValor'])) {
+            $valorinicial = $_POST['txtTotalValor'];
+        }
+        if (isset($_POST['txtadelantDir'])) {
+            $adelantodirecto = $_POST['txtadelantDir'];
+        }
+        $montototal = $valorinicial - $adelantodirecto;
+        return $montototal;
+    }
+    
     public function PorPagarPorPagar_lista() {
         $data = json_encode($this->Cobrarpagardoc_model->cobrarpagardocQry_Sumatorias($this->tipo));
         return print_r($data);
@@ -52,14 +64,19 @@ class PorPagar extends CI_Controller {
     }
 
     public function PorPagar_Eliminar() {
-        $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_eliminar();
+        $this->db->trans_start();
+            $data = $this->Ctactecpd_model->ctactecpdQry_eliminarxCPD();
+            $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_eliminar();
+        $this->db->trans_complete();  // rollback automático
+        if ($this->db->trans_status() === FALSE) {
+            $data = 0;
+        }    
+        
         return print_r($data);
     }
     
     public function PorPagar_registrar() {
-        if (isset($_POST['txtTotalValor'])) {
-            $montototal = $_POST['txtTotalValor'];
-        }
+        $montototal = $this->calcular_total();
         if (!empty($_POST["txtIdEditar"])) {
             $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_upd();
         } else {
@@ -102,4 +119,20 @@ class PorPagar extends CI_Controller {
         
         return print_r($data);
     } 
+    
+    
+     public function generaReporte() {
+        $data['titulo'] = 'Reporte por Pagar';
+        $data['porpagar'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObraSumatorias($this->tipo);
+        $_POST['id'] = $_REQUEST['cboobra'];
+        $data['info_obra'] = $this->Obra_model->obraQry_getxid();
+
+//        $this->load->library('pdf');
+//        $this->pdf->load_view('reportes/reporte_amortizacion', $data);
+//        $this->pdf->set_paper('A4', 'landscape');
+//        $this->pdf->render();
+//        $this->pdf->stream("RPT_Prueba.pdf");
+
+        $this->load->view('reportes/reporte_porpagar', $data); //descomentar para ver en HTML y no como PDF
+    }
 }

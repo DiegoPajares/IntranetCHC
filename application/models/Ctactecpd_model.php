@@ -57,6 +57,13 @@ class Ctactecpd_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('ctactecpd');
     }
+    function ctactecpdQry_eliminarxCPD() {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+        }
+        $this->db->where('CobrarPagarDoc_id', $id);
+        $this->db->delete('ctactecpd');
+    }
     
     function ctactecpdQry_ins() {
         $Pago = null;

@@ -44,6 +44,7 @@
                                     <th>Banco</th>
                                     <th>N° Cuenta</th>
                                     <th>CCI</th>
+                                    <th>Opci&oacute;n</th>
                                 </tr>
                             </thead>
                             <tbody >
@@ -142,7 +143,7 @@
                     </div>
                     <div class="form-row col-md-12">
                         <div class="form-group  col-md-4">
-                            <input type="hidden" id="selectDoc" name="selectDoc" value="99">
+                            <input type="hidden" id="selectDoc" name="selectDoc" value="0">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="txtDescripcion">Detalle</label>                            
@@ -218,7 +219,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "Descripcion"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}],
+                "aoColumns": [{"mData": "Descripcion"}, {"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": null}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [1],
@@ -245,7 +246,15 @@
                             $saldoResum = parseFloat(data.saldoResum);
                             return '<button class="btnDetReqEc modal-with-form btn btn-default btn btn-info" href="#mdlDetReqEconomico" id="' + data.id + '">' + $saldoResum + '</button>';
                         }
+                    },
+                    {
+                        "aTargets": [10],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<a href="#" id="' + data.id + '" class="idEliminartodo dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
+                        }
                     }
+                    
                 ],
                 "order": [[3, "asc"]],
                 drawCallback: function (settings, json) {
@@ -310,7 +319,7 @@
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnGeneraReporte").removeAttr('disabled'); 
             });
-            $(".idEliminar").click(function () {
+            $(".idEliminartodo").click(function () {
                 eliminarAJAX(this.id, "./ReqEconomico/ReqEconomico_Eliminar");
             });
             
