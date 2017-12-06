@@ -44,7 +44,8 @@
             </tr>
             <?php
             foreach ($amortizaciones as $key => $fila) {
-                echo '<tr>';
+                $index = ($key+1)%2;
+                echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');                
                 echo '<td>' . $fila->Descripcion . ' ' . ($key+1)%2 . '</td>';
                 echo '<td>' . $fila->Fecha . '</td>';
                 echo '<td>' . $fila->Numero . '</td>';
