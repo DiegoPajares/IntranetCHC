@@ -186,7 +186,7 @@
             });
 
             $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+                estadoAJAX(this.id, "./CartaFianza/CartaFianza_actualizaEstado", 0);
             });
         }
 
