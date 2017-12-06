@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="btn-group">
-                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" href="#mdlnuevo">Agregar Documento Por Pagar <i class="fa fa-plus"></i></button>
+                                    <button id="btnRegistrar" class="modal-with-form btn btn-default btn btn-info" disabled href="#mdlnuevo">Agregar Documento Por Pagar <i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-6 text-right" id="datatableButtons">
@@ -119,97 +119,97 @@
 
     </section>
 </div>
- <!--******************* MODALS NUEVO ******************-->   
-    <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
-    <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
-        <section class="card">
-            <header class="card-header">
-                <h2 class="card-title">Nueva Doc. Por Pagar</h2>
-            </header>
-            <form action="#" class="form-horizontal" id="frmPorPagar" method="POST">
-                <div class="card-body">                 
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="nombreCortoObra">Obra</label>
-                            <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
-                            <input type="hidden" id="idObra" name="idObra">
-                        </div>
-                        <div class="form-group  col-md-6">
-                            <label for="selectClienteProv">Cliente/Proveedor</label>
-                            <select data-plugin-selectTwo class="form-control" id="selectClienteProv" name="selectClienteProv" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Cliente/Proveedor", "allowClear": true}'>                                                            
-                                <option></option>
-                            </select>
-                        </div>
+<!--******************* MODALS NUEVO ******************-->   
+<!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
+<div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Nueva Doc. Por Pagar</h2>
+        </header>
+        <form action="#" class="form-horizontal" id="frmPorPagar" method="POST">
+            <div class="card-body">                 
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="nombreCortoObra">Obra</label>
+                        <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
+                        <input type="hidden" id="idObra" name="idObra">
                     </div>
-                             <div class="form-group  col-md-4">
-                            <input type="hidden" id="selectDoc" name="selectDoc" value="-1">
-                        </div>       
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-8">
-                            <label for="txtDescripcion">Detalle</label>                            
-                            <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="50" placeholder="Ejm: LOREM IPSUM" required/>                            
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtFechaFactura">Fecha</label>                            
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
-                                <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
-                            </div>
-                        </div>
-                    </div>                    
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="txtNroFactura">Comprobante Nro</label>                            
-                            <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="txtTotalValor">Monto</label>
-                            <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>                        
-                    </div> 
-                    <div class="form-row col-md-12">    
-                        <div class="form-group col-md-6">
-                            <label for="txtadelantDir">Adelanto</label>
-                            <input type="number" min="0" step="0.01" name="txtadelantDir" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtAdelantoMat"> Detraccion</label>
-                            <input type="number" min="0" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
+                    <div class="form-group  col-md-6">
+                        <label for="selectClienteProv">Cliente/Proveedor</label>
+                        <select data-plugin-selectTwo class="form-control" id="selectClienteProv" name="selectClienteProv" data-plugin-options='{ "minimumInputLength": 2, "placeholder": "Elegir Cliente/Proveedor", "allowClear": true}'>                                                            
+                            <option></option>
+                        </select>
                     </div>
-                    
-                    <div class="form-row col-md-12">
-                        
-                        <div class="form-group col-md-4">
-                            <label for="txtBanco">Banco</label>                            
-                            <input name="txtBanco" id="txtBanco" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtCuenta">Cuenta</label>                            
-                            <input name="txtCuenta" id="txtCuenta" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="txtCci">CCI</label>                            
-                            <input name="txtCci" id="txtCci" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
-                        </div>
-                    </div>
-                    <!--------------------------->                    
-                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
                 </div>
-                <footer class="card-footer">
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                            <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                <div class="form-group  col-md-4">
+                    <input type="hidden" id="selectDoc" name="selectDoc" value="-1">
+                </div>       
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-8">
+                        <label for="txtDescripcion">Detalle</label>                            
+                        <input name="txtDescripcion" id="txtDescripcion" class="form-control text-uppercase" data-plugin-maxlength maxlength="50" placeholder="Ejm: LOREM IPSUM" required/>                            
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtFechaFactura">Fecha</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                            <input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
                         </div>
                     </div>
-                </footer>
-            </form>
-        </section>
-    </div>   
+                </div>                    
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="txtNroFactura">Comprobante Nro</label>                            
+                        <input name="txtNroFactura" id="txtNroFactura" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtTotalValor">Monto</label>
+                        <input type="number" min="0" step="0.01" name="txtTotalValor" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                    </div>                        
+                </div> 
+                <div class="form-row col-md-12">    
+                    <div class="form-group col-md-6">
+                        <label for="txtadelantDir">Adelanto</label>
+                        <input type="number" min="0" step="0.01" name="txtadelantDir" id="txtTotalValor" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtAdelantoMat"> Detraccion</label>
+                        <input type="number" min="0" step="0.01" name="txtAdelantoMat" id="txtAdelantoMat" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                    </div>
+                </div>
+
+                <div class="form-row col-md-12">
+
+                    <div class="form-group col-md-4">
+                        <label for="txtBanco">Banco</label>                            
+                        <input name="txtBanco" id="txtBanco" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtCuenta">Cuenta</label>                            
+                        <input name="txtCuenta" id="txtCuenta" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txtCci">CCI</label>                            
+                        <input name="txtCci" id="txtCci" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                    </div>
+                </div>
+                <!--------------------------->                    
+                <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
+                    </div>
+                </div>
+            </footer>
+        </form>
+    </section>
+</div>   
 
 <script>
     var datatable;
@@ -229,7 +229,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "Descripcion"},  {"mData": null}, {"mData": "AdelantoDirecto"}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"},{"mData": "AdelantoMateriales"},{"mData": null}],
+                "aoColumns": [{"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": null}, {"mData": "AdelantoDirecto"}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}, {"mData": "AdelantoMateriales"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [0],
@@ -237,7 +237,7 @@
                         "mRender": function (data, type, full) {
                             if (data != null) {
                                 return '<center><span class="label label-sm label-info">' + data.Empresa + ' </span></center>';
-                            }else{
+                            } else {
                                 return '<center><span class="label label-sm label-info"> - </span></center>';
                             }
                         }
@@ -249,7 +249,6 @@
                             return '' + $MontoTotal + '';
                         }
                     },
- 
                     {
                         "aTargets": [7],
                         "mRender": function (data, type, full) {
@@ -272,6 +271,10 @@
                         $("#cpd_id").val(idAmort);
                         $("#btnAbreModalDetPorPag").click();
                         initDatatablesDetAmor(idAmort);
+                    });
+
+                    $(".idEliminartodo").on('click', function (e) {
+                        eliminarAJAX(this.id, "./PorPagar/PorPagar_Eliminar");
                     });
                     $.LoadingOverlay("hide");
                 }
@@ -326,13 +329,10 @@
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
                 $("#rptIdObra").val($("#selectObra").val());
-                $("#btnGeneraReporte").removeAttr('disabled'); 
+                $("#btnGeneraReporte").removeAttr('disabled');
             });
-            $(".idEliminartodo").click(function () {
-                eliminarAJAX(this.id, "./PorPagar/PorPagar_Eliminar");
-            });
-            
-             // EVENTO ABRE MODAL
+
+            // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //            LISTA DATOS SELET2 CLIENTES
                 listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
@@ -342,7 +342,7 @@
                     $("#selectClienteProv").html(listaClientesHTML);
                 });
                 //            FIN LISTA DATOS SELET2 CLIENTES
-                
+
                 $("#selectClienteProv").change(function () {
                     $("#btnRegistrar").removeAttr('disabled');
                 });
@@ -361,7 +361,7 @@
             //            FIN LISTA DATOS SELET2
 
             $("#Guardar").on('click', function (e) {
-                
+
                 var cpdid = $("#cpd_id").val();
                 var txtFechaFactura = $("#txtFechaFactura").val();
                 var pago = $("#pago").val();
@@ -392,7 +392,7 @@
                         $('.modal-block .modal-dismiss').click();
                     }
                 });
-               
+
             });
 
         };
