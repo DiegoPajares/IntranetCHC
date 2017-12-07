@@ -162,6 +162,12 @@
                         </div>
                         <input type="hidden" id="cpd_id" name="cpd_id">
                     </div>
+                    <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="txtRenov">Monto Renovación</label>
+                            <input type="number" min="0" step="0.01" name="txtRenov" id="txtRenov" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                        </div>
+                    </div>
                     <div class="form-group col-md-1">
                         <label class="col-md-1 control-label" ></label>                        
                         <button type="submit" id="Guardar" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
@@ -173,6 +179,7 @@
                     <tr>
                         <th>Inicio</th>
                         <th>Final</th>
+                        <th>Monto</th>
                         <th>Opt</th>
                     </tr>
                 </thead>
@@ -249,9 +256,9 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
-                "aoColumns": [{"mData": "fechaemision"}, {"mData": "fechavencimiento"}, {"mData": null}],
+                "aoColumns": [{"mData": "fechaemision"}, {"mData": "fechavencimiento"}, {"mData": "monto"}, {"mData": null}],
                 "aoColumnDefs": [{
-                        "aTargets": [2],
+                        "aTargets": [3],
                         "mData": "download_link",
                         "mRender": function (data, type, full) {
                             return '<a href="#" id="' + data.cartafianza_id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';

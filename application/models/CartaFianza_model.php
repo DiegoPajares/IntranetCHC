@@ -111,15 +111,15 @@ class CartaFianza_model extends CI_Model {
         $this->db->where('cartafianza_id', $id);
         $this->db->delete('cf_fechas');
     }
-    
-    
 
     function cartafianzaQry_ins() {
         $FielCumplimiento = null;
         $numero = null;
         $gastofinac = null;
         $obras_id = null;
-
+         if (isset($_POST['txtGastoFinanciero'])) {
+            $gastofinac = $_POST['txtGastoFinanciero'];
+        }
 
         if (isset($_POST['txtFielCumplimiento'])) {
             $FielCumplimiento = $_POST['txtFielCumplimiento'];
@@ -153,10 +153,8 @@ class CartaFianza_model extends CI_Model {
             $fechavencimiento = trim($_POST['txtFecha2']);
             $fechavencimiento = DateTime::createFromFormat('d/m/Y', $fechavencimiento)->format('Y-m-d');
         }
-        
-        
-        if (isset($_POST['txtGastoFinanciero'])) {
-            $montorenov = $_POST['txtGastoFinanciero'];
+        if (isset($_POST['txtRenov'])) {
+            $montorenov = $_POST['txtRenov'];
         }
         
         $data = array(
