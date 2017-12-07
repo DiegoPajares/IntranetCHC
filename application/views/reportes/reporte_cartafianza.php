@@ -41,7 +41,7 @@
                 <th align="center"># Carta Fianza</th>
                 <th align="center">Gasto</th>
                 <th align="center">Monto</th>
-                <th align="center">Fecha de emisión</th>
+                <th align="center">Fecha de emisión/ini. Renov.</th>
                 <th align="center">Fecha de venc. y/o renov.</th>
             </tr>
             <?php
@@ -56,6 +56,11 @@
                 echo '<td>' . $fila->fechaemisionini . '</td>';
                 echo '<td>' . $fila->fechavencren . '</td>';
                 echo '</tr>';
+                
+                /*cartafianza_id
+                fechaemision
+                fechavencimiento
+                */
             }
             ?>
         </table>

@@ -36,7 +36,6 @@
                                     <th>Fiel Cmpl</th>
                                     <th>N° CF</th>
                                     <th>Gasto</th>
-                                    <th>Monto</th>
                                     <th>Inicio</th>
                                     <th>Fin</th>                                    
                                     <th>Opci&oacute;n</th>
@@ -58,7 +57,9 @@
             </section>
         </div>
     </div>
-    <!-- end: page -->
+</section>
+
+
     <!--******************* MODALS NUEVO ******************-->   
     <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
     <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
@@ -109,10 +110,6 @@
                             <label for="txtGastoFinanciero">Gasto Financiero</label>
                             <input type="number" min="0" step="0.01" name="txtGastoFinanciero" id="txtGastoFinanciero" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="txtRenovacion">Monto Renovación</label>
-                            <input type="number" min="0" step="0.01" name="txtRenovacion" id="txtRenovacion" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
                     </div>
                     <!--------------------------->                    
                     <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
@@ -128,9 +125,65 @@
             </form>
         </section>
     </div>     
-</section>
 
 
+<!--******************* MODALS Pago ******************-->   
+<button id="btnAbreModalDetCarta" class="modal-with-form btn btn-default btn btn-info" href="#mdlDetFecCarta" style="display: none;"></button>
+<div id="mdlDetFecCarta" class="modal-block modal-block-sm mfp-hide">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">
+                Fechas Renovación
+                <button data-dismiss="modal" class="close modal-dismiss">×</button>
+            </h2>
+
+        </header>
+
+        <div class="card-body">
+            <form action="#" class="form-horizontal" id="frmPago" method="POST">
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="txtFecha">Inicio</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <input id="txtFecha" name="txtFecha" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                        </div>
+                        <input type="hidden" id="cpd_id" name="cpd_id">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="txtFecha2">Final</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <input id="txtFecha2" name="txtFecha2" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                        </div>
+                        <input type="hidden" id="cpd_id" name="cpd_id">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label class="col-md-1 control-label" ></label>                        
+                        <button type="submit" id="Guardar" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered table-striped mb-none" id="tablaDetReqEc" style="width: 100%; text-align:center; align:center;  " >
+                <thead>
+                    <tr>
+                        <th>Inicio</th>
+                        <th>Final</th>
+                        <th>Opt</th>
+                    </tr>
+                </thead>
+                <tbody >
+
+                </tbody>
+            </table>                   
+        </div>
+
+    </section>
+</div>
 
 <script>
     var datatable;
@@ -147,7 +200,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"}, {"mData": "montorenov"}, {"mData": "fechaemisionini"}, {"mData": "fechavencren"}, {"mData": null}],
+                "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"},  {"mData": null }, {"mData": "fechavencimiento"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [7],
@@ -155,10 +208,23 @@
                         "mRender": function (data, type, full) {
                             return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
                         }
+                    },
+                    {
+                        "aTargets": [5],
+                        "mRender": function (data, type, full) {
+                            $saldoResum = parseFloat(data.saldoResum);
+                            return '<button class="btnDetCarta modal-with-form btn btn-default btn btn-info" href="#mdlDetFecCarta" id="' + data.id + '">' + data.fechaemision + '</button>';
+                        }
                     }
                 ],
                 "order": [[0, "desc"]],
                 drawCallback: function (settings, json) {
+                    $(".btnDetCarta").on('click', function (e) {
+                        var idAmort = $(this).attr("id");
+                        $("#cpd_id").val(idAmort);
+                        $("#btnAbreModalDetCarta").click();
+                        initDatatablesDetCarta(idAmort);
+                    });
                     eventos();
                     $.LoadingOverlay("hide");
                 }
@@ -174,6 +240,33 @@
             $('div.dataTables_filter input').addClass('form-control input-sm');
         }
 
+//-------------------DETALLE PAGOS------------
+        var initDatatablesDetCarta = function (idAmort) {
+            $.LoadingOverlay("show");
+            $('#tablaDetReqEc').dataTable().fnDestroy();
+            datatableDetAmort = $('#tablaDetReqEc').DataTable({
+                "sAjaxSource": "./CartaFianza/CartaFianzaDet_listaxIDCF?id=" + idAmort,
+                "sServerMethod": "POST",
+                "sAjaxDataProp": "",
+                "dom": 'rtip',
+                "aoColumns": [{"mData": "fechaemision"}, {"mData": "fechavencimiento"}, {"mData": null}],
+                "aoColumnDefs": [{
+                        "aTargets": [2],
+                        "mData": "download_link",
+                        "mRender": function (data, type, full) {
+                            return '<a href="#" id="' + data.cartafianza_id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
+                        }
+                    }],
+                "order": [[1, "asc"]],
+                drawCallback: function (settings, json) {
+                    $.LoadingOverlay("hide");
+                    $(".idEliminar").on('click', function (e) {
+                        eliminarAJAX(this.id, "./CartaFianza/CartaFianzaDet_Eliminar");
+                    });
+                }
+            });
+        }
+//-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
 
             $("#selectObra").change(function () {
@@ -193,13 +286,47 @@
         var CargaInicial = function () {
             registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
                 $("#selectObra").html(listaObrasHTML);
             });
             //            FIN LISTA DATOS SELET2 OBRAS 
+            $("#Guardar").on('click', function (e) {
+
+                var cpdid = $("#cpd_id").val();
+                var txtFecha = $("#txtFecha").val();
+                var txtFecha2 = $("#txtFecha2").val();
+                e.preventDefault();
+                $.ajax({
+                    url: './CartaFianza/CartaFianzaDet_registrar',
+                    type: "POST",
+                    data: {
+                        cpd_id: cpdid,
+                        txtFecha: txtFecha,
+                        txtFecha2: txtFecha2
+                    },
+                    beforeSend: function ()
+                    {
+                        $.LoadingOverlay("show");
+                    },
+                    success: function () {
+                        $.LoadingOverlay("hide");
+                        notificacion(1, "Registro realizado con éxito.");
+                        $("#frmPago")[0].reset();
+                        $('.modal-block .modal-dismiss').click();
+                        datatable.ajax.reload();
+                    },
+                    error: function (e) {
+                        $.LoadingOverlay("hide");
+                        notificacion(0, "Hubo un error al realizar la acción solicitada.");
+                        $("#frmPago")[0].reset();
+                        $('.modal-block .modal-dismiss').click();
+                    }
+                });
+
+            });
         };
 
         return {

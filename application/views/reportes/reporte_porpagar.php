@@ -39,48 +39,51 @@
             <tr>
                                     <th>Empresa</th>
                                     <th>Ruc</th>
-                                    <th>fecha</th>
+                                    <th>Fecha</th>
                                     <th>Numero</th>
                                     <th>Detalle</th>
                                     <th>Monto</th>
                                     <th>Adelanto</th>
+                                    <th>Detracción</th>
                                     <th>Saldo</th>
                                     <th>Banco</th>
                                     <th>N° Cuenta</th>
                                     <th>CCI</th>
-                                    <th>Detracción</th>
+                                    
             </tr>
             <?php
-            $acumulado=0.0; $result=0.0; $Cancel=0.0; $Saldo=0.0;
+            $acumulado=0.0; $acumulado3=0.0; $acumulado2=0.0; $Saldo=0.0;
             foreach ($porpagar as $key => $fila) {
                 $acumulado = number_format((float) $fila->MontoTotal, 2, '.', '') + number_format((float) $acumulado, 2, '.', '');
-                $result = number_format((float)$fila->monto_Obra, 2, '.', '') - number_format((float)$acumulado, 2, '.', '');
-                $Cancel = number_format((float)$fila->MontoCan, 2, '.', '') + number_format((float)$Cancel, 2, '.', '');
+                $acumulado2 = number_format((float)$fila->AdelantoDirecto, 2, '.', '') + number_format((float)$acumulado2, 2, '.', '');
+                $acumulado3 = number_format((float)$fila->AdelantoMateriales, 2, '.', '') + number_format((float)$acumulado3, 2, '.', '');
+                
                 $Saldo= number_format((float)$fila->saldoResum, 2, '.', '') + number_format((float)$Saldo, 2, '.', '');
                 
                 $index = ($key + 1) % 2;
                 echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
+                echo '<td align="center">' . $fila->Empresa . '</td>';
+                echo '<td align="center">' . $fila->ruc . '</td>';
+                echo '<td align="center">' . $fila->Fecha . '</td>';
                 echo '<td align="center">' . $fila->Numero . '</td>';
                 echo '<td align="center">' . $fila->Descripcion . '</td>';
                 echo '<td align="center">' . number_format((float) $fila->MontoTotal, 2, '.', '') . '</td>';
-                echo '<td align="center">' . number_format((float) $result , 2, '.', '') . '</td>';
-                echo '<td align="center">' . $fila->Fecha . '</td>';
-                echo '<td align="center">' . number_format((float) $fila->MontoCan, 2, '.', '') . '</td>';
-                echo '<td align="center">' . $fila->fechaCan . '</td>';
+                echo '<td align="center">' . number_format((float) $fila->AdelantoDirecto, 2, '.', '') . '</td>';
+                echo '<td align="center">' . number_format((float) $fila->AdelantoMateriales, 2, '.', '') . '</td>';
                 echo '<td align="center">' . number_format((float) $fila->saldoResum, 2, '.', '') . '</td>';
-                echo '<td align="center">' . number_format((float) $acumulado , 2, '.', '') . '</td>';
-                echo '<td align="center">' . $fila->Detraccion . '</td>';
+                echo '<td align="center">' . $fila->banco . '</td>';
+                echo '<td align="center">' . $fila->cuenta . '</td>';
+                echo '<td align="center">' . $fila->cci . '</td>';
                 echo '</tr>';
             }
             
                 echo '<tr bgcolor="#013ADF">';
-                echo '<td COLSPAN="2" align="center">TOTAL</td>';
+                echo '<td COLSPAN="5" align="center">TOTAL</td>';
                 echo '<td align="center">' . $acumulado . '</td>';
-                echo '<td align="center">' . $result . '</td>';
-                echo '<td></td>';
-                echo '<td align="center">' . $Cancel . '</td>';
-                echo '<td></td>';
+                echo '<td align="center">' . $acumulado2 . '</td>';
+                echo '<td align="center">' . $acumulado3 . '</td>';
                 echo '<td align="center">' . $Saldo . '</td>';
+                echo '<td></td>';
                 echo '<td></td>';
                 echo '<td></td>';
                 echo '</tr>';

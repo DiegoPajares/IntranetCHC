@@ -12,6 +12,7 @@ class PorPagar extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
         $this->load->model('Ctactecpd_model');
+        $this->load->model('Mantenedores/Obra_model');
     }
     
     public function index() {
@@ -31,7 +32,10 @@ class PorPagar extends CI_Controller {
         if (isset($_POST['txtadelantDir'])) {
             $adelantodirecto = $_POST['txtadelantDir'];
         }
-        $montototal = $valorinicial - $adelantodirecto;
+         if (isset($_POST['txtAdelantoMat'])) {
+            $adelantomateriales = $_POST['txtAdelantoMat'];
+        }
+        $montototal = $valorinicial - $adelantodirecto-$adelantomateriales;
         return $montototal;
     }
     

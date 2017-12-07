@@ -41,11 +41,11 @@
                                     <th>Detalle</th>
                                     <th>Monto</th>
                                     <th>Adelanto</th>
+                                    <th>Detracción</th>
                                     <th>Saldo</th>
                                     <th>Banco</th>
                                     <th>N° Cuenta</th>
                                     <th>CCI</th>
-                                    <th>Detracción</th>
                                     <th>Opci&oacute;n</th>
                                 </tr>
                             </thead>
@@ -185,15 +185,15 @@
 
                     <div class="form-group col-md-4">
                         <label for="txtBanco">Banco</label>                            
-                        <input name="txtBanco" id="txtBanco" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        <input name="txtBanco" id="txtBanco" class="form-control text-uppercase" data-plugin-maxlength maxlength="5" placeholder="Ejm: LOREM" required/>                            
                     </div>
                     <div class="form-group col-md-4">
                         <label for="txtCuenta">Cuenta</label>                            
-                        <input name="txtCuenta" id="txtCuenta" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        <input name="txtCuenta" id="txtCuenta" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 1111-2222-333" required/>                            
                     </div>
                     <div class="form-group col-md-4">
                         <label for="txtCci">CCI</label>                            
-                        <input name="txtCci" id="txtCci" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: LOREM IPSUM" required/>                            
+                        <input name="txtCci" id="txtCci" class="form-control text-uppercase" data-plugin-maxlength maxlength="30" placeholder="Ejm: 1111-222-333333" required/>                            
                     </div>
                 </div>
                 <!--------------------------->                    
@@ -229,7 +229,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": null}, {"mData": "AdelantoDirecto"}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}, {"mData": "AdelantoMateriales"}, {"mData": null}],
+                "aoColumns": [{"mData": null}, {"mData": "ruc"}, {"mData": "Fecha"}, {"mData": "Numero"}, {"mData": "Descripcion"}, {"mData": null}, {"mData": "AdelantoDirecto"}, {"mData": "AdelantoMateriales"}, {"mData": null}, {"mData": "banco"}, {"mData": "cuenta"}, {"mData": "cci"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [0],
@@ -248,9 +248,8 @@
                             $MontoTotal = parseFloat(data.MontoTotal);
                             return '' + $MontoTotal + '';
                         }
-                    },
-                    {
-                        "aTargets": [7],
+                    },{
+                        "aTargets": [8],
                         "mRender": function (data, type, full) {
                             $saldoResum = parseFloat(data.saldoResum);
                             return '<button class="btnDetReqEc modal-with-form btn btn-default btn btn-info" href="#mdlDetPorPagar" id="' + data.id + '">' + $saldoResum + '</button>';
