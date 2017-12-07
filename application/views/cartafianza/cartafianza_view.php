@@ -47,7 +47,6 @@
                         </table>
                     </div>
                     <div class="card-body">
-
                         <form name="frmReporte" id="frmReporte" action="./CartaFianza/generaReporte" method="POST">
                             <input type="hidden" name="idObra" id="rptIdObra">
                             <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
@@ -211,9 +210,8 @@
                 "aoColumnDefs": [
                     {
                         "aTargets": [7],
-                        "mData": "download_link",
                         "mRender": function (data, type, full) {
-                            return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
+                            return '<a href="#" id="' + data.id + '" class="idEliminartodo dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
                         }
                     },
                     {
@@ -232,7 +230,10 @@
                         $("#btnAbreModalDetCarta").click();
                         initDatatablesDetCarta(idAmort);
                     });
-                    eventos();
+                    
+                    $(".idEliminartodo").on('click', function (e) {
+                        eliminarAJAX(this.id, "./CartaFianza/CartaFianza_Eliminar");
+                    });
                     $.LoadingOverlay("hide");
                 }
             });
@@ -248,7 +249,8 @@
         }
 
 //-------------------DETALLE PAGOS------------
-        var initDatatablesDetCarta = function (idAmort) {
+
+    var initDatatablesDetCarta = function (idAmort) {
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
@@ -264,7 +266,7 @@
                             return '<a href="#" id="' + data.cartafianza_id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
                         }
                     }],
-                "order": [[1, "asc"]],
+                "order": [[0, "asc"]],
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
@@ -273,9 +275,10 @@
                 }
             });
         }
+
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
-
+            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
@@ -284,14 +287,26 @@
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnGeneraReporte").removeAttr('disabled');
             });
+            
+            // EVENTO ABRE MODAL
+            $("#btnRegistrar").on('click', function (e) {
+                //            LISTA DATOS SELET2 CLIENTES
+                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listaClientesHTML = "<option></option>";
+                $.each(listadoClientes, function (index, datos) {
+                    listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
+                    $("#selectClienteProv").html(listaClientesHTML);
+                });
+                //            FIN LISTA DATOS SELET2 CLIENTES
 
-            $(".idEliminar").click(function () {
-                estadoAJAX(this.id, "./CartaFianza/CartaFianza_actualizaEstado", 0);
+                $("#selectClienteProv").change(function () {
+                    $("#btnRegistrar").removeAttr('disabled');
+                });
             });
+            // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {
-            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
@@ -301,10 +316,10 @@
             });
             //            FIN LISTA DATOS SELET2 OBRAS 
             $("#Guardar").on('click', function (e) {
-
                 var cpdid = $("#cpd_id").val();
                 var txtFecha = $("#txtFecha").val();
                 var txtFecha2 = $("#txtFecha2").val();
+                var txtRenov = $("#txtRenov").val();
                 e.preventDefault();
                 $.ajax({
                     url: './CartaFianza/CartaFianzaDet_registrar',
@@ -312,7 +327,8 @@
                     data: {
                         cpd_id: cpdid,
                         txtFecha: txtFecha,
-                        txtFecha2: txtFecha2
+                        txtFecha2: txtFecha2,
+                        txtRenov: txtRenov
                     },
                     beforeSend: function ()
                     {

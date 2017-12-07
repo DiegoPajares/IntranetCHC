@@ -37,7 +37,7 @@ class CartaFianza_model extends CI_Model {
         }
          $this->db->select('d.*,dd.*');
         $this->db->from('cartafianza d');
-        $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id');
+        $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id','left');
         $this->db->where('d.obras_id', $idObra);
         $this->db->where('dd.visible', 0);
         
