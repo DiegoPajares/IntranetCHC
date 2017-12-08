@@ -66,13 +66,13 @@
                         </li>
                         <li  class="<?php echo (($actualP == 'Requerimiento Económico') ? 'nav-active' : ''); ?>">
                             <a class="nav-link" href="<?php echo MAIN_URL ?>/PorPagar/ReqEconomico">
-                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i>
                                 <span>Requerimiento Económico</span>
                             </a>                        
                         </li>
                         <li  class="<?php echo (($actualP == 'Cuentas Por Pagar') ? 'nav-active' : ''); ?>">
                             <a class="nav-link" href="<?php echo MAIN_URL ?>/PorPagar/PorPagar">
-                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <i class="fa fa-credit-card" aria-hidden="true"></i>
                                 <span>Por Pagar</span>
                             </a>                        
                         </li>                        

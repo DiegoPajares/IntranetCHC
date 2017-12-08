@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Blank Page</h2>
+        <h2>Inicio</h2>
 
         <div class="right-wrapper text-right">
             <ol class="breadcrumbs">
@@ -29,128 +29,18 @@
                             <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
                         </div>
 
-                        <h2 class="card-title">Input Grid</h2>
+                        <h2 class="card-title">Contenido</h2>
                     </div>
                 </div>
 
                 <div class="card-body">
 
                     <div class="row">
-
                         <div class="col-lg-12 form-group">
-                            <input type="text" placeholder=".col-lg-12" class="form-control">
-                        </div>
-
-                        <div class="col-lg-6 form-group">
-                            <input type="text" placeholder=".col-lg-6" class="form-control">
-                        </div>
-
-                        <div class="col-lg-6 form-group">
-                            <input type="text" placeholder=".col-lg-6" class="form-control">
-                        </div>
-
-
-                        <div class="col-lg-4 form-group">
-                            <input type="text" placeholder=".col-lg-4" class="form-control">
-                        </div>
-
-                        <div class="col-lg-4 form-group">
-                            <input type="text" placeholder=".col-lg-4" class="form-control">
-                        </div>
-
-                        <div class="col-lg-4 form-group">
-                            <input type="text" placeholder=".col-lg-4" class="form-control">
-                        </div>
-
-
-                        <div class="col-lg-3 form-group">
-                            <input type="text" placeholder=".col-lg-3" class="form-control">
-                        </div>
-
-                        <div class="col-lg-3 form-group">
-                            <input type="text" placeholder=".col-lg-3" class="form-control">
-                        </div>
-
-                        <div class="col-lg-3 form-group">
-                            <input type="text" placeholder=".col-lg-3" class="form-control">
-                        </div>
-
-                        <div class="col-lg-3 form-group">
-                            <input type="text" placeholder=".col-lg-3" class="form-control">
-                        </div>
-
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-                        <div class="col-lg-2 form-group">
-                            <input type="text" placeholder=".col-lg-2" class="form-control">
-                        </div>
-
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
-                        </div>
-
-                        <div class="col-lg-1 form-group">
-                            <input type="text" placeholder=".col-lg-1" class="form-control">
+                            <center>
+                                <h1>Intranet</h1><br/>
+                                <img src="<?php echo URL_PUBLIC_IMG; ?>logo.jpg">
+                            </center>
                         </div>
                     </div>
 
@@ -163,3 +53,13 @@
     <!-- end: page -->
     <!-- end: page -->
 </section>
+
+<script>
+    var APP = function () {
+
+        return {
+            init: function () {
+            }
+        };
+    }();
+</script>    
