@@ -198,7 +198,7 @@
         var plugins = function () {
         }
 
-        var initDatatables = function (idObra) {
+        var initDatatables = function (idObra) {            
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
@@ -209,13 +209,13 @@
                 "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"},  {"mData": null }, {"mData": "fechavencimiento"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
-                        "aTargets": [7],
+                        "aTargets": [6],
                         "mRender": function (data, type, full) {
                             return '<a href="#" id="' + data.id + '" class="idEliminartodo dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
                         }
                     },
                     {
-                        "aTargets": [5],
+                        "aTargets": [4],
                         "mRender": function (data, type, full) {
                             $saldoResum = parseFloat(data.saldoResum);
                             return '<button class="btnDetCarta modal-with-form btn btn-default btn btn-info" href="#mdlDetFecCarta" id="' + data.id + '">' + data.fechaemision + '</button>';
@@ -308,7 +308,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
