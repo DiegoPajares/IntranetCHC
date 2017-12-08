@@ -47,7 +47,7 @@
                         </table>
                     </div>
                     <div class="card-body">
-                        <form name="frmReporte" id="frmReporte" action="./CartaFianza/generaReporte" method="POST">
+                        <form name="frmReporte" id="frmReporte" action="./generaReporte" method="POST">
                             <input type="hidden" name="idObra" id="rptIdObra">
                             <button class="btn btn-warning" id="btnGeneraReporte" disabled>Generar Reporte</button>
                         </form>
@@ -204,7 +204,7 @@
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./CartaFianza/CartaFianza_listaxidObra?idObra=" + idObra,
+                "sAjaxSource": "./CartaFianza_listaxidObra?idObra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -234,7 +234,7 @@
                     });
                     
                     $(".idEliminartodo").on('click', function (e) {
-                        eliminarAJAX(this.id, "./CartaFianza/CartaFianza_Eliminar");
+                        eliminarAJAX(this.id, "./CartaFianza_Eliminar");
                     });
                     $.LoadingOverlay("hide");
                 }
@@ -256,7 +256,7 @@
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
-                "sAjaxSource": "./CartaFianza/CartaFianzaDet_listaxIDCF?id=" + idAmort,
+                "sAjaxSource": "./CartaFianzaDet_listaxIDCF?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
@@ -272,7 +272,7 @@
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
-                        eliminarAJAX(this.id, "./CartaFianza/CartaFianzaDet_Eliminar");
+                        eliminarAJAX(this.id, "./CartaFianzaDet_Eliminar");
                     });
                 }
             });
@@ -280,7 +280,7 @@
 
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
-            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
+            registrarAJAX("#frmCartaFianza", "./CartaFianza_registrar");
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
@@ -290,27 +290,11 @@
                 $("#btnGeneraReporte").removeAttr('disabled');
             });
             
-            // EVENTO ABRE MODAL
-            $("#btnRegistrar").on('click', function (e) {
-                //            LISTA DATOS SELET2 CLIENTES
-                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
-                listaClientesHTML = "<option></option>";
-                $.each(listadoClientes, function (index, datos) {
-                    listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
-                    $("#selectClienteProv").html(listaClientesHTML);
-                });
-                //            FIN LISTA DATOS SELET2 CLIENTES
-
-                $("#selectClienteProv").change(function () {
-                    $("#btnRegistrar").removeAttr('disabled');
-                });
-            });
-            // FIN EVENTO ABRE MODAL
         }
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
@@ -324,7 +308,7 @@
                 var txtRenov = $("#txtRenov").val();
                 e.preventDefault();
                 $.ajax({
-                    url: './CartaFianza/CartaFianzaDet_registrar',
+                    url: './CartaFianzaDet_registrar',
                     type: "POST",
                     data: {
                         cpd_id: cpdid,

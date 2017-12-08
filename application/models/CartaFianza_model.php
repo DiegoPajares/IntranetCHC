@@ -77,11 +77,11 @@ class CartaFianza_model extends CI_Model {
         if (isset($_REQUEST['idObra'])) {
             $idObra = $_REQUEST['idObra'];
         }
-        $query = $this->db->query('SELECT * ,x.contar FROM cartafianza c '
+        $query = $this->db->query('SELECT * ,ifnull(x.contar,1) contar FROM cartafianza c '
                 . 'left join cf_fechas cf on c.id = cf.cartafianza_id '
                 . 'left join (select cartafianza_id,count(*) as contar from cf_fechas group by cartafianza_id) x on x.cartafianza_id = c.id '
                 . 'where c.obras_id= "' . $idObra . '" and c.estado = 1 '
-                . 'ORDER BY cf.fechaemision ASC;');
+                . 'ORDER BY cf.cartafianza_id,cf.fechaemision ASC;');
         /*
         $this->db->select('d.*,dd.*');
         $this->db->from('cartafianza d');

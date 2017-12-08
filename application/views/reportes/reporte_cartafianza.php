@@ -49,25 +49,23 @@
             $bandera_id =-1;
             foreach ($cartafianza as $key => $fila) {
                 
-                
-                $index = ($key + 1) % 2;
-                echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
-                if($bandera_id!=$fila->cartafianza_id){
+                if($bandera_id != $fila->id){       
+                    $index = ($bandera + 1) % 2;
+                    echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
                     echo '<td ROWSPAN="'.$fila->contar .'"></td>';
                     echo '<td ROWSPAN="'.$fila->contar .'">' . $fila->FielCumplimiento . '</td>';
                     echo '<td ROWSPAN="'.$fila->contar .'">' . $fila->numero . '</td>';
                     echo '<td ROWSPAN="'.$fila->contar .'">' . number_format((float) $fila->gastofinac, 2, '.', '') . '</td>';
-                    $bandera = $bandera +1;
+                    $bandera = $bandera+1;
+                }else{
+                    $index = ($bandera-1 + 1) % 2;
+                    echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
                 }
                 echo '<td>' . number_format((float) $fila->monto, 2, '.', '') . '</td>';
                 echo '<td>' . $fila->fechaemision . '</td>';
                 echo '<td>' . $fila->fechavencimiento . '</td>';
                 echo '</tr>';
-                $bandera_id =$fila->cartafianza_id;
-                /*cartafianza_id
-                fechaemision
-                fechavencimiento
-                */
+                $bandera_id =$fila->id;
             }
             ?>
         </table>
