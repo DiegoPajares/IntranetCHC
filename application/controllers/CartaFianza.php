@@ -57,6 +57,16 @@ class CartaFianza extends CI_Controller {
         return print_r($data);
     }
     
+    public function CartaFianza_Eliminar() {
+        $this->db->trans_start();
+            $data = $this->CartaFianza_model->cartafianzaDetQry_Eliminar();
+        $this->db->trans_complete();  // rollback automático
+        if ($this->db->trans_status() === FALSE) {
+            $data = 0;
+        }
+        return print_r($data);
+    }
+    
     public function CartaFianza_registrar() {
         $this->db->trans_start(); 
             if (!empty($_POST["txtIdEditar"])) {

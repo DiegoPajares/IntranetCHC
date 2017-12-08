@@ -7,7 +7,6 @@ class CartaFianza_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('cartafianza');
         $this->db->where('estado', 1);
-        $this->db->or_where('estado', 0);
         $this->db->or_where('estado', 2);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
@@ -39,7 +38,9 @@ class CartaFianza_model extends CI_Model {
         $this->db->from('cartafianza d');
         $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id','left');
         $this->db->where('d.obras_id', $idObra);
+        $this->db->where('estado', 1);
         $this->db->where('dd.visible', 0);
+        
         
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
@@ -59,6 +60,7 @@ class CartaFianza_model extends CI_Model {
         $this->db->from('cartafianza d');
         $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id');
         $this->db->where('d.id', $idcarta);
+        $this->db->where('estado', 1);
         $this->db->where('dd.visible', 1);
         $this->db->order_by('d.id', 'DESC');
         $query = $this->db->get();
@@ -75,14 +77,20 @@ class CartaFianza_model extends CI_Model {
         if (isset($_REQUEST['idObra'])) {
             $idObra = $_REQUEST['idObra'];
         }
+        $query = $this->db->query('SELECT * ,x.contar FROM cartafianza c '
+                . 'left join cf_fechas cf on c.id = cf.cartafianza_id '
+                . 'left join (select cartafianza_id,count(*) as contar from cf_fechas group by cartafianza_id) x on x.cartafianza_id = c.id '
+                . 'where c.obras_id= "' . $idObra . '" and c.estado = 1 '
+                . 'ORDER BY cf.fechaemision ASC;');
+        /*
         $this->db->select('d.*,dd.*');
         $this->db->from('cartafianza d');
         $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id');
-        $this->db->where('d.id', $idcarta);
         $this->db->where('obras_id', $idObra);
-        $this->db->order_by('d.fechaemisionini', 'DESC');
+        $this->db->where('estado', 1);
+        $this->db->order_by('dd.fechaemision', 'ASC');
         $query = $this->db->get();
-        
+        */
         if (count($query) > 0) {
             return $query->result();
         } else {
@@ -109,9 +117,19 @@ class CartaFianza_model extends CI_Model {
         }
 
         $this->db->where('cartafianza_id', $id);
+        $this->db->where('visible', 1);
         $this->db->delete('cf_fechas');
     }
 
+    function cartafianzaQry_Eliminar() {
+         if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+        }
+
+        $this->db->where('id', $id);
+        $this->db->delete('cartafianza');
+    }
+    
     function cartafianzaQry_ins() {
         $FielCumplimiento = null;
         $numero = null;
@@ -136,6 +154,7 @@ class CartaFianza_model extends CI_Model {
             'FielCumplimiento' => $FielCumplimiento,
             'numero' => $numero,
             'gastofinac' => $gastofinac,
+            'estado' =>1
         );
         $this->db->insert('cartafianza', $data);
         return $this->db->insert_id();
@@ -175,11 +194,11 @@ class CartaFianza_model extends CI_Model {
         }
         if (isset($_POST['txtFechaIni'])) {
             $fechaemision = trim($_POST['txtFechaIni']);
-            $fechaemision = DateTime::createFromFormat('d/m/Y', $fechaemisionini)->format('Y-m-d');
+            $fechaemision = DateTime::createFromFormat('d/m/Y', $fechaemision)->format('Y-m-d');
         }
         if (isset($_POST['txtFechaFin'])) {
             $fechavencimiento = trim($_POST['txtFechaFin']);
-            $fechavencimiento = DateTime::createFromFormat('d/m/Y', $fechavencren)->format('Y-m-d');
+            $fechavencimiento = DateTime::createFromFormat('d/m/Y', $fechavencimiento)->format('Y-m-d');
         }
         
         $data = array(

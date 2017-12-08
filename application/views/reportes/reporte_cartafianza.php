@@ -45,18 +45,25 @@
                 <th align="center">Fecha de venc. y/o renov.</th>
             </tr>
             <?php
+            $bandera = 0;
+            $bandera_id =-1;
             foreach ($cartafianza as $key => $fila) {
+                
+                
                 $index = ($key + 1) % 2;
                 echo (($index == 0) ? '<tr bgcolor="#fff0da">' : '<tr bgcolor="#ffdba4">');
-                echo '<td></td>';
-                echo '<td>' . $fila->FielCumplimiento . '</td>';
-                echo '<td>' . $fila->numero . '</td>';
-                echo '<td>' . number_format((float) $fila->gastofinac, 2, '.', '') . '</td>';
-                echo '<td>' . number_format((float) $fila->montorenov, 2, '.', '') . '</td>';
-                echo '<td>' . $fila->fechaemisionini . '</td>';
-                echo '<td>' . $fila->fechavencren . '</td>';
+                if($bandera_id!=$fila->cartafianza_id){
+                    echo '<td ROWSPAN="'.$fila->contar .'"></td>';
+                    echo '<td ROWSPAN="'.$fila->contar .'">' . $fila->FielCumplimiento . '</td>';
+                    echo '<td ROWSPAN="'.$fila->contar .'">' . $fila->numero . '</td>';
+                    echo '<td ROWSPAN="'.$fila->contar .'">' . number_format((float) $fila->gastofinac, 2, '.', '') . '</td>';
+                    $bandera = $bandera +1;
+                }
+                echo '<td>' . number_format((float) $fila->monto, 2, '.', '') . '</td>';
+                echo '<td>' . $fila->fechaemision . '</td>';
+                echo '<td>' . $fila->fechavencimiento . '</td>';
                 echo '</tr>';
-                
+                $bandera_id =$fila->cartafianza_id;
                 /*cartafianza_id
                 fechaemision
                 fechavencimiento

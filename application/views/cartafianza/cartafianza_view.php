@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <section role="main" class="content-body">
     <header class="page-header"><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
         <h2><?php echo $actualH; ?></h2>
@@ -153,7 +151,7 @@
                         </div>
                         <input type="hidden" id="cpd_id" name="cpd_id">
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="txtFecha2">Final</label>                            
                         <div class="input-group">
                             <span class="input-group-addon">
@@ -163,17 +161,19 @@
                         </div>
                         <input type="hidden" id="cpd_id" name="cpd_id">
                     </div>
-                    <div class="form-group col-md-12">
-                        <div class="form-group col-md-6">
+                </div>
+                <div class="form-row col-md-12">
+                        <div class="form-group col-md-11">
                             <label for="txtRenov">Monto Renovación</label>
                             <input type="number" min="0" step="0.01" name="txtRenov" id="txtRenov" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
-                    </div>
                     <div class="form-group col-md-1">
                         <label class="col-md-1 control-label" ></label>                        
                         <button type="submit" id="Guardar" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
                     </div>
+                
                 </div>
+                
             </form>
             <table class="table table-bordered table-striped mb-none" id="tablaDetReqEc" style="width: 100%; text-align:center; align:center;  " >
                 <thead>
@@ -364,4 +364,3 @@
         };
     }();
 </script>
->>>>>>> 3b044797d2a369e69e0fc2ca999e74f90d3e4916
