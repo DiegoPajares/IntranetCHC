@@ -41,7 +41,7 @@ function registrarAJAX(nombreFRM, AJAX_URL) {
             beforeSend: function ()
             {
                 $.LoadingOverlay("show");
-                console.log("Registrar Ajax");
+//                console.log("Registrar Ajax");
             },
             success: function () {
                 $.LoadingOverlay("hide");
