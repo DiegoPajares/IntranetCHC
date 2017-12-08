@@ -225,7 +225,7 @@
             $acumulado = 0.0;
             $result = 0.0;
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./porPagar/PorPagarPorPagar_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./PorPagar/PorPagarPorPagar_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -294,7 +294,7 @@
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
-                "sAjaxSource": "./porPagar/PorPagar_listaxPorPagar?id=" + idAmort,
+                "sAjaxSource": "./PorPagar/PorPagar_listaxPorPagar?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
@@ -310,7 +310,7 @@
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
-                        eliminarAJAX(this.id, "./porPagar/Ctacte_Eliminar");
+                        eliminarAJAX(this.id, "./PorPagar/Ctacte_Eliminar");
                     });
                 }
             });
@@ -320,7 +320,7 @@
             registrarAJAX("#frmPorPagar", "./PorPagar/PorPagar_registrar");
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '../Mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
@@ -334,7 +334,7 @@
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //            LISTA DATOS SELET2 CLIENTES
-                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listadoClientes = buscarxidAJAX('0', "../Mantenedores/Clieprovs/Clieprovs_lista");
                 listaClientesHTML = "<option></option>";
                 $.each(listadoClientes, function (index, datos) {
                     listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
@@ -351,7 +351,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2
-            listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";

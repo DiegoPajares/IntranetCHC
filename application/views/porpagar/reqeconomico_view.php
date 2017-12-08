@@ -124,7 +124,7 @@
 <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
     <section class="card">
         <header class="card-header">
-            <h2 class="card-title">Nueva Requerimiento Economico</h2>
+            <h2 class="card-title">Nuevo Requerimiento Economico</h2>
         </header>
         <form action="#" class="form-horizontal" id="frmReqEconomico" method="POST">
             <div class="card-body">                 
@@ -215,7 +215,7 @@
             $acumulado = 0.0;
             $result = 0.0;
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./reqEconomico/PorPagarReqEconomico_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./ReqEconomico/PorPagarReqEconomico_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -286,7 +286,7 @@
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
-                "sAjaxSource": "./reqEconomico/PorPagar_listaxReqEconomico?id=" + idAmort,
+                "sAjaxSource": "./ReqEconomico/PorPagar_listaxReqEconomico?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
@@ -312,7 +312,7 @@
             registrarAJAX("#frmReqEconomico", "./ReqEconomico/ReqEconomico_registrar");
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '../Mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
@@ -326,7 +326,7 @@
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //            LISTA DATOS SELET2 CLIENTES
-                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listadoClientes = buscarxidAJAX('0', "../Mantenedores/Clieprovs/Clieprovs_lista");
                 listaClientesHTML = "<option></option>";
                 $.each(listadoClientes, function (index, datos) {
                     listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
@@ -343,7 +343,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2
-            listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";

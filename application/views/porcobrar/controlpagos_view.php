@@ -137,7 +137,7 @@
             $acumulado = 0.0;
             $result = 0.0;
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./porCobrar/PorCobrarAmortizacion_listaxObra?cboobra=" + idObra,
+                "sAjaxSource": "./PorCobrar/PorCobrarAmortizacion_listaxObra?cboobra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -218,7 +218,7 @@
         var eventos = function () {
             $("#selectObra").change(function () {
                 var id = $("#selectObra").val();
-                var a = buscarxidAJAX(id, '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(id, '../Mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
@@ -230,7 +230,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2
-            listadoObras = buscarxidAJAX('0', "../mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";

@@ -260,7 +260,7 @@
             registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
             $("#selectObra").change(function () {
                 var ids = $("#selectObra").val();
-                var a = buscarxidAJAX(ids, '../mantenedores/Obras/Obra_listaxID');
+                var a = buscarxidAJAX(ids, '../Mantenedores/Obras/Obra_listaxID');
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
 
@@ -280,7 +280,7 @@
             $("#btnRegistrar").on('click', function (e) {
                 //$("#frmAmortizacion")[0].reset();
                 //            LISTA DATOS SELET2 CLIENTES
-                listadoClientes = buscarxidAJAX('0', "../mantenedores/clieprovs/Clieprovs_lista");
+                listadoClientes = buscarxidAJAX('0', "../Mantenedores/Clieprovs/Clieprovs_lista");
                 listaClientesHTML = "<option></option>";
                 $.each(listadoClientes, function (index, datos) {
                     listaClientesHTML += "<option value='" + datos.id + "'>" + datos.Razon_Social + " - " + datos.ruc + "</option>";
@@ -288,7 +288,7 @@
                 });
                 //            FIN LISTA DATOS SELET2 CLIENTES
                 //            LISTA DATOS SELECT2 DOCUMENTOS
-                listado = buscarxidAJAX('0', "../mantenedores/documentos/Documentos_lista");
+                listado = buscarxidAJAX('0', "../Mantenedores/Documentos/Documentos_lista");
                 listaHTML = "<option></option>";
                 $.each(listado, function (index, datos) {
                     listaHTML += "<option value='" + datos.id + "'>" + datos.Descripcion + "</option>";
@@ -351,7 +351,7 @@
             });
             */
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "../Mantenedores/obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";

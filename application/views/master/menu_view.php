@@ -29,7 +29,7 @@
                             </a>
                             <ul class="nav nav-children">
                                 <li class="<?php echo (($actualH == 'Amortizaciones') ? 'nav-active' : ''); ?>">
-                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/PorCobrar/amortizaciones">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/PorCobrar/Amortizaciones">
                                         Amortizaciones
                                     </a>
                                 </li>

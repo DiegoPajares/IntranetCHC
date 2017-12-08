@@ -204,7 +204,7 @@
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
-                "sAjaxSource": "./CartaFianza_listaxidObra?idObra=" + idObra,
+                "sAjaxSource": "./CartaFianza/CartaFianza_listaxidObra?idObra=" + idObra,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
@@ -294,7 +294,7 @@
 
         var CargaInicial = function () {
             //            LISTA DATOS SELET2 OBRAS
-            listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
+            listadoObras = buscarxidAJAX('0', "./Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";
             $.each(listadoObras, function (index, datos) {
                 listaObrasHTML += "<option value='" + datos.id + "'>" + datos.NombreCorto + " - " + datos.Empresa + "</option>";
