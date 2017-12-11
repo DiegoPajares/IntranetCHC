@@ -234,7 +234,7 @@
                     });
                     
                     $(".idEliminartodo").on('click', function (e) {
-                        eliminarAJAX(this.id, "./CartaFianza_Eliminar");
+                        eliminarAJAX(this.id, "./CartaFianza/CartaFianza_Eliminar");
                     });
                     $.LoadingOverlay("hide");
                 }
@@ -256,7 +256,7 @@
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
-                "sAjaxSource": "./CartaFianzaDet_listaxIDCF?id=" + idAmort,
+                "sAjaxSource": "./CartaFianza/CartaFianzaDet_listaxIDCF?id=" + idAmort,
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "dom": 'rtip',
@@ -272,7 +272,7 @@
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
-                        eliminarAJAX(this.id, "./CartaFianzaDet_Eliminar");
+                        eliminarAJAX(this.id, "./CartaFianza/CartaFianzaDet_Eliminar");
                     });
                 }
             });
@@ -280,7 +280,7 @@
 
 //-------------------FIN DETALLE PAGOS------------
         var eventos = function () {
-            registrarAJAX("#frmCartaFianza", "./CartaFianza_registrar");
+            registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
                 $("#nombreCortoObra").val($("#selectObra option:selected").text());
@@ -308,7 +308,7 @@
                 var txtRenov = $("#txtRenov").val();
                 e.preventDefault();
                 $.ajax({
-                    url: './CartaFianzaDet_registrar',
+                    url: './CartaFianza/CartaFianzaDet_registrar',
                     type: "POST",
                     data: {
                         cpd_id: cpdid,

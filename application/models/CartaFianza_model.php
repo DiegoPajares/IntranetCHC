@@ -82,15 +82,6 @@ class CartaFianza_model extends CI_Model {
                 . 'left join (select cartafianza_id,count(*) as contar from cf_fechas group by cartafianza_id) x on x.cartafianza_id = c.id '
                 . 'where c.obras_id= "' . $idObra . '" and c.estado = 1 '
                 . 'ORDER BY cf.cartafianza_id,cf.fechaemision ASC;');
-        /*
-        $this->db->select('d.*,dd.*');
-        $this->db->from('cartafianza d');
-        $this->db->join('cf_fechas dd', 'dd.cartafianza_id = d.id');
-        $this->db->where('obras_id', $idObra);
-        $this->db->where('estado', 1);
-        $this->db->order_by('dd.fechaemision', 'ASC');
-        $query = $this->db->get();
-        */
         if (count($query) > 0) {
             return $query->result();
         } else {
@@ -121,6 +112,15 @@ class CartaFianza_model extends CI_Model {
         $this->db->delete('cf_fechas');
     }
 
+    function cartafianzaDetQry_EliminarAll() {
+         if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+        }
+
+        $this->db->where('cartafianza_id', $id);
+        $this->db->delete('cf_fechas');
+    }
+    
     function cartafianzaQry_Eliminar() {
          if (isset($_POST['id'])) {
             $id = $_POST['id'];

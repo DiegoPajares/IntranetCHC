@@ -59,7 +59,8 @@ class CartaFianza extends CI_Controller {
     
     public function CartaFianza_Eliminar() {
         $this->db->trans_start();
-            $data = $this->CartaFianza_model->cartafianzaDetQry_Eliminar();
+            $data = $this->CartaFianza_model->cartafianzaDetQry_EliminarAll();
+            $data = $this->CartaFianza_model->cartafianzaQry_Eliminar();
         $this->db->trans_complete();  // rollback automático
         if ($this->db->trans_status() === FALSE) {
             $data = 0;
