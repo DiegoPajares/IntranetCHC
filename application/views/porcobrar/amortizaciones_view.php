@@ -241,7 +241,7 @@
                     searchPlaceholder: "Filtrar resultados",
                 },
                 drawCallback: function (settings, json) {
-                    eventos();
+                    //eventos();
                     $.LoadingOverlay("hide");
                 }
             });

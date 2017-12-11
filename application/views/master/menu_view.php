@@ -38,6 +38,11 @@
                                         Control de Pagos
                                     </a>
                                 </li>
+                                <li class="<?php echo (($actualH == 'Presupuestos') ? 'nav-active' : ''); ?>">
+                                    <a class="nav-link" href="<?php echo MAIN_URL ?>/PorCobrar/Presupuestos">
+                                        Presupuestos
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-parent <?php echo (($actualP == 'Mantenedor') ? 'nav-expanded nav-active' : ''); ?>">
