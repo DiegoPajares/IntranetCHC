@@ -15,8 +15,8 @@ class Presupuestos_model extends CI_Model {
     }
 
     function presupuestoQry_getxidObra() {
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['cboobra'])) {
+            $id = $_POST['cboobra'];
         }
         $query = $this->db->query('SELECT * FROM presupuestos WHERE estado = 1 and obras_id= "' . $id . '";');
         if (count($query) > 0) {

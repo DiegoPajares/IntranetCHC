@@ -12,6 +12,7 @@ class PorCobrar extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Ctactecpd_model');
         $this->load->model('Mantenedores/Obra_model');
+        $this->load->model('Presupuestos_model');
     }
     public function index() {
         $data['actualP'] = 'Por_Cobrar';
@@ -76,6 +77,7 @@ class PorCobrar extends CI_Controller {
     public function generaReporte() {
         $data['titulo'] = 'Reporte Control Pagos';
         $data['porpagar'] = $this->Cobrarpagardoc_model->cobrarpagardocQry_getxidObraSumatorias($this->tipo);
+        $data['presupuesto'] = $this->Presupuestos_model->presupuestoQry_getxidObra();
         $_POST['id'] = $_REQUEST['cboobra'];
         $data['info_obra'] = $this->Obra_model->obraQry_getxid();
 

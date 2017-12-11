@@ -15,8 +15,6 @@
             <tr><td colspan="6"></td></tr>
             <tr>
                 <td><b>Entidad:</b></td><td><?php echo $info_obra[0]->Empresa ?></td>
-                <td><b>RUC:</b></td><td>Lorem Ipsum Dolor Chavez</td>
-                <td><b>Domicilio:</b></td><td>Lorem Ipsum Dolor Chavez</td>
             </tr>
             <tr>
                 <td><b>Obra:</b></td><td colspan="5"><?php echo $info_obra[0]->Nombre ?></td>
@@ -90,5 +88,34 @@
             ?>
             
         </table>
+
+     <br/>
+        <?php
+//        print_r($info_obra[0]);
+        ?>
+    
+        <table border="1" cellspacing="0" cellpadding="1" style="width: 100%;">
+            <tr>
+                <th align="center" bgcolor="#013ADF">>PRESUPUESTOS</th>
+                <th align="center">MONTOS</th>
+            </tr>
+            <tr>
+                <td align="center">Ofertado</td>
+                <td align="center"><?php echo $presupuesto[0]->ofertado ?></td>
+            </tr>
+            <tr>
+                <td align="center">Adicional</td>
+                <td align="center"><?php echo $presupuesto[0]->adicional ?></td>
+            </tr>
+            <tr>
+                <td align="center">Reintegros</td>
+                <td align="center"><?php echo$presupuesto[0]->reintegros ?></td>
+            </tr>
+            <tr>
+                <td align="center">Deductivo</td>
+                <td align="center"><?php echo$presupuesto[0]->deductivo ?></td>
+            </tr>
+        </table>
     </body>
+           
 </html>

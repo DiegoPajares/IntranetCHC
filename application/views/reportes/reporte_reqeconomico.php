@@ -15,8 +15,6 @@
             <tr><td colspan="6"></td></tr>
             <tr>
                 <td><b>Entidad:</b></td><td><?php echo $info_obra[0]->Empresa ?></td>
-                <td><b>RUC:</b></td><td>Lorem Ipsum Dolor Chavez</td>
-                <td><b>Domicilio:</b></td><td>Lorem Ipsum Dolor Chavez</td>
             </tr>
             <tr>
                 <td><b>Obra:</b></td><td colspan="5"><?php echo $info_obra[0]->Nombre ?></td>
