@@ -4,7 +4,7 @@
 
         <div class="sidebar-header">
             <div class="sidebar-title">
-                Navegación
+                Navegaci車n
             </div>
             <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -69,10 +69,10 @@
                                 <span>Carta Fianza</span>
                             </a>                        
                         </li>
-                        <li  class="<?php echo (($actualP == 'Requerimiento Económico') ? 'nav-active' : ''); ?>">
+                        <li  class="<?php echo (($actualP == 'Requerimiento Econ車mico') ? 'nav-active' : ''); ?>">
                             <a class="nav-link" href="<?php echo MAIN_URL ?>/PorPagar/ReqEconomico">
                                 <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                                <span>Requerimiento Económico</span>
+                                <span>Requerimiento Econ&oacute;mico</span>
                             </a>                        
                         </li>
                         <li  class="<?php echo (($actualP == 'Cuentas Por Pagar') ? 'nav-active' : ''); ?>">
