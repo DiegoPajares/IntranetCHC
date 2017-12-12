@@ -265,7 +265,7 @@
                         "aTargets": [3],
                         "mData": "download_link",
                         "mRender": function (data, type, full) {
-                            return '<a href="#" id="' + data.fechaemision + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" id="' + data.fechaemision + '/'+ data.cartafianza_id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i></a>';
                         }
                     }],
                 "order": [[0, "asc"]],

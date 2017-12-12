@@ -104,12 +104,12 @@ class CartaFianza_model extends CI_Model {
     
     function cartafianzaDetQry_Eliminar() {
         if (isset($_POST['id'])) {
-            $fechaemision = $_POST['id'];
+            $fechaemision = substr($_POST['id'],0,10);
+            $id = substr($_POST['id'],11);
         }
-         if (isset($_REQUEST['cpd_id'])) {
-            $id = $_REQUEST['cpd_id'];
-        }
-
+        
+        print_r($fechaemision);
+            
         $this->db->where('cartafianza_id', $id);
         $this->db->where('fechaemision', $fechaemision);
         $this->db->where('visible', 1);
