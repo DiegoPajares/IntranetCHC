@@ -103,21 +103,25 @@ class CartaFianza_model extends CI_Model {
     }
     
     function cartafianzaDetQry_Eliminar() {
-         if (isset($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['id'])) {
+            $fechaemision = $_POST['id'];
+        }
+         if (isset($_REQUEST['cpd_id'])) {
+            $id = $_REQUEST['cpd_id'];
         }
 
         $this->db->where('cartafianza_id', $id);
+        $this->db->where('fechaemision', $fechaemision);
         $this->db->where('visible', 1);
         $this->db->delete('cf_fechas');
     }
 
     function cartafianzaDetQry_EliminarAll() {
-         if (isset($_POST['fechaemision'])) {
-            $id = $_POST['fechaemision'];
+         
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
         }
-
-        $this->db->where('fechaemision', $id);
+        $this->db->where('cartafianza_id', $id);
         $this->db->delete('cf_fechas');
     }
     
