@@ -10,7 +10,7 @@
             <tr>
                 <td colspan="2"><img src="<?php echo URL_PUBLIC_IMG; ?>logo.png"></td>
                 <td colspan="2"><h2><?php echo $titulo; ?></h2></td>
-                <td colspan="2"></td>
+                <td colspan="6"></td>
             </tr>
             <tr><td colspan="6"></td></tr>
             <tr>
