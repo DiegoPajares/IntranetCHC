@@ -242,6 +242,9 @@
                 },
                 drawCallback: function (settings, json) {
                     //eventos();
+                    $(".idEliminar").click(function () {
+                        eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
+                    });
                     $.LoadingOverlay("hide");
                 }
             });
@@ -275,10 +278,6 @@
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
                 $("#btnGeneraReporte").removeAttr('disabled');
-            });
-
-            $(".idEliminar").click(function () {
-                eliminarAJAX(this.id, "./Amortizaciones/Amortizacion_Eliminar");
             });
 
             // EVENTO ABRE MODAL
