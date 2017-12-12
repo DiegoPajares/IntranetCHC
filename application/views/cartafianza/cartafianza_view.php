@@ -59,71 +59,71 @@
 </section>
 
 
-    <!--******************* MODALS NUEVO ******************-->   
-    <!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
-    <div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
-        <section class="card">
-            <header class="card-header">
-                <h2 class="card-title">Nueva Carta Fianza</h2>
-            </header>
-            <form action="#" class="form-horizontal" id="frmCartaFianza" method="POST">
-                <div class="card-body">                 
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="nombreCortoObra">Obra</label>
-                            <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
-                            <input type="hidden" id="idObra" name="idObra">
+<!--******************* MODALS NUEVO ******************-->   
+<!--id="copy_course_modal" tabindex="-1" role="dialog" aria-labelledby="copycourse" aria-hidden="true"-->
+<div id="mdlnuevo" class="modal-block modal-block-primary mfp-hide">
+    <section class="card">
+        <header class="card-header">
+            <h2 class="card-title">Nueva Carta Fianza</h2>
+        </header>
+        <form action="#" class="form-horizontal" id="frmCartaFianza" method="POST">
+            <div class="card-body">                 
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="nombreCortoObra">Obra</label>
+                        <input name="nombreCortoObra" id="nombreCortoObra" class="form-control text-uppercase" data-plugin-maxlength placeholder="OBRA" required disabled/>
+                        <input type="hidden" id="idObra" name="idObra">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="txtFielCumplimiento">Fiel Cumplimiento</label>                            
+                        <input name="txtFielCumplimiento" id="txtFielCumplimiento" class="form-control text-uppercase" data-plugin-maxlength maxlength="100" placeholder="Ejm: FAC-0001-00000000999" required/>                            
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="txtNroCarta">Nro Cara Fianza</label>                            
+                        <input name="txtNroCarta" id="txtNroCarta" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
+                    </div>                    
+                    <div class="form-group col-md-6">
+                        <label for="txtFechaIni">Fecha Inicio</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                            <input id="txtFechaIni" name="txtFechaIni" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
                         </div>
-                        <div class="form-group col-md-12">
-                            <label for="txtFielCumplimiento">Fiel Cumplimiento</label>                            
-                            <input name="txtFielCumplimiento" id="txtFielCumplimiento" class="form-control text-uppercase" data-plugin-maxlength maxlength="100" placeholder="Ejm: FAC-0001-00000000999" required/>                            
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="txtNroCarta">Nro Cara Fianza</label>                            
-                            <input name="txtNroCarta" id="txtNroCarta" class="form-control text-uppercase" data-plugin-maxlength maxlength="25" placeholder="Ejm: FAC-0001-00000000999" required/>                            
-                        </div>                    
-                        <div class="form-group col-md-6">
-                            <label for="txtFechaIni">Fecha Inicio</label>                            
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
-                                <input id="txtFechaIni" name="txtFechaIni" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="txtFechaFin">Fecha Fin</label>                            
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
-                                <input id="txtFechaFin" name="txtFechaFin" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtFechaFin">Fecha Fin</label>                            
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <!--<input id="txtFechaFactura" name="txtFechaFactura" type="text" data-plugin-datepicker class="form-control">-->
+                            <input id="txtFechaFin" name="txtFechaFin" type="text" data-plugin-masked-input data-input-mask="99/99/9999" placeholder="__/__/____" class="form-control">
 
-                            </div>
-                        </div>
-                    </div>                                        
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="txtGastoFinanciero">Gasto Financiero</label>
-                            <input type="number" min="0" step="0.01" name="txtGastoFinanciero" id="txtGastoFinanciero" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
                         </div>
                     </div>
-                    <!--------------------------->                    
-                    <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+                </div>                                        
+                <div class="form-row col-md-12">
+                    <div class="form-group col-md-6">
+                        <label for="txtGastoFinanciero">Gasto Financiero</label>
+                        <input type="number" min="0" step="0.01" name="txtGastoFinanciero" id="txtGastoFinanciero" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                    </div>
                 </div>
-                <footer class="card-footer">
-                    <div class="row">
-                        <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
-                            <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
-                        </div>
+                <!--------------------------->                    
+                <input type="hidden" name="txtIdEditar" id="txtIdEditar">                                    
+            </div>
+            <footer class="card-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-info btn-primary mt-3 mb-3 btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-default modal-dismiss red btn-outline">Cancelar</button>
                     </div>
-                </footer>
-            </form>
-        </section>
-    </div>     
+                </div>
+            </footer>
+        </form>
+    </section>
+</div>     
 
 
 <!--******************* MODALS Pago ******************-->   
@@ -163,17 +163,17 @@
                     </div>
                 </div>
                 <div class="form-row col-md-12">
-                        <div class="form-group col-md-11">
-                            <label for="txtRenov">Monto Renovación</label>
-                            <input type="number" min="0" step="0.01" name="txtRenov" id="txtRenov" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
-                        </div>
+                    <div class="form-group col-md-11">
+                        <label for="txtRenov">Monto Renovación</label>
+                        <input type="number" min="0" step="0.01" name="txtRenov" id="txtRenov" class="form-control text-uppercase" data-plugin-maxlength maxlength="15" placeholder="Ejm: 0000.00" required/>
+                    </div>
                     <div class="form-group col-md-1">
                         <label class="col-md-1 control-label" ></label>                        
                         <button type="submit" id="Guardar" class="Guardar btn btn-info btn-primary mt-3 mb-3 btn btn-success">+</button>
                     </div>
-                
+
                 </div>
-                
+
             </form>
             <table class="table table-bordered table-striped mb-none" id="tablaDetReqEc" style="width: 100%; text-align:center; align:center;  " >
                 <thead>
@@ -200,7 +200,7 @@
         var plugins = function () {
         }
 
-        var initDatatables = function (idObra) {            
+        var initDatatables = function (idObra) {
             $.LoadingOverlay("show");
             $('#tablaObras').dataTable().fnDestroy();
             datatable = $('#tablaObras').DataTable({
@@ -208,7 +208,7 @@
                 "sServerMethod": "POST",
                 "sAjaxDataProp": "",
                 "scrollX": true,
-                "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"},  {"mData": null }, {"mData": "fechavencimiento"}, {"mData": null}],
+                "aoColumns": [{"mData": "id"}, {"mData": "FielCumplimiento"}, {"mData": "numero"}, {"mData": "gastofinac"}, {"mData": null}, {"mData": "fechavencimiento"}, {"mData": null}],
                 "aoColumnDefs": [
                     {
                         "aTargets": [6],
@@ -232,7 +232,7 @@
                         $("#btnAbreModalDetCarta").click();
                         initDatatablesDetCarta(idAmort);
                     });
-                    
+
                     $(".idEliminartodo").on('click', function (e) {
                         eliminarAJAX(this.id, "./CartaFianza/CartaFianza_Eliminar");
                     });
@@ -252,7 +252,7 @@
 
 //-------------------DETALLE PAGOS------------
 
-    var initDatatablesDetCarta = function (idAmort) {
+        var initDatatablesDetCarta = function (idAmort) {
             $.LoadingOverlay("show");
             $('#tablaDetReqEc').dataTable().fnDestroy();
             datatableDetAmort = $('#tablaDetReqEc').DataTable({
@@ -279,17 +279,25 @@
         }
 
 //-------------------FIN DETALLE PAGOS------------
+
+        var llenaCombo = function () {
+            $("#nombreCortoObra").val($("#selectObra option:selected").text());
+        }
+
         var eventos = function () {
             registrarAJAX("#frmCartaFianza", "./CartaFianza/CartaFianza_registrar");
             $("#selectObra").change(function () {
                 initDatatables($("#selectObra").val());
-                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+//                $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnGeneraReporte").removeAttr('disabled');
             });
-            
+
+            $("#btnRegistrar").on('click', function (e) {
+                llenaCombo();
+            });
         }
 
         var CargaInicial = function () {

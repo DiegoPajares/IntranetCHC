@@ -224,16 +224,16 @@
                         "mData": "download_link",
                         "mRender": function (data, type, full) {
                             /* return '<center><div class="btn-group">' +
-                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
-                                    '<ul class="dropdown-menu pull-left" role="menu">' +
-                                    '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
-                                    '<li><a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
-                                    '</ul></div></center>';
-                            */
+                             '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acci&oacute;n <i class="fa fa-angle-down"></i></button>' +
+                             '<ul class="dropdown-menu pull-left" role="menu">' +
+                             '<li><a href="#" id="' + data.id + '" class="idEditar dropdown-item text-1"> <i class="fa fa-pencil"></i> Editar</a></li>' +
+                             '<li><a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a></li>' +
+                             '</ul></div></center>';
+                             */
                             return '<a href="#" id="' + data.id + '" class="idEliminar dropdown-item text-1"> <i class="fa fa-trash-o"></i> Eliminar</a>';
                         }
                     }
-                    
+
                 ],
                 "order": [[1, "asc"]],
                 language: {
@@ -256,6 +256,10 @@
             $('div.dataTables_filter input').addClass('form-control input-sm');
         }
 
+        var llenaCombo = function () {
+            $("#nombreCortoObra").val($("#selectObra option:selected").text());
+        }
+
         var eventos = function () {
             registrarAJAX("#frmAmortizacion", "./Amortizaciones/Amortizacion_registrar");
             $("#selectObra").change(function () {
@@ -265,11 +269,12 @@
                 $("#valorObra").val(monto);
 
                 initDatatables($("#selectObra").val());
-                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+//                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+//                llenaCombo();
                 $("#idObra").val($("#selectObra").val());
                 $("#rptIdObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
-                $("#btnGeneraReporte").removeAttr('disabled');                
+                $("#btnGeneraReporte").removeAttr('disabled');
             });
 
             $(".idEliminar").click(function () {
@@ -278,6 +283,7 @@
 
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
+                llenaCombo();
                 //$("#frmAmortizacion")[0].reset();
                 //            LISTA DATOS SELET2 CLIENTES
                 listadoClientes = buscarxidAJAX('0', "../Mantenedores/Clieprovs/Clieprovs_lista");
@@ -305,51 +311,51 @@
 
         var CargaInicial = function () {
             /*
-                $(".idEditar").click(function () {
-                    $("#btnRegistrar").click();
-                    var a = buscarxidAJAX(this.id, './Amortizaciones/Amortizacion_listaxID');
-                    $("#txtIdEditar").val(a[0].id);
-                    $("#nombreCortoObra").val(a[0].NombreCorto);
-                    //$("#idObra").val(a[0].obras_id);
-                    $("#txtDescripcion").val(a[0].Descripcion);
-                    $("#txtNroFactura").val(a[0].Numero);
-                    $("#txtTotalValor").val(a[0].Descripcion);
-                    $("#txtReajusteForm").val(a[0].Descripcion);
-                    $("#txtadelantDir").val(a[0].Descripcion);
-                    $("#txtAdelantoMat").val(a[0].Descripcion);
-                    $("#txtDeduccionAdDir").val(a[0].Descripcion);
-                    $("#txtDeduccionAdMat").val(a[0].Descripcion);
-                    $("#txtAdelantoMat").val(a[0].Descripcion);
-
-                    $documento_id = $_POST['selectDoc'];
-                    $clieprov_id = $_POST['selectClienteProv'];
-
-                    $fecha = trim($_POST['txtFechaFactura']);
-                    $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
-
-            $data = array(
-                'obras_id' => $obras_id,
-                'clieprov_id' => $clieprov_id,
-                'Fecha' => $fecha,
-
-                'ValorInicial' => $valorinicial,
-                'ReajusteFP' => $reajustefp,
-                'AdelantoDirecto' => $adelantodirecto,
-                'AdelantoMateriales' => $adelantomateriales,
-                'DeduccionRAD' => $deduccionrad,
-                'DeduccionRAM' => $deduccionram,
-                'MontoTotal' => $montototal,
-                'Pagado' => $pagado,
-                'Saldo' => $saldo,
-                'Tipo' => $tipo,
-                'Detraccion' => $detraccion,
-                'documento_id' => $documento_id,
-                'banco' => $banco,
-                'cuenta' => $cuenta,
-                'cci' => $cci
-            );
-            });
-            */
+             $(".idEditar").click(function () {
+             $("#btnRegistrar").click();
+             var a = buscarxidAJAX(this.id, './Amortizaciones/Amortizacion_listaxID');
+             $("#txtIdEditar").val(a[0].id);
+             $("#nombreCortoObra").val(a[0].NombreCorto);
+             //$("#idObra").val(a[0].obras_id);
+             $("#txtDescripcion").val(a[0].Descripcion);
+             $("#txtNroFactura").val(a[0].Numero);
+             $("#txtTotalValor").val(a[0].Descripcion);
+             $("#txtReajusteForm").val(a[0].Descripcion);
+             $("#txtadelantDir").val(a[0].Descripcion);
+             $("#txtAdelantoMat").val(a[0].Descripcion);
+             $("#txtDeduccionAdDir").val(a[0].Descripcion);
+             $("#txtDeduccionAdMat").val(a[0].Descripcion);
+             $("#txtAdelantoMat").val(a[0].Descripcion);
+             
+             $documento_id = $_POST['selectDoc'];
+             $clieprov_id = $_POST['selectClienteProv'];
+             
+             $fecha = trim($_POST['txtFechaFactura']);
+             $fecha = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
+             
+             $data = array(
+             'obras_id' => $obras_id,
+             'clieprov_id' => $clieprov_id,
+             'Fecha' => $fecha,
+             
+             'ValorInicial' => $valorinicial,
+             'ReajusteFP' => $reajustefp,
+             'AdelantoDirecto' => $adelantodirecto,
+             'AdelantoMateriales' => $adelantomateriales,
+             'DeduccionRAD' => $deduccionrad,
+             'DeduccionRAM' => $deduccionram,
+             'MontoTotal' => $montototal,
+             'Pagado' => $pagado,
+             'Saldo' => $saldo,
+             'Tipo' => $tipo,
+             'Detraccion' => $detraccion,
+             'documento_id' => $documento_id,
+             'banco' => $banco,
+             'cuenta' => $cuenta,
+             'cci' => $cci
+             );
+             });
+             */
             //            LISTA DATOS SELET2 OBRAS
             listadoObras = buscarxidAJAX('0', "../Mantenedores/Obras/Obras_lista");
             listaObrasHTML = "<option></option>";

@@ -307,6 +307,11 @@
             });
         }
 //-------------------FIN DETALLE PAGOS------------
+        
+        var llenaCombo = function () {
+            $("#nombreCortoObra").val($("#selectObra option:selected").text());
+        }
+    
         var eventos = function () {
             registrarAJAX("#frmReqEconomico", "./ReqEconomico/ReqEconomico_registrar");
             $("#selectObra").change(function () {
@@ -315,7 +320,7 @@
                 monto = parseFloat(a[0].Monto_Inicial).toFixed(2);
                 $("#valorObra").val(monto);
                 initDatatables($("#selectObra").val());
-                $("#nombreCortoObra").val($("#selectObra option:selected").text());
+//                $("#nombreCortoObra").val($("#selectObra option:selected").text());
                 $("#idObra").val($("#selectObra").val());
                 $("#btnRegistrar").removeAttr('disabled');
                 $("#rptIdObra").val($("#selectObra").val());
@@ -325,6 +330,7 @@
             // EVENTO ABRE MODAL
             $("#btnRegistrar").on('click', function (e) {
                 //            LISTA DATOS SELET2 CLIENTES
+                llenaCombo();
                 listadoClientes = buscarxidAJAX('0', "../Mantenedores/Clieprovs/Clieprovs_lista");
                 listaClientesHTML = "<option></option>";
                 $.each(listadoClientes, function (index, datos) {
