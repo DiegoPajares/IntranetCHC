@@ -14,6 +14,7 @@ class Amortizaciones extends CI_Controller {
         $this->load->model('Cobrarpagardoc_model');
         $this->load->model('Mantenedores/Documento_model');
         $this->load->model('Mantenedores/Obra_model');
+        $this->load->model('Ctactecpd_model');
     }
 
     public function index() {
@@ -75,7 +76,7 @@ class Amortizaciones extends CI_Controller {
 
     public function Amortizacion_Eliminar() {
         $this->db->trans_start(); 
-            $data = $this->Ctactecpd_model->ctactecpdQry_eliminar();
+            $data = $this->Ctactecpd_model->ctactecpdQry_eliminarxCPD();
             $data = $this->Cobrarpagardoc_model->cobrarpagardocQry_eliminar();
         $this->db->trans_complete();  // rollback automático
         if ($this->db->trans_status() === FALSE) {

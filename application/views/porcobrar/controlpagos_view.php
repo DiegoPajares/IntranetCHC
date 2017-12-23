@@ -127,7 +127,9 @@
     var datatable;
 
     var APP = function () {
-
+    $acumulado = 0.0;
+    $deduccion = 0.0;
+    $deduc = 0.0;
         var plugins = function () {
         }
 
@@ -153,9 +155,9 @@
                     {
                         "aTargets": [3],
                         "mRender": function (data, type, full) {
-                            $acumulado = parseFloat(data.MontoTotal) + parseFloat($acumulado);
-                            $result = parseFloat(data.monto_Obra) - parseFloat($acumulado);
-                            return '' + $result + '';
+                            $deduc = parseFloat(data.MontoTotal) + parseFloat($deduc);
+                            $deduccion = parseFloat(data.monto_Obra) - parseFloat($deduc);
+                            return '' + $deduccion + '';
                         }
                     },
                     {
@@ -209,6 +211,9 @@
                 drawCallback: function (settings, json) {
                     $.LoadingOverlay("hide");
                     $(".idEliminar").on('click', function (e) {
+                        $acumulado = 0.0;
+                        $deduccion = 0.0;
+                        $deduc = 0.0;
                         eliminarAJAX(this.id, "./PorCobrar/Ctacte_Eliminar");
                     });
                 }
@@ -260,6 +265,9 @@
                     success: function () {
                         $.LoadingOverlay("hide");
                         notificacion(1, "Registro realizado con éxito.");
+                        $acumulado = 0.0;
+                        $deduccion = 0.0;
+                        $deduc = 0.0;
                         $("#frmPago")[0].reset();
                         $('.modal-block .modal-dismiss').click();
                         datatable.ajax.reload();
